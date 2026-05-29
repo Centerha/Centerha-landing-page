@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Centerha — Form</title>
+  <title>Centerha — Get Early Access</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
@@ -13,81 +13,203 @@
   <link rel="stylesheet" href="../assets/css/responsive.css" />
 </head>
 <body class="app-page">
-  <header class="nav" id="nav">
-    <div class="wrap nav-inner">
-      <a href="../index.html" class="brand" aria-label="Centerha">
-        <img class="brand-mark" src="../assets/images/logo-mark.png" alt="Centerha" />
-        <span class="brand-word" data-i18n="brand">Centerha</span>
+
+<!-- ===================== NAVBAR ===================== -->
+<header class="nav" id="nav">
+  <div class="wrap nav-inner">
+    <a href="../index.html" class="brand" aria-label="Centerha">
+      <img class="brand-mark" src="../assets/images/logo-mark.png" alt="Centerha" />
+      <span class="brand-word"><span data-en>Centerha</span><span data-ar>سنطرها</span></span>
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="../index.html"><span data-en>Home</span><span data-ar>الرئيسية</span></a>
+      <a href="form.html" class="active"><span data-en>Form</span><span data-ar>النموذج</span></a>
+      <a href="comments.html"><span data-en>Reviews</span><span data-ar>التعليقات</span></a>
+      <a href="questions.html"><span data-en>FAQ</span><span data-ar>الأسئلة</span></a>
+    </nav>
+    <div class="nav-cta">
+      <div class="lang-pill" id="langPill" role="tablist" aria-label="Language">
+        <span class="knob" aria-hidden="true"></span>
+        <button type="button" data-lang="en" class="on">EN</button>
+        <button type="button" data-lang="ar">عربي</button>
+      </div>
+      <a href="../index.html#download" class="btn btn-lime">
+        <span data-en>Download App</span><span data-ar>نزّل التطبيق</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" class="arrow-rtl"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </a>
-      <nav class="nav-links" aria-label="Primary">
-        <a class="page-nav-link" href="../index.html" data-i18n="navHome">Home</a>
-        <a class="page-nav-link active is-active" href="form.html" data-i18n="navForm">Form</a>
-        <a class="page-nav-link" href="add-field.html" data-i18n="navFields">Add Field</a>
-        <a class="page-nav-link" href="comments.html" data-i18n="navComments">Comments</a>
-        <a class="page-nav-link" href="questions.html" data-i18n="navQuestions">Questions</a>
-      </nav>
-      <div class="nav-cta">
-        <div class="lang-pill" role="tablist" aria-label="Language">
-          <span class="knob" aria-hidden="true"></span>
-          <button type="button" data-lang="en" class="on">EN</button>
-          <button type="button" data-lang="ar">ع</button>
-        </div>
-        <a href="../index.html#download" class="btn btn-lime" data-i18n="downloadApp">Download App</a>
-        <button class="nav-mobile-toggle page-menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
-        </button>
-      </div>
+      <button class="nav-mobile-toggle" id="navToggle" aria-label="Menu" aria-expanded="false">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
     </div>
-  </header>
-  <main>
-    <section class="page-hero">
-      <div class="wrap page-hero-inner">
-        <div class="page-title reveal">
-          <span class="kicker"><span class="kicker-pill"><span class="kicker-dot"></span><span data-i18n="pageFormEyebrow"></span></span></span>
-          <h1 class="h-1" data-i18n="pageFormTitle"></h1>
-          <p class="lede" data-i18n="pageFormLead"></p>
-        </div>
-        <aside class="page-panel reveal">
-          <p class="lede" data-i18n="footerText"></p>
-        </aside>
+  </div>
+</header>
+
+<!-- ===================== MOBILE MENU ===================== -->
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <div class="mm-top">
+    <a href="../index.html" class="brand" aria-label="Centerha">
+      <img class="brand-mark" src="../assets/images/logo-mark.png" alt="Centerha" />
+      <span class="brand-word"><span data-en>Centerha</span><span data-ar>سنطرها</span></span>
+    </a>
+    <button class="mm-close" id="mmClose" aria-label="Close menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
+    </button>
+  </div>
+  <nav class="mm-links" aria-label="Mobile">
+    <a href="../index.html"><span data-en>Home</span><span data-ar>الرئيسية</span></a>
+    <a href="form.html" class="active"><span data-en>Form</span><span data-ar>النموذج</span></a>
+    <a href="comments.html"><span data-en>Reviews</span><span data-ar>التعليقات</span></a>
+    <a href="questions.html"><span data-en>FAQ</span><span data-ar>الأسئلة</span></a>
+  </nav>
+  <div class="mm-foot">
+    <div class="lang-pill mm-lang" role="tablist" aria-label="Language">
+      <span class="knob" aria-hidden="true"></span>
+      <button type="button" data-lang="en" class="on">EN</button>
+      <button type="button" data-lang="ar">عربي</button>
+    </div>
+    <a href="../index.html#download" class="btn btn-lime mm-download">
+      <span data-en>Download App</span><span data-ar>نزّل التطبيق</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" class="arrow-rtl"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+  </div>
+</div>
+
+<!-- ===================== FLOATING WHATSAPP (mobile) ===================== -->
+<a href="https://wa.me/963110000000" class="wa-fab" aria-label="WhatsApp" target="_blank" rel="noopener">
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.5A10 10 0 1 0 12 2Zm5.8 14.2c-.25.7-1.45 1.34-2 1.4-.53.05-1.2.08-1.95-.12a8 8 0 0 1-1.77-.66 9.7 9.7 0 0 1-3.7-3.27c-.27-.36-.97-1.3-.97-2.48 0-1.17.62-1.75.83-1.99.22-.24.48-.3.64-.3l.46.01c.15.01.35-.06.54.42l.66 1.6c.05.12.09.26 0 .42l-.25.4c-.12.15-.25.33-.36.44-.12.12-.24.25-.1.49.13.24.6.99 1.29 1.6.88.79 1.63 1.03 1.86 1.15.24.12.38.1.52-.06l.74-.86c.16-.2.3-.16.5-.1l1.55.74c.24.12.4.18.46.28.05.1.05.58-.2 1.27Z"/></svg>
+</a>
+
+<main>
+  <!-- ===================== HERO ===================== -->
+  <section class="page-hero">
+    <div class="wrap page-hero-inner">
+      <div class="page-title reveal">
+        <span class="kicker"><span class="kicker-pill"><span class="kicker-dot"></span><span data-en>Early access</span><span data-ar>وصول مبكر</span></span></span>
+        <h1 class="h-1">
+          <span data-en>Get on the list. <span class="hl">Be first to play.</span></span>
+          <span data-ar>سجّل الآن. <span class="hl">كن أول من يلعب.</span></span>
+        </h1>
+        <p class="lede">
+          <span data-en>Whether you're a player or a venue owner — sign up now and we'll notify you when Centerha launches in your city.</span>
+          <span data-ar>سواء كنت لاعبًا أو صاحب ملعب — سجّل الآن وسنُعلمك حين يُطلق سنطرها في مدينتك.</span>
+        </p>
       </div>
-    </section>
-    <section class="app-section">
-      <div class="wrap two-column-grid">
-        <form class="form-card reveal" id="bookingForm" novalidate>
-          <div class="form-grid" id="bookingFields"></div>
-          <div class="form-actions">
-            <button class="btn btn-lime" type="submit" data-i18n="submitButton">Submit request</button>
-            <button class="btn btn-ghost" type="reset" data-i18n="resetButton">Reset</button>
-            <span class="form-message" id="formMessage" role="status"></span>
+      <aside class="page-panel reveal">
+        <div class="pp-stats">
+          <div class="pp-stat">
+            <div class="pp-val">500<span class="pp-sup">+</span></div>
+            <div class="pp-lbl"><span data-en>Pitches ready</span><span data-ar>ملعب جاهز</span></div>
           </div>
-        </form>
-        <article class="data-card reveal">
-          <h2 class="h-2" data-i18n="pageFieldsEyebrow"></h2>
-          <p class="lede" data-i18n="pageFieldsLead"></p>
-        </article>
-      </div>
-    </section>
-  </main>
-  <footer class="app-footer">
-    <div class="wrap">
-      <div class="f-grid">
-        <div class="f-about">
-          <a href="../index.html" class="brand footer-brand" aria-label="Centerha home">
-            <img class="brand-mark footer-brand-mark" src="../assets/images/logo-mark.png" alt="Centerha" />
-            <span class="brand-word footer-brand-word" data-i18n="brand">Centerha</span>
-          </a>
-          <p data-i18n="footerText">Find, book, and play. The fastest way to get on a football pitch in Syria.</p>
+          <div class="pp-stat">
+            <div class="pp-val">5</div>
+            <div class="pp-lbl"><span data-en>Syrian cities</span><span data-ar>مدن سورية</span></div>
+          </div>
+          <div class="pp-stat">
+            <div class="pp-val">★ 4.9</div>
+            <div class="pp-lbl"><span data-en>App rating</span><span data-ar>تقييم التطبيق</span></div>
+          </div>
         </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ===================== FORM SECTION ===================== -->
+  <section class="app-section">
+    <div class="wrap two-column-grid">
+      <form class="form-card reveal" id="bookingForm" novalidate>
+        <div class="form-grid" id="bookingFields"></div>
+        <div class="form-actions">
+          <button class="btn btn-lime" type="submit" data-i18n="submitButton">Submit request</button>
+          <button class="btn btn-ghost" type="reset" data-i18n="resetButton">Reset</button>
+          <span class="form-message" id="formMessage" role="status"></span>
+        </div>
+      </form>
+
+      <aside class="data-card reveal">
+        <div class="f-ic">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 6-9 13-9 13S3 16 3 10a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <h2 class="h-2" style="margin-top:18px"><span data-en>Why join Centerha?</span><span data-ar>لماذا تنضم إلى سنطرها؟</span></h2>
+        <ul class="sc-list" style="margin-top:20px">
+          <li>
+            <span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m4 12 5 5L20 6"/></svg></span>
+            <span><span data-en>Real-time availability — no more calling around</span><span data-ar>توفّر لحظي — بدون مكالمات مجهدة</span></span>
+          </li>
+          <li>
+            <span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m4 12 5 5L20 6"/></svg></span>
+            <span><span data-en>Book and pay in under 30 seconds</span><span data-ar>احجز وادفع في أقل من 30 ثانية</span></span>
+          </li>
+          <li>
+            <span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m4 12 5 5L20 6"/></svg></span>
+            <span><span data-en>Split payment automatically with your squad</span><span data-ar>تقسيم الدفع تلقائيًا مع الشلّة</span></span>
+          </li>
+          <li>
+            <span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m4 12 5 5L20 6"/></svg></span>
+            <span><span data-en>500+ pitches across Syria, and growing</span><span data-ar>أكثر من 500 ملعب في سوريا، ويزداد</span></span>
+          </li>
+        </ul>
+        <div style="margin-top:28px;padding-top:24px;border-top:1px solid var(--line)">
+          <p style="margin:0;font-size:14px;color:rgba(245,255,254,.6)">
+            <span data-en>Prefer to talk? Reach us on WhatsApp.</span>
+            <span data-ar>تفضّل التحدث؟ تواصل معنا على واتساب.</span>
+          </p>
+          <a href="https://wa.me/963110000000" class="f-contact" style="margin-top:12px" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.5A10 10 0 1 0 12 2Zm5.8 14.2c-.25.7-1.45 1.34-2 1.4-.53.05-1.2.08-1.95-.12a8 8 0 0 1-1.77-.66 9.7 9.7 0 0 1-3.7-3.27c-.27-.36-.97-1.3-.97-2.48 0-1.17.62-1.75.83-1.99.22-.24.48-.3.64-.3l.46.01c.15.01.35-.06.54.42l.66 1.6c.05.12.09.26 0 .42l-.25.4c-.12.15-.25.33-.36.44-.12.12-.24.25-.1.49.13.24.6.99 1.29 1.6.88.79 1.63 1.03 1.86 1.15.24.12.38.1.52-.06l.74-.86c.16-.2.3-.16.5-.1l1.55.74c.24.12.4.18.46.28.05.1.05.58-.2 1.27Z"/></svg>
+            <span dir="ltr">+963 11 000 0000</span>
+          </a>
+        </div>
+      </aside>
+    </div>
+  </section>
+</main>
+
+<!-- ===================== FOOTER ===================== -->
+<footer>
+  <div class="wrap">
+    <div class="f-grid">
+      <div class="f-about">
+        <a href="../index.html" class="brand footer-brand" aria-label="Centerha home">
+          <img class="brand-mark footer-brand-mark" src="../assets/images/logo-mark.png" alt="Centerha" />
+          <span class="brand-word footer-brand-word"><span data-en>Centerha</span><span data-ar>سنطرها</span></span>
+        </a>
+        <p><span data-en>Find, book, and play. The fastest way to get on a football pitch — anywhere in Syria.</span><span data-ar>لاقِ، احجز، والعب. أسرع طريقة توصلك عالملعب — أينما كنت بسوريا.</span></p>
+        <a href="https://wa.me/963110000000" class="f-contact" aria-label="WhatsApp" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.5A10 10 0 1 0 12 2Zm5.8 14.2c-.25.7-1.45 1.34-2 1.4-.53.05-1.2.08-1.95-.12a8 8 0 0 1-1.77-.66 9.7 9.7 0 0 1-3.7-3.27c-.27-.36-.97-1.3-.97-2.48 0-1.17.62-1.75.83-1.99.22-.24.48-.3.64-.3l.46.01c.15.01.35-.06.54.42l.66 1.6c.05.12.09.26 0 .42l-.25.4c-.12.15-.25.33-.36.44-.12.12-.24.25-.1.49.13.24.6.99 1.29 1.6.88.79 1.63 1.03 1.86 1.15.24.12.38.1.52-.06l.74-.86c.16-.2.3-.16.5-.1l1.55.74c.24.12.4.18.46.28.05.1.05.58-.2 1.27Z"/></svg>
+          <span dir="ltr">+963 11 000 0000</span>
+        </a>
       </div>
-      <div class="f-base">
-        <div>© 2026 Centerha. <span data-i18n="rights">All rights reserved.</span></div>
-        <div data-i18n="madeInSyria">Made in Syria</div>
+      <div class="f-col"><button class="f-col-h" type="button"><h5><span data-en>Product</span><span data-ar>المنتج</span></h5><span class="f-chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg></span></button><ul>
+        <li><a href="../index.html#features"><span data-en>Features</span><span data-ar>المزايا</span></a></li>
+        <li><a href="../index.html#why"><span data-en>Why Centerha</span><span data-ar>لماذا سنطرها</span></a></li>
+        <li><a href="../index.html#how"><span data-en>How it works</span><span data-ar>كيف يعمل</span></a></li>
+        <li><a href="../index.html#download"><span data-en>Download</span><span data-ar>التحميل</span></a></li>
+      </ul></div>
+      <div class="f-col"><button class="f-col-h" type="button"><h5><span data-en>For business</span><span data-ar>للأعمال</span></h5><span class="f-chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg></span></button><ul>
+        <li><a href="form.html"><span data-en>List your pitch</span><span data-ar>أضف ملعبك</span></a></li>
+        <li><a href="../index.html#owners"><span data-en>Pricing</span><span data-ar>الأسعار</span></a></li>
+        <li><a href="https://wa.me/963110000000" target="_blank" rel="noopener"><span data-en>Talk to sales</span><span data-ar>تواصل معنا</span></a></li>
+      </ul></div>
+      <div class="f-col"><button class="f-col-h" type="button"><h5><span data-en>Company</span><span data-ar>الشركة</span></h5><span class="f-chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg></span></button><ul>
+        <li><a href="../index.html#why"><span data-en>About</span><span data-ar>عن سنطرها</span></a></li>
+        <li><a href="../index.html#faq"><span data-en>FAQ</span><span data-ar>الأسئلة الشائعة</span></a></li>
+        <li><a href="questions.html"><span data-en>Privacy &amp; Terms</span><span data-ar>الخصوصية والشروط</span></a></li>
+      </ul></div>
+    </div>
+    <div class="f-base">
+      <div>© 2026 Centerha. <span data-en>All rights reserved.</span><span data-ar>جميع الحقوق محفوظة.</span></div>
+      <div class="f-made"><svg class="f-made-flag" width="20" height="14" viewBox="0 0 30 20" xmlns="http://www.w3.org/2000/svg" aria-label="Syria" role="img"><rect width="30" height="6.67" y="0" fill="#007A3D"/><rect width="30" height="6.66" y="6.67" fill="#FFFFFF"/><rect width="30" height="6.67" y="13.33" fill="#000000"/><g fill="#CE1126"><polygon points="10,8 10.6,9.8 12.5,9.8 11,10.9 11.6,12.7 10,11.6 8.4,12.7 9,10.9 7.5,9.8 9.4,9.8"/><polygon points="15,8 15.6,9.8 17.5,9.8 16,10.9 16.6,12.7 15,11.6 13.4,12.7 14,10.9 12.5,9.8 14.4,9.8"/><polygon points="20,8 20.6,9.8 22.5,9.8 21,10.9 21.6,12.7 20,11.6 18.4,12.7 19,10.9 17.5,9.8 19.4,9.8"/></g></svg><span data-en>Made in Syria</span><span data-ar>صُنع في سوريا</span></div>
+      <div class="lang-pill" id="langPillFooter" role="tablist" aria-label="Language">
+        <span class="knob" aria-hidden="true"></span>
+        <button type="button" data-lang="en" class="on">EN</button>
+        <button type="button" data-lang="ar">عربي</button>
       </div>
     </div>
-  </footer>
-  <script src="../assets/js/language.js"></script>
-  <script src="../assets/js/main.js"></script>
-  <script src="../assets/js/forms.js"></script>
+  </div>
+</footer>
+
+<!-- ===================== SCRIPTS ===================== -->
+<script src="../assets/js/language.js"></script>
+<script src="../assets/js/main.js"></script>
+<script src="../assets/js/forms.js"></script>
 </body>
 </html>

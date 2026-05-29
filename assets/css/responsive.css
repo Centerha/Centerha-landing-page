@@ -1,95 +1,86 @@
-/* Responsive adjustments */
-@media (max-width:980px){
-  .app-page .nav-inner{
-    position:relative;
-    flex-wrap:nowrap;
+/* ============================================================
+   RESPONSIVE ADJUSTMENTS — secondary pages & shared overrides
+   ============================================================ */
+
+/* ---- Tablet: collapse hero to single column ---- */
+@media (max-width: 900px) {
+  .page-hero-inner,
+  .two-column-grid {
+    grid-template-columns: 1fr;
   }
 
-  .app-page .brand{min-width:0}
-
-  .app-page .brand-word{
-    max-width:36vw;
-    overflow:hidden;
-    text-overflow:ellipsis;
-    white-space:nowrap;
+  .comments-grid {
+    grid-template-columns: 1fr 1fr;
   }
 
-  .app-page .nav-cta{
-    margin-inline-start:auto;
-    gap:8px;
-  }
-
-  .app-page .nav-links{
-    position:absolute;
-    top:calc(100% + 10px);
-    inset-inline:0;
-    z-index:80;
-    display:none;
-    flex-direction:column;
-    gap:4px;
-    width:auto;
-    padding:12px;
-    overflow:visible;
-    background:rgba(1,31,36,.96);
-    border:1px solid var(--line);
-    border-radius:20px;
-    box-shadow:var(--shadow-float);
-    backdrop-filter:blur(16px);
-  }
-
-  .app-page .nav-links.is-open{display:flex}
-
-  .app-page .nav-links a{
-    min-height:44px;
-    display:flex;
-    align-items:center;
-    padding:12px 14px;
+  .pp-stats {
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
-@media (max-width:900px){
-  .page-hero-inner,.two-column-grid{grid-template-columns:1fr}
-  .comments-grid{grid-template-columns:1fr 1fr}
-  .hero-inner,.showcase-row,.owners,.final{gap:32px}
+/* ---- Tablet nav tweaks ---- */
+@media (max-width: 980px) {
+  .nav-inner { gap: 14px; }
+  .nav-cta { gap: 8px; }
+  .lang-pill button { min-width: 42px; }
 }
 
-@media (max-width:980px){
-  .nav-inner{gap:14px}
-  .nav-cta{gap:8px}
-  .lang-pill button{min-width:42px}
+/* ---- Phone: tighten hero, stack cards ---- */
+@media (max-width: 640px) {
+  .page-hero { padding: 52px 0 28px; }
+  .page-hero-inner { gap: 22px; }
+  .page-title { gap: 14px; }
+  .page-panel { padding: 20px; }
+  .pp-stats { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .pp-val { font-size: 16px; }
+  .pp-lbl { font-size: 10px; }
+  .form-card, .data-card, .comment-card { padding: 22px; }
+  .form-grid, .comments-grid { grid-template-columns: 1fr; }
+  .form-actions .btn { width: 100%; justify-content: center; }
+  .page-grid, .app-section { padding-bottom: 72px; }
+  .input, .select, .textarea { font-size: 16px; }
+  .table-wrap { max-width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .config-table { min-width: 560px; }
+  .comment-card { gap: 14px; }
+  .comment-meta { align-items: flex-start; flex-direction: column; }
+  .question-button { min-height: 56px; padding: 18px 20px; font-size: 16px; }
+  .question-answer { padding: 0 20px 20px; }
+  .final-stores, .hero-ctas { width: 100%; }
+  .store { width: 100%; justify-content: center; }
+  .f-grid { gap: 24px; }
 }
 
-@media (max-width:640px){
-  .page-hero{padding:52px 0 24px}
-  .page-panel,.form-card,.data-card,.comment-card{padding:22px}
-  .form-grid,.comments-grid{grid-template-columns:1fr}
-  .form-actions .btn{width:100%;justify-content:center}
-  .page-grid,.app-section{padding-bottom:72px}
-  .page-hero-inner{gap:22px}
-  .page-title{gap:14px}
-  .page-panel .lede{font-size:15px}
-  .input,.select,.textarea{font-size:16px}
-  .table-wrap{max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
-  .config-table{min-width:620px}
-  .comment-card{gap:14px}
-  .comment-meta{align-items:flex-start;flex-direction:column}
-  .question-button{min-height:56px;padding:18px 20px;font-size:16px}
-  .question-answer{padding:0 20px 20px}
-  .final-stores,.hero-ctas{width:100%}
-  .store{width:100%;justify-content:center}
-  .f-grid{gap:24px}
+/* ---- Small phones ---- */
+@media (max-width: 480px) {
+  .wrap { padding-inline: 16px; }
+  .h-display { font-size: clamp(40px, 14vw, 58px); }
+  .h-1 { font-size: clamp(2rem, 11vw, 2.75rem); }
+  .h-2 { font-size: clamp(1.5rem, 8vw, 2rem); }
+  .lede { font-size: 16px; }
+  .page-hero { padding-top: 40px; }
+  .form-card, .data-card, .comment-card, .page-panel { border-radius: 22px; }
+  .config-table { min-width: 500px; }
+  .pp-stats { grid-template-columns: 1fr 1fr 1fr; gap: 6px; }
+  .pp-val { font-size: 14px; }
+
+  /* hide Download App button in nav on tiny screens */
+  .app-page .nav-cta .btn-lime { display: none; }
+  .lang-pill button { min-width: 38px; padding-inline: 10px; }
+
+  /* footer accordion on phones */
+  .f-grid { gap: 0; }
+  .f-col-h { justify-content: space-between; padding: 18px 0; border-top: 1px solid var(--line); cursor: pointer; min-height: 44px; }
+  .f-col-h h5 { margin: 0; }
+  .f-chev { display: grid; place-items: center; color: rgba(245,255,254,.6); }
+  .f-chev svg { width: 18px; height: 18px; }
+  .f-col.open .f-chev { transform: rotate(180deg); }
+  .f-col ul { display: none; padding: 0 0 16px; }
+  .f-col.open ul { display: flex; }
+  .f-base { justify-content: center; text-align: center; gap: 16px; }
 }
 
-@media (max-width:480px){
-  .wrap{padding-inline:16px}
-  .app-page .brand-word{max-width:42vw}
-  .app-page .nav-cta .btn-lime{display:none}
-  .lang-pill button{min-width:38px;padding-inline:10px}
-  .h-display{font-size:clamp(40px, 14vw, 58px)}
-  .h-1{font-size:clamp(2rem, 11vw, 2.75rem)}
-  .h-2{font-size:clamp(1.5rem, 8vw, 2rem)}
-  .lede{font-size:16px}
-  .page-hero{padding-top:40px}
-  .form-card,.data-card,.comment-card,.page-panel{border-radius:22px}
-  .config-table{min-width:560px}
+/* ---- Very small phones ---- */
+@media (max-width: 400px) {
+  .pp-stats { grid-template-columns: 1fr; gap: 8px; }
+  .pp-stat { flex-direction: row; align-items: center; gap: 12px; text-align: start; }
 }
