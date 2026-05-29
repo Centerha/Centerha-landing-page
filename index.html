@@ -1,0 +1,654 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Centerha — Book your pitch in seconds</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="assets/css/main.css" />
+  <link rel="stylesheet" href="assets/css/layout.css" />
+  <link rel="stylesheet" href="assets/css/components.css" />
+  <link rel="stylesheet" href="assets/css/responsive.css" />
+</head>
+<body>
+
+<!-- ===================== NAVBAR ===================== -->
+<header class="nav" id="nav">
+  <div class="wrap nav-inner">
+    <a href="#" class="brand" aria-label="Centerha">
+      <img class="brand-mark" src="assets/images/logo-mark.png" alt="Centerha" />
+      <span class="brand-word"><span data-en>Centerha</span><span data-ar>سنطرها</span></span>
+    </a>
+
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#features"><span data-en>Features</span><span data-ar>المزايا</span></a>
+      <a href="#why"><span data-en>Why Centerha</span><span data-ar>لماذا سنطرها</span></a>
+      <a href="#how"><span data-en>How it works</span><span data-ar>كيف يعمل</span></a>
+      <a href="#showcase"><span data-en>Pitches</span><span data-ar>الملاعب</span></a>
+      <a href="#owners"><span data-en>For owners</span><span data-ar>لأصحاب الملاعب</span></a>
+    </nav>
+
+    <div class="nav-cta">
+      <!-- pill language toggle -->
+      <div class="lang-pill" id="langPill" role="tablist" aria-label="Language">
+        <span class="knob" aria-hidden="true"></span>
+        <button type="button" data-lang="en" class="on">EN</button>
+        <button type="button" data-lang="ar">عربي</button>
+      </div>
+      <a href="#download" class="btn btn-lime">
+        <span data-en>Download App</span><span data-ar>نزّل التطبيق</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" class="arrow-rtl"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <button class="nav-mobile-toggle" id="navToggle" aria-label="Menu" aria-expanded="false">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ===================== MOBILE FULL-SCREEN MENU ===================== -->
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <div class="mm-top">
+    <a href="#" class="brand" aria-label="Centerha">
+      <img class="brand-mark" src="assets/images/logo-mark.png" alt="Centerha" />
+      <span class="brand-word"><span data-en>Centerha</span><span data-ar>سنطرها</span></span>
+    </a>
+    <button class="mm-close" id="mmClose" aria-label="Close menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
+    </button>
+  </div>
+  <nav class="mm-links" aria-label="Mobile">
+    <a href="#features"><span data-en>Features</span><span data-ar>المزايا</span></a>
+    <a href="#why"><span data-en>Why Centerha</span><span data-ar>لماذا سنطرها</span></a>
+    <a href="#how"><span data-en>How it works</span><span data-ar>كيف يعمل</span></a>
+    <a href="#showcase"><span data-en>Pitches</span><span data-ar>الملاعب</span></a>
+    <a href="#owners"><span data-en>For owners</span><span data-ar>لأصحاب الملاعب</span></a>
+    <a href="#faq"><span data-en>FAQ</span><span data-ar>الأسئلة الشائعة</span></a>
+  </nav>
+  <div class="mm-foot">
+    <div class="lang-pill mm-lang" role="tablist" aria-label="Language">
+      <span class="knob" aria-hidden="true"></span>
+      <button type="button" data-lang="en" class="on">EN</button>
+      <button type="button" data-lang="ar">عربي</button>
+    </div>
+    <a href="#download" class="btn btn-lime mm-download">
+      <span data-en>Download App</span><span data-ar>نزّل التطبيق</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" class="arrow-rtl"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+  </div>
+</div>
+
+<!-- ===================== FLOATING WHATSAPP (mobile) ===================== -->
+<a href="https://wa.me/963110000000" class="wa-fab" aria-label="WhatsApp" target="_blank" rel="noopener">
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.5A10 10 0 1 0 12 2Zm5.8 14.2c-.25.7-1.45 1.34-2 1.4-.53.05-1.2.08-1.95-.12a8 8 0 0 1-1.77-.66 9.7 9.7 0 0 1-3.7-3.27c-.27-.36-.97-1.3-.97-2.48 0-1.17.62-1.75.83-1.99.22-.24.48-.3.64-.3l.46.01c.15.01.35-.06.54.42l.66 1.6c.05.12.09.26 0 .42l-.25.4c-.12.15-.25.33-.36.44-.12.12-.24.25-.1.49.13.24.6.99 1.29 1.6.88.79 1.63 1.03 1.86 1.15.24.12.38.1.52-.06l.74-.86c.16-.2.3-.16.5-.1l1.55.74c.24.12.4.18.46.28.05.1.05.58-.2 1.27Z"/></svg>
+</a>
+
+<!-- ===================== HERO ===================== -->
+<section class="hero">
+  <div class="checker lg" aria-hidden="true"></div>
+  <div class="glow hero-glow" aria-hidden="true"></div>
+
+  <div class="wrap hero-inner">
+    <div class="hero-copy">
+      <span class="kicker reveal"><span class="kicker-pill"><span class="kicker-dot"></span><span data-en>Football booking, across Syria</span><span data-ar>حجز الملاعب، أينما كنت بسوريا</span></span></span>
+
+      <h1 class="h-display hero-h1 reveal">
+        <span data-en>Book your pitch<span class="line2"><span class="mark">in seconds.</span></span></span>
+        <span data-ar>احجز ملعبك بثوانٍ،<span class="line2"><span class="mark">والعب من غير وجع راس</span></span></span>
+      </h1>
+
+      <p class="lede reveal">
+        <span data-en>Find pitches near you, see <em class="accent-ital">real-time</em> availability, compare prices, and lock your slot — all in one app. No phone calls. No waiting.</span>
+        <span data-ar>اكتشف أقرب الملاعب، وشوف المتاح <em class="accent-ital">لحظة بلحظة</em>، وادفع من التطبيق — كله من تلفونك. بلا مكالمات، بلا لفّة عالملعب.</span>
+      </p>
+
+      <div class="hero-ctas reveal">
+        <a href="#" class="store">
+          <svg class="ic" viewBox="0 0 24 24" fill="currentColor"><path d="M17.05 12.04a4.85 4.85 0 0 1 2.31-4.07A5 5 0 0 0 15.4 6c-1.65-.17-3.23.97-4.07.97-.85 0-2.14-.95-3.52-.92a5.25 5.25 0 0 0-4.43 2.7c-1.9 3.3-.48 8.16 1.36 10.83.91 1.3 1.99 2.76 3.4 2.71 1.36-.05 1.88-.88 3.53-.88 1.64 0 2.12.88 3.55.85 1.47-.03 2.4-1.32 3.3-2.63a11.6 11.6 0 0 0 1.5-3.1 4.7 4.7 0 0 1-2.97-4.39ZM14.4 4.27a4.6 4.6 0 0 0 1.05-3.3 4.7 4.7 0 0 0-3.04 1.57 4.4 4.4 0 0 0-1.08 3.18 3.88 3.88 0 0 0 3.07-1.45Z"/></svg>
+          <div><small data-en>Download on the</small><small data-ar>حمّل من</small><strong data-en>App Store</strong><strong data-ar>آب ستور</strong></div>
+        </a>
+        <a href="#" class="store">
+          <svg class="ic" viewBox="0 0 24 24"><path fill="#bdfd08" d="M3.6 2.4a1 1 0 0 0-.6.92v17.36c0 .38.2.7.5.85L13 12 3.6 2.4Z"/><path fill="#c7f2df" d="M14.4 10.6 16.7 8.3 5.3 1.95a1 1 0 0 0-1.13.07L14.4 10.6Z"/><path fill="#6100fd" d="M14.4 13.4 4.17 22a1 1 0 0 0 1.13.07l11.4-6.35-2.3-2.32Z"/><path fill="#f5fffe" d="m20.7 11.13-3.04-1.7-2.5 2.57 2.5 2.5 3.05-1.7a1 1 0 0 0 0-1.67Z"/></svg>
+          <div><small data-en>Get it on</small><small data-ar>متاح على</small><strong data-en>Google Play</strong><strong data-ar>قوقل بلاي</strong></div>
+        </a>
+      </div>
+
+      <div class="hero-meta reveal">
+        <span><span class="star">★</span> 4.9 <span data-en>rating</span><span data-ar>تقييم</span></span>
+        <span class="sep">·</span>
+        <span><span data-en>10,000+ players</span><span data-ar>+10,000 لاعب</span></span>
+        <span class="sep">·</span>
+        <span><span data-en>500+ pitches</span><span data-ar>+500 ملعب</span></span>
+      </div>
+    </div>
+
+    <!-- HERO PHONE: fully designed booking screen -->
+    <div class="phone-stage reveal">
+      <div class="glow" aria-hidden="true"></div>
+
+      <div class="float-chip a">
+        <span class="ic"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="7"/><path d="M12 8v4l3 2"/></svg></span>
+        <span><span data-en>Live availability</span><span data-ar>توفّر مباشر</span></span>
+      </div>
+      <div class="float-chip b">
+        <span class="ic"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m4 12 5 5L20 6"/></svg></span>
+        <span><span data-en>Booked in 5s</span><span data-ar>تأكيد خلال 5 ثوانٍ</span></span>
+      </div>
+
+      <div class="phone float tilt" aria-hidden="true">
+        <div class="phone-screen">
+          <div class="island"></div>
+          <div class="statusbar">
+            <span>9:41</span>
+            <span class="right">
+              <span class="bars"><i class="bar-1"></i><i class="bar-2"></i><i class="bar-3"></i><i class="bar-4"></i></span>
+              <svg width="15" height="11" viewBox="0 0 24 18" fill="currentColor"><path d="M12 3C7 3 3 6 1 9c2 3 6 6 11 6s9-3 11-6c-2-3-6-6-11-6Zm0 9a3 3 0 1 1 0-6 3 3 0 0 1 0 6Z"/></svg>
+              <span class="batt"><span></span></span>
+            </span>
+          </div>
+
+          <div class="scr">
+            <div class="scr-top">
+              <div>
+                <div class="scr-hello"><span data-en>Hi, Laith</span><span data-ar>أهلين ليث</span></div>
+                <div class="scr-title"><span data-en>Find a pitch</span><span data-ar>ابحث عن ملعب</span></div>
+              </div>
+              <div class="scr-ava">L</div>
+            </div>
+
+            <div class="scr-photo">
+              <div class="midline"></div><div class="center-circle"></div>
+              <span class="ph-rate">★ 4.9</span>
+              <span class="ph-tag"><span class="live-dot"></span><span data-en>3 slots open tonight</span><span data-ar>٣ مواعيد الليلة</span></span>
+            </div>
+
+            <div class="scr-name">
+              <b><span data-en>Mezzeh Pitch</span><span data-ar>ملعب المزة</span></b>
+              <span class="price">7,500<small data-en> SYP/hr</small><small data-ar> ل.س/س</small></span>
+            </div>
+            <div class="scr-sub"><span>5v5</span><span>·</span><span data-en>Mezzeh, Damascus</span><span data-ar>المزة، دمشق</span></div>
+
+            <div class="scr-slots-label"><span data-en>Pick a time</span><span data-ar>اختر وقتًا</span></div>
+            <div class="chips">
+              <span class="chip dim"><span data-en>7:00 PM</span><span data-ar>19:00</span></span>
+              <span class="chip"><span data-en>8:00 PM</span><span data-ar>20:00</span></span>
+              <span class="chip sel"><span data-en>8:30 PM</span><span data-ar>20:30</span></span>
+              <span class="chip"><span data-en>9:30 PM</span><span data-ar>21:30</span></span>
+              <span class="chip dim"><span data-en>10:00 PM</span><span data-ar>22:00</span></span>
+            </div>
+
+            <div class="scr-book">
+              <span data-en>Book Now · 7,500 SYP</span><span data-ar>احجز هلّق · 7,500 ل.س</span>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" class="arrow-rtl"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== TRUSTED-BY STRIP ===================== -->
+<section class="trusted wrap reveal">
+  <div class="label"><span data-en>Trusted by players & venues across Syria</span><span data-ar>موثوق من اللاعبين والملاعب بكل سوريا</span></div>
+  <div class="logos">
+    <span class="lg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 3v18M3 12h18"/></svg> Kora<span class="mono">FC</span></span>
+    <span class="lg"><svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3 6.5 7 .9-5 4.8 1.3 7L12 17.8 5.4 21.2 6.7 14.2l-5-4.8 7-.9L12 2Z"/></svg> Malaeb</span>
+    <span class="lg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><path d="M8 12h8M12 8v8"/></svg> PitchPro</span>
+    <span class="lg"><span class="mono">5ASIDE</span></span>
+    <span class="lg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 20V8l8-5 8 5v12"/><path d="M9 20v-6h6v6"/></svg> Stadia</span>
+  </div>
+</section>
+
+<!-- ===================== STATS STRIP (count-up) ===================== -->
+<section class="stats">
+  <div class="wrap stats-grid" id="statsGrid">
+    <div class="stat reveal"><div class="num" data-count="500" data-suffix="+"><span class="suf">+</span></div><div class="lbl"><span data-en>Pitches listed</span><span data-ar>ملعب متوفر</span></div></div>
+    <div class="stat reveal"><div class="num" data-count="10000" data-suffix="+" data-format="k"><span class="suf">+</span></div><div class="lbl"><span data-en>Bookings made</span><span data-ar>حجز ناجح</span></div></div>
+    <div class="stat reveal"><div class="num" data-count="4.9" data-suffix="★" data-decimals="1"><span class="suf">★</span></div><div class="lbl"><span data-en>Average rating</span><span data-ar>متوسط التقييم</span></div></div>
+    <div class="stat reveal"><div class="num" data-count="28" data-suffix="s"><span class="suf">s</span></div><div class="lbl"><span data-en>Median booking time</span><span data-ar>زمن الحجز</span></div></div>
+  </div>
+</section>
+
+<!-- ===================== FEATURES (bento) ===================== -->
+<section class="sec" id="features">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kicker"><span class="kicker-num">01</span><span class="kicker-pill"><span class="kicker-dot"></span><span data-en>Features</span><span data-ar>المزايا</span></span></span>
+      <h2 class="h-1"><span data-en>Everything you need to get on the pitch, <span class="hl">faster</span>.</span><span data-ar>كل اللي بتحتاجه تنزل عالملعب، <span class="hl">وأسرع</span>.</span></h2>
+    </div>
+
+    <div class="bento">
+      <!-- spotlight card (the one lime moment of this section) -->
+      <article class="bento-card spotlight tall reveal">
+        <div class="f-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+        <h3><span data-en>Real-time availability</span><span data-ar>توفّر لحظي</span></h3>
+        <p><span data-en>Open slots update live as players book. The single most-loved feature in the app.</span><span data-ar>المواعيد تتحدّث لحظيًا مع كل حجز. أكثر ميزة محبوبة في التطبيق.</span></p>
+        <div class="big-stat">28<span class="stat-suffix">s</span></div>
+        <p class="feature-note"><span data-en>median time to book</span><span data-ar>متوسط زمن الحجز</span></p>
+        <div class="mini-pitch"><span class="mini-pin p1"></span><span class="mini-pin p2"></span><span class="mini-pin p3"></span></div>
+      </article>
+
+      <article class="bento-card wide reveal">
+        <span class="idx">02</span>
+        <div class="f-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 6-9 13-9 13S3 16 3 10a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg></div>
+        <h3><span data-en>Find pitches nearby</span><span data-ar>ملاعب قريبة منك</span></h3>
+        <p><span data-en>Every pitch around you on one map — filtered by size, surface, lights, and how far you'd actually drive.</span><span data-ar>كل الملاعب حولك على خريطة واحدة، مع فلاتر للحجم والأرضية والإضاءة والمسافة.</span></p>
+      </article>
+
+      <article class="bento-card third reveal">
+        <span class="idx">03</span>
+        <div class="f-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m13 2-9 12h7l-1 8 9-12h-7l1-8Z"/></svg></div>
+        <h3><span data-en>Instant booking</span><span data-ar>حجز فوري</span></h3>
+        <p><span data-en>Tap, confirm, done — before the group chat can argue.</span><span data-ar>اضغط، أكّد، خلصنا — قبل ما يتفق الشباب في الجروب.</span></p>
+      </article>
+
+      <article class="bento-card third reveal">
+        <span class="idx">04</span>
+        <div class="f-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="M3 10h18M7 15h3"/></svg></div>
+        <h3><span data-en>Secure in-app pay</span><span data-ar>دفع آمن</span></h3>
+        <p><span data-en>Sham Cash, Syriatel Cash, or card. Split with the squad in a tap.</span><span data-ar>شام كاش، سيريتيل كاش، أو بطاقة. وقسّمها عالشلّة بضغطة.</span></p>
+      </article>
+
+      <article class="bento-card third reveal">
+        <span class="idx">05</span>
+        <div class="f-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></div>
+        <h3><span data-en>Manage bookings</span><span data-ar>إدارة الحجوزات</span></h3>
+        <p><span data-en>Reschedule, cancel, or share with your squad — one screen.</span><span data-ar>أعد الجدولة أو ألغِ أو شارك فريقك — من شاشة واحدة.</span></p>
+      </article>
+
+      <article class="bento-card third reveal">
+        <span class="idx">06</span>
+        <div class="f-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2 3 6.5 7 .9-5 4.8 1.3 7-6.3-3.4-6.3 3.4 1.3-7-5-4.8 7-.9L12 2Z"/></svg></div>
+        <h3><span data-en>Reviews & ratings</span><span data-ar>تقييمات حقيقية</span></h3>
+        <p><span data-en>Honest ratings from players who've actually played there.</span><span data-ar>تقييمات صادقة من لاعبين لعبوا هناك فعلًا.</span></p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== WHY CENTERHA (comparison) ===================== -->
+<section class="sec why" id="why">
+  <div class="wrap">
+    <div class="sec-head center reveal">
+      <span class="kicker"><span class="kicker-num">02</span><span class="kicker-pill"><span class="kicker-dot"></span><span data-en>Why Centerha</span><span data-ar>لماذا سنطرها</span></span></span>
+      <h2 class="h-1"><span data-en>The old way vs. the <span class="hl">Centerha</span> way.</span><span data-ar>الطريقة القديمة مقابل طريقة <span class="hl">سنطرها</span>.</span></h2>
+    </div>
+
+    <div class="compare">
+      <!-- OLD WAY -->
+      <div class="compare-col old reveal">
+        <h3><span class="cmp-badge x"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></span><span data-en>The old way</span><span data-ar>الطريقة القديمة</span></h3>
+        <div class="tagline"><span data-en>Calls, guesswork, cash</span><span data-ar>مكالمات وتخمين ونقد</span></div>
+        <ul class="cmp-list">
+          <li><span class="ico x"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></span><span data-en>Phoning five pitches to find one that's free</span><span data-ar>تتصل على خمسة ملاعب عشان تلقى وحد فاضي</span></li>
+          <li><span class="ico x"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></span><span data-en>No idea what's actually available tonight</span><span data-ar>ما تدري وش متاح فعلًا الليلة</span></li>
+          <li><span class="ico x"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></span><span data-en>Cash only — and you cover everyone</span><span data-ar>نقدًا فقط — وأنت اللي تدفع عن الكل</span></li>
+          <li><span class="ico x"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></span><span data-en>Double-bookings and no-shows</span><span data-ar>ازدواج في الحجز وغياب بلا إشعار</span></li>
+          <li><span class="ico x"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></span><span data-en>40 minutes of group-chat arguing</span><span data-ar>٤٠ دقيقة جدال في جروب الواتساب</span></li>
+        </ul>
+      </div>
+
+      <!-- CENTERHA WAY -->
+      <div class="compare-col new reveal">
+        <h3><span class="cmp-badge ok"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m4 12 5 5L20 6"/></svg></span><span data-en>The Centerha way</span><span data-ar>طريقة سنطرها</span></h3>
+        <div class="tagline"><span data-en>Instant, transparent, in-app</span><span data-ar>فوري وشفّاف وداخل التطبيق</span></div>
+        <ul class="cmp-list">
+          <li><span class="ico ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m4 12 5 5L20 6"/></svg></span><span data-en>Every nearby pitch on one live map</span><span data-ar>كل الملاعب القريبة على خريطة حيّة واحدة</span></li>
+          <li><span class="ico ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m4 12 5 5L20 6"/></svg></span><span data-en>Real-time slots, updated to the second</span><span data-ar>مواعيد لحظية تتحدّث بالثانية</span></li>
+          <li><span class="ico ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m4 12 5 5L20 6"/></svg></span><span data-en>In-app payment, split automatically</span><span data-ar>دفع داخل التطبيق وتقسيم تلقائي</span></li>
+          <li><span class="ico ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m4 12 5 5L20 6"/></svg></span><span data-en>Guaranteed slot, instant confirmation</span><span data-ar>موعد مضمون وتأكيد فوري</span></li>
+          <li><span class="ico ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m4 12 5 5L20 6"/></svg></span><span data-en>Booked in under 30 seconds</span><span data-ar>محجوز في أقل من ٣٠ ثانية</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== HOW IT WORKS (big numbers) ===================== -->
+<section class="sec how" id="how">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kicker"><span class="kicker-num">03</span><span class="kicker-pill"><span class="kicker-dot"></span><span data-en>How it works</span><span data-ar>كيف يعمل</span></span></span>
+      <h2 class="h-1"><span data-en>Three steps from couch to <span class="hl">kick-off</span>.</span><span data-ar>تلات خطوات من الكنبة <span class="hl">لصافرة البداية</span>.</span></h2>
+    </div>
+
+    <div class="steps">
+      <div class="step reveal">
+        <div class="step-no">01</div>
+        <div class="step-body">
+          <span class="step-tag"><span data-en>Search</span><span data-ar>ابحث</span></span>
+          <h3><span data-en>Find your pitch</span><span data-ar>اعثر على ملعبك</span></h3>
+          <p><span data-en>Filter by size, time, and distance. See live prices and open slots instantly.</span><span data-ar>فلتر حسب الحجم والوقت والمسافة. شاهد الأسعار والمواعيد لحظيًا.</span></p>
+        </div>
+        <div class="step-visual"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></div>
+      </div>
+
+      <div class="step reveal">
+        <div class="step-no">02</div>
+        <div class="step-body">
+          <span class="step-tag"><span data-en>Book</span><span data-ar>احجز</span></span>
+          <h3><span data-en>Lock your slot</span><span data-ar>ثبّت موعدك</span></h3>
+          <p><span data-en>Pick a time, pay securely, and get instant confirmation on your phone.</span><span data-ar>اختر الوقت، ادفع بأمان، واستلم تأكيدًا فوريًا على جوالك.</span></p>
+        </div>
+        <div class="step-visual"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18M9 16l2 2 4-4"/></svg></div>
+      </div>
+
+      <div class="step reveal">
+        <div class="step-no">03</div>
+        <div class="step-body">
+          <span class="step-tag"><span data-en>Play</span><span data-ar>العب</span></span>
+          <h3><span data-en>Show up & play</span><span data-ar>احضر والعب</span></h3>
+          <p><span data-en>Walk in, show the QR, hit the pitch. We'll remind you an hour before kick-off.</span><span data-ar>وصل، اعرض رمز QR، وادخل الملعب. سنذكّرك قبل المباراة بساعة.</span></p>
+        </div>
+        <div class="step-visual"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3M21 21v-3M17 21h.01M21 14h.01"/></svg></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== APP SHOWCASE (3 phones) ===================== -->
+<section class="sec" id="showcase">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kicker"><span class="kicker-num">04</span><span class="kicker-pill"><span class="kicker-dot"></span><span data-en>App showcase</span><span data-ar>جولة في التطبيق</span></span></span>
+      <h2 class="h-1"><span data-en>Built around how you actually <span class="hl">play</span>.</span><span data-ar>معمول عا كيفك <span class="hl">باللعب</span>.</span></h2>
+    </div>
+
+    <!-- row 1: MAP -->
+    <div class="showcase-row reveal">
+      <div class="sc-copy">
+        <span class="kicker"><span class="kicker-pill"><span class="kicker-dot"></span><span data-en>Discover</span><span data-ar>اكتشف</span></span></span>
+        <h3 class="h-2"><span data-en>Every pitch in the city, one map.</span><span data-ar>كل ملاعب المدينة على خريطة واحدة.</span></h3>
+        <p class="lede"><span data-en>From neighborhood courts to premium turf. Tap a pin to see surface, hourly price, and what other players think.</span><span data-ar>من ملاعب الحي إلى المجمّعات الفاخرة. اضغط الدبّوس لترى الأرضية والسعر بالساعة وآراء اللاعبين.</span></p>
+        <ul class="sc-list">
+          <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m4 12 5 5L20 6"/></svg></span><span data-en>Surface, lights & parking at a glance</span><span data-ar>الأرضية والإضاءة والمواقف بنظرة</span></li>
+          <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m4 12 5 5L20 6"/></svg></span><span data-en>Sort by distance, price, or rating</span><span data-ar>رتّب حسب المسافة أو السعر أو التقييم</span></li>
+          <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m4 12 5 5L20 6"/></svg></span><span data-en>Save favorites for one-tap rebooking</span><span data-ar>احفظ المفضلة لإعادة الحجز بضغطة</span></li>
+        </ul>
+      </div>
+      <div class="sc-visual">
+        <div class="glow" aria-hidden="true"></div>
+        <div class="phone" aria-hidden="true">
+          <div class="phone-screen">
+            <div class="island"></div>
+            <div class="statusbar"><span>9:41</span><span class="right"><span class="bars"><i class="bar-1"></i><i class="bar-2"></i><i class="bar-3"></i><i class="bar-4"></i></span><span class="batt"><span></span></span></span></div>
+            <div class="map-screen">
+              <div class="map-bg"></div>
+              <span class="road r1"></span><span class="road r2"></span>
+              <span class="pin p1 lg"></span><span class="pin p2"></span><span class="pin p3"></span>
+              <div class="map-card">
+                <span class="thumb"></span>
+                <div><div class="mc-t"><span data-en>Mezzeh Pitch</span><span data-ar>ملعب المزة</span></div><div class="mc-m">5v5 · 7,500 <span data-en>SYP/hr</span><span data-ar>ل.س/س</span> · 1.2 km</div></div>
+                <span class="go"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#011a18" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" class="arrow-rtl"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- row 2: CONFIRMATION -->
+    <div class="showcase-row flip reveal">
+      <div class="sc-copy">
+        <span class="kicker"><span class="kicker-pill"><span class="kicker-dot"></span><span data-en>Confirm</span><span data-ar>أكّد</span></span></span>
+        <h3 class="h-2"><span data-en>Booked. Confirmed. Done.</span><span data-ar>محجوز. مؤكَّد. خلصنا.</span></h3>
+        <p class="lede"><span data-en>Instant confirmation with a QR check-in, calendar invite for your squad, and a receipt you can split — no awkward chases on Monday.</span><span data-ar>تأكيد فوري مع رمز QR للدخول، ودعوة تقويم لفريقك، وإيصال قابل للتقسيم — بدون مطاردات يوم الإثنين.</span></p>
+        <ul class="sc-list">
+          <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m4 12 5 5L20 6"/></svg></span><span data-en>QR check-in at the gate</span><span data-ar>دخول بالـ QR عند البوابة</span></li>
+          <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m4 12 5 5L20 6"/></svg></span><span data-en>Auto calendar invite to all players</span><span data-ar>دعوة تقويم تلقائية لكل اللاعبين</span></li>
+          <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m4 12 5 5L20 6"/></svg></span><span data-en>Refund-protected cancellations</span><span data-ar>إلغاء محمي مع استرداد</span></li>
+        </ul>
+      </div>
+      <div class="sc-visual">
+        <div class="glow" aria-hidden="true"></div>
+        <div class="phone" aria-hidden="true">
+          <div class="phone-screen">
+            <div class="island"></div>
+            <div class="statusbar"><span>9:41</span><span class="right"><span class="bars"><i class="bar-1"></i><i class="bar-2"></i><i class="bar-3"></i><i class="bar-4"></i></span><span class="batt"><span></span></span></span></div>
+            <div class="conf-screen">
+              <div class="conf-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m4 12 5 5L20 6"/></svg></div>
+              <h4><span data-en>Booking confirmed!</span><span data-ar>تم تأكيد الحجز!</span></h4>
+              <div class="conf-sub">#CH-184302</div>
+              <div class="conf-ticket">
+                <div class="conf-row"><span class="k"><span data-en>Pitch</span><span data-ar>الملعب</span></span><span class="v"><span data-en>Mezzeh · Pitch 2</span><span data-ar>المزة · ملعب ٢</span></span></div>
+                <div class="conf-row"><span class="k"><span data-en>Time</span><span data-ar>الوقت</span></span><span class="v"><span data-en>Thu · 8:30 PM</span><span data-ar>الخميس · ٢٠:٣٠</span></span></div>
+                <div class="conf-row"><span class="k"><span data-en>Your share</span><span data-ar>حصتك</span></span><span class="v">750 <span data-en>SYP</span><span data-ar>ل.س</span></span></div>
+              </div>
+              <div class="conf-qr">
+                <svg viewBox="0 0 100 100" fill="#001f24"><path d="M0 0h30v30H0zM10 10v10h10V10zM70 0h30v30H70zM80 10v10h10V10zM0 70h30v30H0zM10 80v10h10V80zM40 0h10v10H40zM50 10h10v10H50zM40 20h10v10H40zM60 40h10v10H60zM40 40h10v20H40zM70 50h10v10H70zM85 45h15v10H85zM40 70h10v10H40zM50 80h10v10H50zM40 90h20v10H40zM70 70h10v10H70zM90 70h10v30H90zM70 90h15v10H70z"/></svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- row 3: TEAM / PROFILE -->
+    <div class="showcase-row reveal">
+      <div class="sc-copy">
+        <span class="kicker"><span class="kicker-pill"><span class="kicker-dot"></span><span data-en>Your squad</span><span data-ar>فريقك</span></span></span>
+        <h3 class="h-2"><span data-en>Keep your whole team in one place.</span><span data-ar>اجمع فريقك كله في مكان واحد.</span></h3>
+        <p class="lede"><span data-en>Build your roster, track matches played, invite teammates by link, and see who's confirmed for the next game — at a glance.</span><span data-ar>كوّن فريقك، تابع المباريات الملعوبة، ادعُ زملاءك بالرابط، وشوف مين أكّد للمباراة القادمة — بنظرة.</span></p>
+        <ul class="sc-list">
+          <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m4 12 5 5L20 6"/></svg></span><span data-en>Invite teammates by phone or link</span><span data-ar>ادعُ زملاءك بالرقم أو الرابط</span></li>
+          <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m4 12 5 5L20 6"/></svg></span><span data-en>Track wins, matches & MVPs</span><span data-ar>تابع الانتصارات والمباريات وأفضل لاعب</span></li>
+          <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m4 12 5 5L20 6"/></svg></span><span data-en>See who's confirmed before kick-off</span><span data-ar>شوف مين أكّد قبل المباراة</span></li>
+        </ul>
+      </div>
+      <div class="sc-visual">
+        <div class="glow" aria-hidden="true"></div>
+        <div class="phone" aria-hidden="true">
+          <div class="phone-screen">
+            <div class="island"></div>
+            <div class="statusbar"><span>9:41</span><span class="right"><span class="bars"><i class="bar-1"></i><i class="bar-2"></i><i class="bar-3"></i><i class="bar-4"></i></span><span class="batt"><span></span></span></span></div>
+            <div class="team-screen">
+              <div class="team-head">
+                <div class="team-ava">FC</div>
+                <div><div class="t-name"><span data-en>Mezzeh Falcons</span><span data-ar>صقور المزة</span></div><div class="t-meta"><span data-en>11 players · 5v5</span><span data-ar>١١ لاعب · ٥×٥</span></div></div>
+              </div>
+              <div class="team-stats">
+                <div class="team-stat"><div class="v">24</div><div class="l"><span data-en>Played</span><span data-ar>لعبوا</span></div></div>
+                <div class="team-stat"><div class="v">18</div><div class="l"><span data-en>Wins</span><span data-ar>فوز</span></div></div>
+                <div class="team-stat"><div class="v">4.8</div><div class="l"><span data-en>Rating</span><span data-ar>تقييم</span></div></div>
+              </div>
+              <div class="team-label"><span data-en>Confirmed for Thursday</span><span data-ar>مؤكَّدون للخميس</span></div>
+              <div class="team-list">
+                <div class="team-member"><span class="m-ava">L</span><div><div class="m-name"><span data-en>Laith Al-Shami</span><span data-ar>ليث الشامي</span></div><div class="m-role"><span data-en>Captain</span><span data-ar>كابتن</span></div></div><span class="m-badge"><span data-en>Going</span><span data-ar>حاضر</span></span></div>
+                <div class="team-member"><span class="m-ava">O</span><div><div class="m-name"><span data-en>Omar Al-Qasem</span><span data-ar>عمر القاسم</span></div><div class="m-role"><span data-en>Striker</span><span data-ar>مهاجم</span></div></div><span class="m-badge"><span data-en>Going</span><span data-ar>حاضر</span></span></div>
+                <div class="team-member"><span class="m-ava">A</span><div><div class="m-name"><span data-en>Ahmad Al-Deeb</span><span data-ar>أحمد الديب</span></div><div class="m-role"><span data-en>Keeper</span><span data-ar>حارس</span></div></div><span class="m-badge"><span data-en>Going</span><span data-ar>حاضر</span></span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PITCH OWNERS ===================== -->
+<section class="sec" id="owners">
+  <div class="wrap">
+    <div class="owners reveal">
+      <div class="owners-copy">
+        <span class="kicker"><span class="kicker-pill"><span class="kicker-dot"></span><span data-en>For pitch owners</span><span data-ar>لأصحاب الملاعب</span></span></span>
+        <h2 class="h-1"><span data-en>List your pitch. Fill the <span class="hl">empty hours</span>.</span><span data-ar>أضف ملعبك. اشغل <span class="hl">الساعات الفارغة</span>.</span></h2>
+        <p class="lede"><span data-en>Put your pitches in front of thousands of players actively looking to play. We handle bookings, payments, and reminders — you handle the football.</span><span data-ar>اعرض ملاعبك أمام آلاف اللاعبين الباحثين عن مكان. نتولّى الحجوزات والمدفوعات والتذكيرات — وأنت تتولّى كرة القدم.</span></p>
+        <div class="owners-actions">
+          <a href="#" class="btn btn-lime"><span data-en>List your pitch</span><span data-ar>أضف ملعبك</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" class="arrow-rtl"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <a href="#" class="btn btn-ghost"><span data-en>Talk to sales</span><span data-ar>تواصل مع المبيعات</span></a>
+        </div>
+      </div>
+      <div class="owners-visual">
+        <div class="owner-card">
+          <div class="oc-head">
+            <div><h4><span data-en>Pitch dashboard</span><span data-ar>لوحة الملعب</span></h4><div class="oc-sub"><span data-en>This month</span><span data-ar>هذا الشهر</span></div></div>
+            <span class="oc-pill">+24%</span>
+          </div>
+          <div class="oc-stats">
+            <div class="oc-stat"><div class="v">84%</div><div class="l"><span data-en>Occupancy</span><span data-ar>الإشغال</span></div></div>
+            <div class="oc-stat"><div class="v">1.25M</div><div class="l"><span data-en>SYP earned</span><span data-ar>ل.س مكتسبة</span></div></div>
+          </div>
+          <div class="oc-chart">
+            <svg viewBox="0 0 200 60" preserveAspectRatio="none">
+              <defs><linearGradient id="cg" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#bdfd08" stop-opacity=".4"/><stop offset="1" stop-color="#bdfd08" stop-opacity="0"/></linearGradient></defs>
+              <path d="M0 50 L20 45 L40 38 L60 42 L80 30 L100 24 L120 28 L140 18 L160 14 L180 20 L200 8 L200 60 L0 60 Z" fill="url(#cg)"/>
+              <path d="M0 50 L20 45 L40 38 L60 42 L80 30 L100 24 L120 28 L140 18 L160 14 L180 20 L200 8" fill="none" stroke="#bdfd08" stroke-width="1.5"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== TESTIMONIALS ===================== -->
+<section class="sec sec-flush-top">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kicker"><span class="kicker-num">05</span><span class="kicker-pill"><span class="kicker-dot"></span><span data-en>Players love it</span><span data-ar>يحبّه اللاعبون</span></span></span>
+      <h2 class="h-1"><span data-en>From the group chat, <span class="hl">finally settled</span>.</span><span data-ar>أخيرًا <span class="hl">حُسم</span> الجدال في الجروب.</span></h2>
+    </div>
+    <div class="testimonials">
+      <article class="quote reveal">
+        <div class="stars">★★★★★</div>
+        <blockquote><span data-en>"Used to take 40 minutes of arguing every Thursday to find a pitch. Now one person opens the app and it's done in 30 seconds."</span><span data-ar>"كنّا نضيّع نص ساعة كل خميس نلفّ عالملاعب ونتجادل. هلّق واحد يفتح التطبيق وبثواني الحجز خلص."</span></blockquote>
+        <div class="q-person"><div class="q-ava">M</div><div><div class="q-name"><span data-en>Mohammad Al-Halabi</span><span data-ar>محمد الحلبي</span></div><div class="q-role"><span data-en>Plays 2x a week · Aleppo</span><span data-ar>يلعب مرتين بالأسبوع · حلب</span></div></div></div>
+      </article>
+      <article class="quote mint reveal">
+        <div class="stars">★★★★★</div>
+        <blockquote><span data-en>"Live availability is the killer feature. I see exactly what's open tonight without phoning five different pitches."</span><span data-ar>"ميزة التوفّر المباشر بتفرق كتير. بعرف وش متاح الليلة من غير ما دق عا خمس ملاعب."</span></blockquote>
+        <div class="q-person"><div class="q-ava">L</div><div><div class="q-name"><span data-en>Laith Al-Shami</span><span data-ar>ليث الشامي</span></div><div class="q-role"><span data-en>Captain · Damascus – Mezzeh</span><span data-ar>كابتن · دمشق – المزة</span></div></div></div>
+      </article>
+      <article class="quote reveal">
+        <div class="stars">★★★★★</div>
+        <blockquote><span data-en>"Split-payment alone is worth it. No more being the guy who pays for everyone then chases them for a week."</span><span data-ar>"تقسيم الدفع لحاله بيستاهل. خلصت من إني الوحيد يلّي يدفع عن الكل وبعدين ألاحقهن أسبوع."</span></blockquote>
+        <div class="q-person"><div class="q-ava">O</div><div><div class="q-name"><span data-en>Omar Al-Qasem</span><span data-ar>عمر القاسم</span></div><div class="q-role"><span data-en>Organizer · Homs</span><span data-ar>منظّم فريق · حمص</span></div></div></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FAQ ACCORDION ===================== -->
+<section class="sec sec-flush-top" id="faq">
+  <div class="wrap">
+    <div class="faq">
+      <div class="sec-head reveal faq-head">
+        <span class="kicker"><span class="kicker-num">06</span><span class="kicker-pill"><span class="kicker-dot"></span><span data-en>FAQ</span><span data-ar>الأسئلة الشائعة</span></span></span>
+        <h2 class="h-1"><span data-en>Good questions, <span class="hl">answered</span>.</span><span data-ar>أسئلة مهمة، <span class="hl">وإجاباتها</span>.</span></h2>
+        <p class="lede"><span data-en>Still curious? Reach our team any time inside the app.</span><span data-ar>لا زال لديك سؤال؟ تواصل مع فريقنا في أي وقت داخل التطبيق.</span></p>
+      </div>
+
+      <div class="faq-list reveal">
+        <div class="faq-item open">
+          <button class="faq-q" type="button"><span><span data-en>Is Centerha free to download?</span><span data-ar>هل تحميل سنطرها مجاني؟</span></span><span class="pm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg></span></button>
+          <div class="faq-a"><div><p><span data-en>Yes — downloading and browsing pitches is completely free. You only pay for the pitch when you book, with no subscriptions or hidden fees.</span><span data-ar>نعم — التحميل وتصفّح الملاعب مجاني تمامًا. تدفع فقط ثمن الملعب عند الحجز، بلا اشتراكات أو رسوم خفية.</span></p></div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" type="button"><span><span data-en>How does payment and splitting work?</span><span data-ar>كيف يعمل الدفع والتقسيم؟</span></span><span class="pm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg></span></button>
+          <div class="faq-a"><div><p><span data-en>Pay securely with Sham Cash, Syriatel Cash, MTN Cash, or any card. Invite your teammates and the cost is split automatically — each person pays only their share.</span><span data-ar>ادفع بأمان عبر شام كاش أو سيريتيل كاش أو MTN كاش أو أي بطاقة. ادعي شلّتك والمبلغ بينقسم عليكن تلقائيًا — كل واحد بيدفع حصته بس.</span></p></div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" type="button"><span><span data-en>Can I cancel or reschedule a booking?</span><span data-ar>هل أستطيع الإلغاء أو إعادة الجدولة؟</span></span><span class="pm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg></span></button>
+          <div class="faq-a"><div><p><span data-en>Absolutely. Cancel or reschedule from the app within the pitch's free-cancellation window and your refund is processed automatically.</span><span data-ar>بالتأكيد. ألغِ أو أعد الجدولة من التطبيق ضمن فترة الإلغاء المجاني للملعب، ويُعاد المبلغ تلقائيًا.</span></p></div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" type="button"><span><span data-en>How do I list my pitch on Centerha?</span><span data-ar>كيف أضيف ملعبي إلى سنطرها؟</span></span><span class="pm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg></span></button>
+          <div class="faq-a"><div><p><span data-en>Tap "List your pitch" or talk to our team. We'll set up your venue, availability, and pricing — and you start receiving bookings the same day.</span><span data-ar>اضغط "أضف ملعبك" أو تواصل مع فريقنا. سنجهّز ملعبك ومواعيده وأسعاره — وتبدأ باستقبال الحجوزات في نفس اليوم.</span></p></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FINAL CTA ===================== -->
+<section class="sec sec-flush-top" id="download">
+  <div class="wrap">
+    <div class="final reveal">
+      <div class="final-copy">
+        <span class="kicker"><span class="kicker-pill"><span class="kicker-dot"></span><span data-en>Get the app</span><span data-ar>نزّل التطبيق</span></span></span>
+        <h2 class="h-1"><span data-en>Your next match is <span class="hl">one tap</span> away.</span><span data-ar>مباراتك الجاية عا بُعد <span class="hl">ضغطة</span>.</span></h2>
+        <p><span data-en>Free to download. No subscriptions. Open the app, find a pitch, and play.</span><span data-ar>التحميل مجاني. بلا اشتراكات. افتح التطبيق، لاقِ ملعب، والعب.</span></p>
+        <div class="final-stores">
+          <a href="#" class="store">
+            <svg class="ic" viewBox="0 0 24 24" fill="currentColor"><path d="M17.05 12.04a4.85 4.85 0 0 1 2.31-4.07A5 5 0 0 0 15.4 6c-1.65-.17-3.23.97-4.07.97-.85 0-2.14-.95-3.52-.92a5.25 5.25 0 0 0-4.43 2.7c-1.9 3.3-.48 8.16 1.36 10.83.91 1.3 1.99 2.76 3.4 2.71 1.36-.05 1.88-.88 3.53-.88 1.64 0 2.12.88 3.55.85 1.47-.03 2.4-1.32 3.3-2.63a11.6 11.6 0 0 0 1.5-3.1 4.7 4.7 0 0 1-2.97-4.39ZM14.4 4.27a4.6 4.6 0 0 0 1.05-3.3 4.7 4.7 0 0 0-3.04 1.57 4.4 4.4 0 0 0-1.08 3.18 3.88 3.88 0 0 0 3.07-1.45Z"/></svg>
+            <div><small data-en>Download on the</small><small data-ar>حمّل من</small><strong data-en>App Store</strong><strong data-ar>آب ستور</strong></div>
+          </a>
+          <a href="#" class="store">
+            <svg class="ic" viewBox="0 0 24 24"><path fill="#bdfd08" d="M3.6 2.4a1 1 0 0 0-.6.92v17.36c0 .38.2.7.5.85L13 12 3.6 2.4Z"/><path fill="#c7f2df" d="M14.4 10.6 16.7 8.3 5.3 1.95a1 1 0 0 0-1.13.07L14.4 10.6Z"/><path fill="#6100fd" d="M14.4 13.4 4.17 22a1 1 0 0 0 1.13.07l11.4-6.35-2.3-2.32Z"/><path fill="#f5fffe" d="m20.7 11.13-3.04-1.7-2.5 2.57 2.5 2.5 3.05-1.7a1 1 0 0 0 0-1.67Z"/></svg>
+            <div><small data-en>Get it on</small><small data-ar>متاح على</small><strong data-en>Google Play</strong><strong data-ar>قوقل بلاي</strong></div>
+          </a>
+        </div>
+      </div>
+      <div class="final-visual">
+        <div class="badge-ring"><img class="glyph" src="assets/images/logo-mark.png" alt="Centerha" /></div>
+      </div>
+    </div>
+
+    <div class="mega reveal" aria-hidden="true">
+      <span><span data-en>CENTERHA</span><span data-ar>سنطرها</span></span>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer>
+  <div class="wrap">
+    <div class="f-grid">
+      <div class="f-about">
+        <a href="#" class="brand footer-brand" aria-label="Centerha home">
+          <img class="brand-mark footer-brand-mark" src="assets/images/logo-mark.png" alt="Centerha" />
+          <span class="brand-word footer-brand-word"><span data-en>Centerha</span><span data-ar>سنطرها</span></span>
+        </a>
+        <p><span data-en>Find, book, and play. The fastest way to get on a football pitch — anywhere in Syria.</span><span data-ar>لاقِ، احجز، والعب. أسرع طريقة توصلك عالملعب — أينما كنت بسوريا.</span></p>
+        <a href="https://wa.me/963110000000" class="f-contact" aria-label="WhatsApp">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.5A10 10 0 1 0 12 2Zm5.8 14.2c-.25.7-1.45 1.34-2 1.4-.53.05-1.2.08-1.95-.12a8 8 0 0 1-1.77-.66 9.7 9.7 0 0 1-3.7-3.27c-.27-.36-.97-1.3-.97-2.48 0-1.17.62-1.75.83-1.99.22-.24.48-.3.64-.3l.46.01c.15.01.35-.06.54.42l.66 1.6c.05.12.09.26 0 .42l-.25.4c-.12.15-.25.33-.36.44-.12.12-.24.25-.1.49.13.24.6.99 1.29 1.6.88.79 1.63 1.03 1.86 1.15.24.12.38.1.52-.06l.74-.86c.16-.2.3-.16.5-.1l1.55.74c.24.12.4.18.46.28.05.1.05.58-.2 1.27Z"/></svg>
+          <span dir="ltr">+963 11 000 0000</span>
+        </a>
+        <div class="f-socials" aria-label="Social links">
+          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a>
+          <a href="#" aria-label="X"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.7 3h3.2l-7 8 8.2 10h-6.4l-5-6.5L4.7 21H1.5l7.5-8.6L1.2 3h6.5l4.5 5.9L17.7 3Zm-1.1 16h1.8L7.5 5H5.6l11 14Z"/></svg></a>
+          <a href="#" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M21 8.2a7.6 7.6 0 0 1-4.5-1.5V15a5.7 5.7 0 1 1-5.7-5.7c.3 0 .6 0 .9.1v3a2.7 2.7 0 1 0 1.9 2.6V2.4h3a4.6 4.6 0 0 0 4.4 4V8.2Z"/></svg></a>
+          <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 8.4a3 3 0 0 0-2.1-2.1C18 5.7 12 5.7 12 5.7s-6 0-7.9.6A3 3 0 0 0 2 8.4a31 31 0 0 0 0 7.2 3 3 0 0 0 2.1 2.1c1.9.6 7.9.6 7.9.6s6 0 7.9-.6a3 3 0 0 0 2.1-2.1 31 31 0 0 0 0-7.2ZM10 15V9l5 3-5 3Z"/></svg></a>
+        </div>
+      </div>
+      <div class="f-col"><button class="f-col-h" type="button"><h5><span data-en>Product</span><span data-ar>المنتج</span></h5><span class="f-chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg></span></button><ul>
+        <li><a href="#features"><span data-en>Features</span><span data-ar>المزايا</span></a></li>
+        <li><a href="#why"><span data-en>Why Centerha</span><span data-ar>لماذا سنطرها</span></a></li>
+        <li><a href="#how"><span data-en>How it works</span><span data-ar>كيف يعمل</span></a></li>
+        <li><a href="#download"><span data-en>Download</span><span data-ar>التحميل</span></a></li>
+      </ul></div>
+      <div class="f-col"><button class="f-col-h" type="button"><h5><span data-en>For business</span><span data-ar>للأعمال</span></h5><span class="f-chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg></span></button><ul>
+        <li><a href="#owners"><span data-en>List your pitch</span><span data-ar>أضف ملعبك</span></a></li>
+        <li><a href="#"><span data-en>Owner dashboard</span><span data-ar>لوحة المالك</span></a></li>
+        <li><a href="#"><span data-en>Pricing</span><span data-ar>الأسعار</span></a></li>
+        <li><a href="#"><span data-en>Talk to sales</span><span data-ar>تواصل معنا</span></a></li>
+      </ul></div>
+      <div class="f-col"><button class="f-col-h" type="button"><h5><span data-en>Company</span><span data-ar>الشركة</span></h5><span class="f-chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg></span></button><ul>
+        <li><a href="#"><span data-en>About</span><span data-ar>عن سنطرها</span></a></li>
+        <li><a href="#faq"><span data-en>FAQ</span><span data-ar>الأسئلة الشائعة</span></a></li>
+        <li><a href="#"><span data-en>Privacy</span><span data-ar>الخصوصية</span></a></li>
+        <li><a href="#"><span data-en>Terms</span><span data-ar>الشروط</span></a></li>
+      </ul></div>
+    </div>
+    <div class="f-base">
+      <div>© 2026 Centerha. <span data-en>All rights reserved.</span><span data-ar>جميع الحقوق محفوظة.</span></div>
+      <div class="f-made"><svg class="f-made-flag" width="20" height="14" viewBox="0 0 30 20" xmlns="http://www.w3.org/2000/svg" aria-label="Syria" role="img"><rect width="30" height="6.67" y="0" fill="#007A3D"/><rect width="30" height="6.66" y="6.67" fill="#FFFFFF"/><rect width="30" height="6.67" y="13.33" fill="#000000"/><g fill="#CE1126"><polygon points="10,8 10.6,9.8 12.5,9.8 11,10.9 11.6,12.7 10,11.6 8.4,12.7 9,10.9 7.5,9.8 9.4,9.8"/><polygon points="15,8 15.6,9.8 17.5,9.8 16,10.9 16.6,12.7 15,11.6 13.4,12.7 14,10.9 12.5,9.8 14.4,9.8"/><polygon points="20,8 20.6,9.8 22.5,9.8 21,10.9 21.6,12.7 20,11.6 18.4,12.7 19,10.9 17.5,9.8 19.4,9.8"/></g></svg><span data-en>Made in Syria</span><span data-ar>صُنع في سوريا</span></div>
+      <div class="lang-pill" id="langPillFooter" role="tablist" aria-label="Language">
+        <span class="knob" aria-hidden="true"></span>
+        <button type="button" data-lang="en" class="on">EN</button>
+        <button type="button" data-lang="ar">عربي</button>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ===================== SCRIPTS ===================== -->
+<script src="assets/js/language.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>

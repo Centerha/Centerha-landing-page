@@ -1,0 +1,21 @@
+/* Responsive adjustments */
+@media (max-width:900px){
+  .page-hero-inner,.two-column-grid{grid-template-columns:1fr}
+  .comments-grid{grid-template-columns:1fr 1fr}
+}
+@media (max-width:980px){
+  .app-page .nav-inner{flex-wrap:wrap}
+  .app-page .nav-links{
+    order:3;
+    width:100%;
+    display:flex;
+    overflow-x:auto;
+    padding-bottom:4px;
+  }
+}
+@media (max-width:640px){
+  .page-hero{padding:52px 0 24px}
+  .page-panel,.form-card,.data-card,.comment-card{padding:22px}
+  .form-grid,.comments-grid{grid-template-columns:1fr}
+  .form-actions .btn{width:100%;justify-content:center}
+}

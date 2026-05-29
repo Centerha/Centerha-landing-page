@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Centerha — Questions</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/main.css" />
+  <link rel="stylesheet" href="../assets/css/layout.css" />
+  <link rel="stylesheet" href="../assets/css/components.css" />
+  <link rel="stylesheet" href="../assets/css/responsive.css" />
+</head>
+<body class="app-page">
+  <header class="nav" id="nav">
+    <div class="wrap nav-inner">
+      <a href="../index.html" class="brand" aria-label="Centerha">
+        <img class="brand-mark" src="../assets/images/logo-mark.png" alt="Centerha" />
+        <span class="brand-word" data-i18n="brand">Centerha</span>
+      </a>
+      <nav class="nav-links" aria-label="Primary">
+        <a class="page-nav-link" href="../index.html" data-i18n="navHome">Home</a>
+        <a class="page-nav-link" href="../pages/form.html" data-i18n="navForm">Form</a>
+        <a class="page-nav-link" href="../pages/add-field.html" data-i18n="navFields">Fields</a>
+        <a class="page-nav-link" href="../pages/comments.html" data-i18n="navComments">Comments</a>
+        <a class="page-nav-link is-active" href="../pages/questions.html" data-i18n="navQuestions">Questions</a>
+      </nav>
+      <div class="nav-cta">
+        <div class="lang-pill" role="tablist" aria-label="Language">
+          <span class="knob" aria-hidden="true"></span>
+          <button type="button" data-lang="en" class="on">EN</button>
+          <button type="button" data-lang="ar">ع</button>
+        </div>
+        <a href="../index.html#download" class="btn btn-lime" data-i18n="downloadApp">Download App</a>
+      </div>
+    </div>
+  </header>
+  <main>
+    <section class="page-hero">
+      <div class="wrap page-hero-inner">
+        <div class="page-title reveal">
+          <span class="kicker"><span class="kicker-pill"><span class="kicker-dot"></span><span data-i18n="pageQuestionsEyebrow"></span></span></span>
+          <h1 class="h-1" data-i18n="pageQuestionsTitle"></h1>
+          <p class="lede" data-i18n="pageQuestionsLead"></p>
+        </div>
+        <aside class="page-panel reveal">
+          <p class="lede" data-i18n="footerText"></p>
+        </aside>
+      </div>
+    </section>
+    <section class="app-section">
+      <div class="wrap two-column-grid">
+        <article class="data-card reveal">
+          <h2 class="h-2" data-i18n="pageQuestionsEyebrow"></h2>
+          <p class="lede" data-i18n="pageQuestionsLead"></p>
+        </article>
+        <div class="question-list reveal" id="questionsList"></div>
+      </div>
+    </section>
+  </main>
+  <footer class="app-footer">
+    <div class="wrap">
+      <div class="f-grid">
+        <div class="f-about">
+          <a href="../index.html" class="brand footer-brand" aria-label="Centerha home">
+            <img class="brand-mark footer-brand-mark" src="../assets/images/logo-mark.png" alt="Centerha" />
+            <span class="brand-word footer-brand-word" data-i18n="brand">Centerha</span>
+          </a>
+          <p data-i18n="footerText">Find, book, and play. The fastest way to get on a football pitch in Syria.</p>
+        </div>
+      </div>
+      <div class="f-base">
+        <div>© 2026 Centerha. <span data-i18n="rights">All rights reserved.</span></div>
+        <div data-i18n="madeInSyria">Made in Syria</div>
+      </div>
+    </div>
+  </footer>
+  <script src="../assets/js/language.js"></script>
+  <script src="../assets/js/main.js"></script>
+  <script src="../assets/js/questions.js"></script>
+</body>
+</html>

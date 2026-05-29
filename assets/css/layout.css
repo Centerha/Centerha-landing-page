@@ -1,0 +1,22 @@
+/* Shared page layout for secondary pages */
+.app-page{
+  min-height:100vh;
+  background:
+    radial-gradient(900px 520px at 82% 0%, rgba(189,253,8,.08), transparent 60%),
+    linear-gradient(180deg, var(--bg) 0%, var(--bg-deep) 58%, var(--bg-deeper) 100%);
+}
+.page-hero{padding:74px 0 38px}
+.page-hero-inner{display:grid;grid-template-columns:minmax(0, .95fr) minmax(280px, .55fr);gap:40px;align-items:end}
+.page-title{display:flex;flex-direction:column;gap:18px}
+.page-panel{
+  background:rgba(245,255,254,.045);
+  border:1px solid var(--line);
+  border-radius:var(--r-lg);
+  padding:28px;
+  box-shadow:var(--shadow-card);
+}
+.page-grid{display:grid;grid-template-columns:1fr;gap:18px;padding:28px 0 110px}
+.two-column-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:18px;align-items:start}
+.app-section{padding:24px 0 96px}
+.app-footer{margin-top:0}
+.page-nav-link.is-active{color:var(--paper);background:var(--surface-2)}
