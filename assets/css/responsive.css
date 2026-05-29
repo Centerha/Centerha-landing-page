@@ -1,21 +1,95 @@
 /* Responsive adjustments */
+@media (max-width:980px){
+  .app-page .nav-inner{
+    position:relative;
+    flex-wrap:nowrap;
+  }
+
+  .app-page .brand{min-width:0}
+
+  .app-page .brand-word{
+    max-width:36vw;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+  }
+
+  .app-page .nav-cta{
+    margin-inline-start:auto;
+    gap:8px;
+  }
+
+  .app-page .nav-links{
+    position:absolute;
+    top:calc(100% + 10px);
+    inset-inline:0;
+    z-index:80;
+    display:none;
+    flex-direction:column;
+    gap:4px;
+    width:auto;
+    padding:12px;
+    overflow:visible;
+    background:rgba(1,31,36,.96);
+    border:1px solid var(--line);
+    border-radius:20px;
+    box-shadow:var(--shadow-float);
+    backdrop-filter:blur(16px);
+  }
+
+  .app-page .nav-links.is-open{display:flex}
+
+  .app-page .nav-links a{
+    min-height:44px;
+    display:flex;
+    align-items:center;
+    padding:12px 14px;
+  }
+}
+
 @media (max-width:900px){
   .page-hero-inner,.two-column-grid{grid-template-columns:1fr}
   .comments-grid{grid-template-columns:1fr 1fr}
+  .hero-inner,.showcase-row,.owners,.final{gap:32px}
 }
+
 @media (max-width:980px){
-  .app-page .nav-inner{flex-wrap:wrap}
-  .app-page .nav-links{
-    order:3;
-    width:100%;
-    display:flex;
-    overflow-x:auto;
-    padding-bottom:4px;
-  }
+  .nav-inner{gap:14px}
+  .nav-cta{gap:8px}
+  .lang-pill button{min-width:42px}
 }
+
 @media (max-width:640px){
   .page-hero{padding:52px 0 24px}
   .page-panel,.form-card,.data-card,.comment-card{padding:22px}
   .form-grid,.comments-grid{grid-template-columns:1fr}
   .form-actions .btn{width:100%;justify-content:center}
+  .page-grid,.app-section{padding-bottom:72px}
+  .page-hero-inner{gap:22px}
+  .page-title{gap:14px}
+  .page-panel .lede{font-size:15px}
+  .input,.select,.textarea{font-size:16px}
+  .table-wrap{max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .config-table{min-width:620px}
+  .comment-card{gap:14px}
+  .comment-meta{align-items:flex-start;flex-direction:column}
+  .question-button{min-height:56px;padding:18px 20px;font-size:16px}
+  .question-answer{padding:0 20px 20px}
+  .final-stores,.hero-ctas{width:100%}
+  .store{width:100%;justify-content:center}
+  .f-grid{gap:24px}
+}
+
+@media (max-width:480px){
+  .wrap{padding-inline:16px}
+  .app-page .brand-word{max-width:42vw}
+  .app-page .nav-cta .btn-lime{display:none}
+  .lang-pill button{min-width:38px;padding-inline:10px}
+  .h-display{font-size:clamp(40px, 14vw, 58px)}
+  .h-1{font-size:clamp(2rem, 11vw, 2.75rem)}
+  .h-2{font-size:clamp(1.5rem, 8vw, 2rem)}
+  .lede{font-size:16px}
+  .page-hero{padding-top:40px}
+  .form-card,.data-card,.comment-card,.page-panel{border-radius:22px}
+  .config-table{min-width:560px}
 }

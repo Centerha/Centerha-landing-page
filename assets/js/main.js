@@ -85,7 +85,37 @@
       a.addEventListener('click', closeMenu);
     });
   }
-  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeMenu(); });
+
+  /* ---------- secondary-page mobile menu ---------- */
+  var pageMenuToggle = document.querySelector('.page-menu-toggle');
+  var pageNav = document.querySelector('.app-page .nav-links');
+  function closePageMenu(){
+    if (!pageMenuToggle || !pageNav) return;
+    pageNav.classList.remove('is-open');
+    pageMenuToggle.setAttribute('aria-expanded', 'false');
+  }
+  if (pageMenuToggle && pageNav){
+    pageMenuToggle.addEventListener('click', function(e){
+      e.stopPropagation();
+      var isOpen = pageNav.classList.toggle('is-open');
+      pageMenuToggle.setAttribute('aria-expanded', String(isOpen));
+    });
+    pageNav.querySelectorAll('a').forEach(function(link){
+      link.addEventListener('click', closePageMenu);
+    });
+    document.addEventListener('click', function(e){
+      if (!pageNav.classList.contains('is-open')) return;
+      if (pageNav.contains(e.target) || pageMenuToggle.contains(e.target)) return;
+      closePageMenu();
+    });
+  }
+
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape'){
+      closeMenu();
+      closePageMenu();
+    }
+  });
 
   /* ---------- footer accordion (mobile only) ---------- */
   document.querySelectorAll('.f-col-h').forEach(function(h){
