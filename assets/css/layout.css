@@ -19,4 +19,10 @@
 .two-column-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:18px;align-items:start}
 .app-section{padding:24px 0 96px}
 .app-footer{margin-top:0}
-.page-nav-link.is-active{color:var(--paper);background:var(--surface-2)}
+.page-nav-link.active,
+.page-nav-link.is-active,
+.nav-links a.active,
+.mm-links a.active{
+  color:var(--paper);
+  background:var(--surface-2);
+}
