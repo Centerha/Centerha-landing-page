@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+Disallow: /_legacy/
+Disallow: /smoke-home.html
+Disallow: /search/smoke.html
+Disallow: /search/smoke-dbg.html
+Disallow: /pages/smoke-content.html
+
+Sitemap: https://centerha.software/sitemap.xml

@@ -115,6 +115,31 @@ Questions are managed in `assets/js/questions.js`.
 
 Edit the `questions` array to add, remove, or update FAQ items. Each item has bilingual `q` and `a` values.
 
+## Live Data (Backend Integration)
+
+The landing page renders real platform data from the Centerha backend:
+
+```txt
+GET {API_BASE_URL}/home/landing
+```
+
+- `assets/js/config.js` - single source of truth for the API base URL.
+  - `localhost` / `file://` -> `http://localhost:3000/api`
+  - anywhere else -> `https://api.centerha.software/api`
+  - override by setting `window.CENTERHA_API_BASE_URL` in a script tag BEFORE `config.js`.
+- `assets/js/api.js` - API client (`fetchLanding`, `fetchContentPage`) with a request timeout and the documented response shape.
+- `assets/js/landing.js` - renders hero stats, the stats strip, banners, featured/recent pitches, venues, cities, pitch-size categories, footer content links, plus loading/error/empty states and client-side city/size filters. Governorate and pitch-size labels are localized in `GOVERNORATE_LABELS` / `PITCH_SIZE_LABELS`.
+- `pages/content.html` + `assets/js/content-page.js` - renders backend content pages (privacy policy, terms, ...) by `?slug=`, with HTML sanitization.
+- `assets/css/live.css` - styles for the live sections (RTL-safe logical properties).
+
+Booking is app-only, so pitch cards are informational; the section CTA points to the download links.
+
+- `search/` + `assets/js/search-page.js` - dedicated search page calling the public catalog endpoint `GET {API_BASE_URL}/catalog/public` (keyword, governorate, pitch size, pagination). State lives in the URL, so the homepage hero form works even without JavaScript.
+
+Domain note: `CNAME` is `centerha.software` (GitHub Pages custom domain). Keep it in sync with the DNS + backend CORS configuration.
+
+Production note: the backend's `CORS_ORIGIN` must include the landing page origin (e.g. `https://centerha.software,https://www.centerha.software`) or the browser will block the API call.
+
 ## Run Locally
 
 Because this is a static site, you can open `index.html` directly in a browser.
