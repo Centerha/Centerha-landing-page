@@ -96,9 +96,11 @@ window.CenterhaTranslations = {
 (function(){
   "use strict";
 
+  var previousLang = null;
+
   function getSavedLanguage(){
-    try { return localStorage.getItem('centerha-lang') || 'en'; }
-    catch(e){ return 'en'; }
+    try { return localStorage.getItem('centerha-lang') || 'ar'; }
+    catch(e){ return 'ar'; }
   }
 
   function translateElement(el, lang){
@@ -135,6 +137,10 @@ window.CenterhaTranslations = {
 
     try { localStorage.setItem('centerha-lang', lang); } catch(e){}
     document.dispatchEvent(new CustomEvent('centerha:languagechange', { detail: { lang: lang } }));
+    if (typeof window.centerhaTrack === 'function' && previousLang && previousLang !== lang) {
+      window.centerhaTrack('language_changed', { from: previousLang, to: lang });
+    }
+    previousLang = lang;
   }
 
   function initLanguage(){

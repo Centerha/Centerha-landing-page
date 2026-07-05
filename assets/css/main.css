@@ -19,8 +19,8 @@
   --surface-2:rgba(245,255,254,.06);
 
   /* typography */
-  --font-en:'Space Grotesk', system-ui, sans-serif;
-  --font-ar:'IBM Plex Sans Arabic', system-ui, sans-serif;
+  --font-en:'Inter', 'Segoe UI', system-ui, sans-serif;
+  --font-ar:'Cairo', 'Tajawal', 'IBM Plex Sans Arabic', 'Noto Sans Arabic', system-ui, sans-serif;
   --font-mono:'JetBrains Mono', ui-monospace, monospace;
   --font: var(--font-en);
 
@@ -112,13 +112,15 @@ html[lang="ar"] .kicker-pill{ font-family:var(--font-ar); letter-spacing:0; text
   text-wrap:balance;
   margin:0;
 }
-html[lang="ar"] .h-display{ line-height:1.08; letter-spacing:0; font-size:clamp(40px, 7vw, 96px); }
+/* Cairo carries taller ascenders/diacritics than Latin display type —
+   give Arabic headlines more vertical room and full weight. */
+html[lang="ar"] .h-display{ line-height:1.28; letter-spacing:0; font-weight:800; font-size:clamp(36px, 6.2vw, 84px); }
 
 .h-1{ font-weight:800; font-size:clamp(2.5rem, 5vw, 4.5rem); line-height:1.05; letter-spacing:-0.03em; text-wrap:balance; margin:0; color:var(--paper); }
-html[lang="ar"] .h-1{ font-weight:700; line-height:1.25; letter-spacing:0; }
+html[lang="ar"] .h-1{ font-weight:800; line-height:1.38; letter-spacing:0; }
 
 .h-2{ font-weight:600; font-size:clamp(26px, 3.4vw, 44px); line-height:1.04; letter-spacing:-0.02em; margin:0; }
-html[lang="ar"] .h-2{ line-height:1.25; letter-spacing:0; }
+html[lang="ar"] .h-2{ line-height:1.42; letter-spacing:0; font-weight:700; }
 
 .lede{
   font-size:clamp(17px, 1.35vw, 21px);
