@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>سنطرها — البحث عن ملعب | Centerha</title>
+  <meta name="description" content="ابحث عن ملاعب كرة القدم في سوريا حسب المحافظة ونوع الملعب والسعر — نتائج حقيقية مباشرة من منصة سنطرها." />
+  <meta property="og:site_name" content="Centerha — سنطرها" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="سنطرها — البحث عن ملعب" />
+  <meta property="og:description" content="نتائج حقيقية مباشرة من منصة سنطرها: المحافظة، نوع الملعب، السعر." />
+  <link rel="canonical" href="https://centerha.software/search/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/main.css" />
+  <link rel="stylesheet" href="../assets/css/layout.css" />
+  <link rel="stylesheet" href="../assets/css/components.css" />
+  <link rel="stylesheet" href="../assets/css/responsive.css" />
+  <link rel="stylesheet" href="../assets/css/live.css" />
+</head>
+<body class="app-page">
+
+<!-- ===================== NAVBAR ===================== -->
+<header class="nav" id="nav">
+  <div class="wrap nav-inner">
+    <a href="../index.html" class="brand" aria-label="Centerha">
+      <img class="brand-mark" src="../assets/images/logo-mark.png" alt="Centerha" />
+      <span class="brand-word"><span data-en>Centerha</span><span data-ar>سنطرها</span></span>
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="../index.html"><span data-en>Home</span><span data-ar>الرئيسية</span></a>
+      <a href="./" class="active"><span data-en>Search</span><span data-ar>البحث</span></a>
+      <a href="../index.html#owners"><span data-en>For owners</span><span data-ar>للملاعب</span></a>
+      <a href="../index.html#faq"><span data-en>FAQ</span><span data-ar>الأسئلة</span></a>
+    </nav>
+    <div class="nav-cta">
+      <div class="lang-pill" id="langPill" role="tablist" aria-label="Language">
+        <span class="knob" aria-hidden="true"></span>
+        <button type="button" data-lang="en">EN</button>
+        <button type="button" data-lang="ar" class="on">عربي</button>
+      </div>
+      <a href="../index.html#owners" class="btn btn-lime">
+        <span data-en>List your pitch</span><span data-ar>أضف ملعبك</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" class="arrow-rtl"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <!-- ===================== SEARCH HERO ===================== -->
+  <section class="page-hero">
+    <div class="wrap">
+      <div class="page-title reveal in">
+        <span class="kicker"><span class="kicker-pill"><span class="kicker-dot"></span><span data-en>Live catalog search</span><span data-ar>بحث مباشر في المنصة</span></span></span>
+        <h1 class="h-1">
+          <span data-en>Find your <span class="hl">pitch</span>.</span>
+          <span data-ar>ابحث عن <span class="hl">ملعبك</span>.</span>
+        </h1>
+        <p class="lede">
+          <span data-en>Search every active pitch on Centerha by governorate, pitch size, or name — real data, straight from the platform.</span>
+          <span data-ar>دوّر على ملعب بسوريا حسب المحافظة أو نوع الملعب أو الاسم — بيانات حقيقية مباشرة من المنصة.</span>
+        </p>
+      </div>
+
+      <form class="hero-search search-page-form" id="searchForm" action="./" method="get" role="search">
+        <div class="hs-field">
+          <label for="searchCity"><span data-en>Governorate</span><span data-ar>المحافظة</span></label>
+          <select class="select" id="searchCity" name="governorate"></select>
+        </div>
+        <div class="hs-field">
+          <label for="searchSize"><span data-en>Pitch size</span><span data-ar>نوع الملعب</span></label>
+          <select class="select" id="searchSize" name="pitchSize"></select>
+        </div>
+        <div class="hs-field hs-grow">
+          <label for="searchQ"><span data-en>Pitch or venue name</span><span data-ar>اسم الملعب أو المنشأة</span></label>
+          <input class="select" type="search" id="searchQ" name="q" autocomplete="off" maxlength="100" />
+        </div>
+        <div class="hs-field">
+          <label for="searchSort"><span data-en>Sort by</span><span data-ar>الترتيب</span></label>
+          <select class="select" id="searchSort" name="sort"></select>
+        </div>
+        <div class="hs-field hs-price">
+          <label for="searchPriceMin"><span data-en>Price range</span><span data-ar>نطاق السعر</span></label>
+          <div class="hs-price-pair">
+            <input class="select" type="number" id="searchPriceMin" name="priceMin" min="0" step="1000" inputmode="numeric" placeholder="من" />
+            <input class="select" type="number" id="searchPriceMax" name="priceMax" min="0" step="1000" inputmode="numeric" placeholder="إلى" />
+          </div>
+        </div>
+        <!-- Availability search (date/time) is NOT live yet — explicitly a roadmap
+             item; see index.html#roadmap. Do not enable without backend support. -->
+        <div class="hs-field hs-soon" aria-hidden="false">
+          <label><span data-en>Date & time</span><span data-ar>التاريخ والوقت</span></label>
+          <div class="select hs-soon-box" role="note">
+            <span data-en>Availability search — coming soon</span><span data-ar>البحث حسب التوفر — قريباً</span>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-lime hs-submit">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+          <span data-en>Search</span><span data-ar>دوّر</span>
+        </button>
+        <button type="button" class="btn btn-ghost" id="searchClear">
+          <span data-en>Clear</span><span data-ar>مسح</span>
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <!-- ===================== RESULTS ===================== -->
+  <section class="app-section">
+    <div class="wrap">
+      <div class="results-info" id="resultsInfo" aria-live="polite" hidden></div>
+
+      <div id="resultsLoading" class="live-state" aria-live="polite" hidden>
+        <div class="live-skel-grid" aria-hidden="true">
+          <div class="skel-card"><div class="skel-media"></div><div class="skel-body"><div class="skel-line"></div><div class="skel-line short"></div></div></div>
+          <div class="skel-card"><div class="skel-media"></div><div class="skel-body"><div class="skel-line"></div><div class="skel-line short"></div></div></div>
+          <div class="skel-card"><div class="skel-media"></div><div class="skel-body"><div class="skel-line"></div><div class="skel-line short"></div></div></div>
+          <div class="skel-card"><div class="skel-media"></div><div class="skel-body"><div class="skel-line"></div><div class="skel-line short"></div></div></div>
+        </div>
+      </div>
+
+      <div id="resultsError" class="live-note" role="alert" hidden>
+        <span><span data-en>We couldn't load results right now. Please try again.</span><span data-ar>صار في مشكلة بجلب النتائج. تأكد من الاتصال وجرب مرة تانية.</span></span>
+        <button type="button" class="btn btn-lime" id="resultsRetry"><span data-en>Retry</span><span data-ar>جرب مرة تانية</span></button>
+      </div>
+
+      <div id="resultsEmpty" class="live-note" hidden>
+        <span><span data-en>No pitches match this search yet. Try different filters.</span><span data-ar>ما لقينا ملاعب مطابقة لهالبحث حالياً. جرّب تغيّر المحافظة أو نوع الملعب.</span></span>
+      </div>
+
+      <div class="cards-grid" id="resultsGrid"></div>
+
+      <nav class="pager" id="pager" aria-label="Pagination" hidden>
+        <button type="button" class="btn btn-ghost" id="pagerPrev"><span data-en>Previous</span><span data-ar>السابق</span></button>
+        <span class="pager-label" id="pagerLabel"></span>
+        <button type="button" class="btn btn-ghost" id="pagerNext"><span data-en>Next</span><span data-ar>التالي</span></button>
+      </nav>
+
+      <p class="live-cta-note">
+        <span data-en>Booking happens in the Centerha app — it's on its way to the stores.</span>
+        <span data-ar>الحجز بيتم عبر تطبيق سنطرها — وهو بطريقه عالمتاجر.</span>
+      </p>
+    </div>
+  </section>
+</main>
+
+<!-- ===================== SCRIPTS ===================== -->
+<script src="../assets/js/language.js"></script>
+<script src="../assets/js/config.js"></script>
+<script src="../assets/js/api.js"></script>
+<script src="../assets/js/analytics.js"></script>
+<script src="../assets/js/main.js"></script>
+<script src="../assets/js/search-page.js"></script>
+</body>
+</html>

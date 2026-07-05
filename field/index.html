@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <!-- Title/description/canonical/JSON-LD are refined per-field by
+       assets/js/field-page.js once the field loads. The static site has no
+       server rendering, so crawlers that skip JS see these generic values —
+       documented SEO limitation. -->
+  <title>سنطرها — تفاصيل الملعب | Centerha</title>
+  <meta name="description" content="تفاصيل ملعب على منصة سنطرها: الصور، الموقع، السعر، والمواعيد المتاحة — بيانات حقيقية مباشرة من المنصة." />
+  <meta property="og:site_name" content="Centerha — سنطرها" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="سنطرها — تفاصيل الملعب" />
+  <meta property="og:description" content="الصور والموقع والسعر والمواعيد المتاحة — مباشرة من منصة سنطرها." />
+  <link rel="canonical" href="https://centerha.software/field/" id="canonicalLink" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/main.css" />
+  <link rel="stylesheet" href="../assets/css/layout.css" />
+  <link rel="stylesheet" href="../assets/css/components.css" />
+  <link rel="stylesheet" href="../assets/css/responsive.css" />
+  <link rel="stylesheet" href="../assets/css/live.css" />
+</head>
+<body class="app-page">
+
+<!-- ===================== NAVBAR ===================== -->
+<header class="nav" id="nav">
+  <div class="wrap nav-inner">
+    <a href="../index.html" class="brand" aria-label="Centerha">
+      <img class="brand-mark" src="../assets/images/logo-mark.png" alt="Centerha" />
+      <span class="brand-word"><span data-en>Centerha</span><span data-ar>سنطرها</span></span>
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="../index.html"><span data-en>Home</span><span data-ar>الرئيسية</span></a>
+      <a href="../search/"><span data-en>Search</span><span data-ar>البحث</span></a>
+      <a href="../index.html#owners"><span data-en>For owners</span><span data-ar>للملاعب</span></a>
+      <a href="../index.html#faq"><span data-en>FAQ</span><span data-ar>الأسئلة</span></a>
+    </nav>
+    <div class="nav-cta">
+      <div class="lang-pill" id="langPill" role="tablist" aria-label="Language">
+        <span class="knob" aria-hidden="true"></span>
+        <button type="button" data-lang="en">EN</button>
+        <button type="button" data-lang="ar" class="on">عربي</button>
+      </div>
+      <a href="../search/" class="btn btn-lime">
+        <span data-en>Find a pitch</span><span data-ar>ابحث عن ملعب</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" class="arrow-rtl"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <!-- loading -->
+  <section class="app-section" id="fieldLoading">
+    <div class="wrap">
+      <div class="live-skel-grid fd-skel" aria-hidden="true">
+        <div class="skel-card"><div class="skel-media"></div><div class="skel-body"><div class="skel-line"></div><div class="skel-line short"></div></div></div>
+        <div class="skel-card"><div class="skel-media"></div><div class="skel-body"><div class="skel-line"></div><div class="skel-line short"></div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- error / not found -->
+  <section class="app-section" id="fieldError" hidden>
+    <div class="wrap">
+      <div class="live-note" role="alert">
+        <span id="fieldErrorMsg"><span data-en>We couldn't load this pitch right now. Please try again.</span><span data-ar>صار في مشكلة بجلب بيانات الملعب. تأكد من الاتصال وجرب مرة تانية.</span></span>
+        <button type="button" class="btn btn-lime" id="fieldRetry"><span data-en>Retry</span><span data-ar>جرب مرة تانية</span></button>
+        <a class="btn btn-ghost" href="../search/"><span data-en>Back to search</span><span data-ar>العودة للبحث</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- content -->
+  <div id="fieldContent" hidden>
+    <section class="app-section fd-top">
+      <div class="wrap fd-grid">
+        <!-- gallery -->
+        <div class="fd-gallery">
+          <div class="fd-main-media" id="fdMainMedia">
+            <div class="midline" aria-hidden="true"></div><div class="center-circle" aria-hidden="true"></div>
+          </div>
+          <div class="fd-thumbs" id="fdThumbs" hidden></div>
+        </div>
+
+        <!-- summary -->
+        <div class="fd-summary">
+          <nav class="fd-crumbs" aria-label="Breadcrumb">
+            <a href="../index.html"><span data-en>Home</span><span data-ar>الرئيسية</span></a>
+            <span aria-hidden="true">/</span>
+            <a href="../search/"><span data-en>Search</span><span data-ar>البحث</span></a>
+            <span aria-hidden="true">/</span>
+            <span id="fdCrumbName"></span>
+          </nav>
+
+          <h1 class="fd-title" id="fdName"></h1>
+          <div class="fd-meta">
+            <span class="fd-chip" id="fdSize"></span>
+            <span class="fd-chip" id="fdCity"></span>
+            <span class="fd-chip fd-chip-dim" id="fdDuration"></span>
+          </div>
+          <div class="fd-facility" id="fdFacility"></div>
+
+          <div class="fd-price-box">
+            <div class="fd-price" id="fdPrice"></div>
+            <div class="fd-deposit" id="fdDeposit" hidden></div>
+          </div>
+
+          <p class="fd-desc" id="fdDesc" hidden></p>
+
+          <a class="btn btn-lime fd-cta" id="fdBookCta" href="../index.html#download">
+            <span data-en>Book via the Centerha app</span><span data-ar>احجز عبر تطبيق سنطرها</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" class="arrow-rtl"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <p class="fd-cta-note">
+            <span data-en>Browsing is on the web — booking and payment happen in the Centerha app (on its way to the stores).</span>
+            <span data-ar>التصفّح من الموقع — الحجز والدفع يتمّان عبر تطبيق سنطرها (في طريقه إلى المتاجر).</span>
+          </p>
+
+          <!-- cancellation / refund policy (product rule, no auto-refund claims) -->
+          <div class="fd-policy">
+            <h2><span data-en>Cancellation & refund policy</span><span data-ar>سياسة الإلغاء والاسترداد</span></h2>
+            <ul>
+              <li><span data-en>If you cancel within the allowed window, a refund request for 50% of the deposit is recorded for admin review.</span><span data-ar>عند إلغاء الحجز ضمن المهلة المسموحة، يتم تسجيل طلب استرداد بنسبة 50% من العربون للمراجعة من الإدارة.</span></li>
+              <li><span data-en>If the venue owner cancels your booking, a refund request for the full deposit is recorded for admin review.</span><span data-ar>إذا تم إلغاء الحجز من قبل صاحب الملعب، يتم تسجيل طلب استرداد كامل العربون للمراجعة من الإدارة.</span></li>
+              <li><span data-en>Refunds are processed manually by the Centerha team — they are not automatic.</span><span data-ar>تتم معالجة طلبات الاسترداد يدويًا من فريق سنطرها — وليست تلقائية.</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- availability preview (real slots from GET /api/facilities/:id/slots) -->
+    <section class="app-section" id="fdAvailabilitySec" hidden>
+      <div class="wrap">
+        <h2 class="live-h"><span data-en>Availability — next days</span><span data-ar>التوفر — الأيام القادمة</span></h2>
+        <p class="fd-avail-note"><span data-en>Live from the platform's real booking calendar. Final confirmation happens in the app.</span><span data-ar>مباشرة من تقويم الحجوزات الحقيقي للمنصة. التأكيد النهائي يتم عبر التطبيق.</span></p>
+        <div class="fd-days" id="fdDays"></div>
+      </div>
+    </section>
+
+    <!-- similar fields -->
+    <section class="app-section" id="fdSimilarSec" hidden>
+      <div class="wrap">
+        <h2 class="live-h"><span data-en>Similar pitches</span><span data-ar>ملاعب مشابهة</span></h2>
+        <div class="cards-grid" id="fdSimilarGrid"></div>
+      </div>
+    </section>
+  </div>
+</main>
+
+<!-- ===================== FOOTER (compact) ===================== -->
+<footer>
+  <div class="wrap">
+    <div class="f-base">
+      <div>© 2026 Centerha. <span data-en>All rights reserved.</span><span data-ar>جميع الحقوق محفوظة.</span></div>
+      <a href="../index.html"><span data-en>Back to home</span><span data-ar>العودة للرئيسية</span></a>
+      <div class="lang-pill" id="langPillFooter" role="tablist" aria-label="Language">
+        <span class="knob" aria-hidden="true"></span>
+        <button type="button" data-lang="en">EN</button>
+        <button type="button" data-lang="ar" class="on">عربي</button>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ===================== SCRIPTS ===================== -->
+<script src="../assets/js/language.js"></script>
+<script src="../assets/js/config.js"></script>
+<script src="../assets/js/api.js"></script>
+<script src="../assets/js/analytics.js"></script>
+<script src="../assets/js/main.js"></script>
+<script src="../assets/js/field-page.js"></script>
+</body>
+</html>

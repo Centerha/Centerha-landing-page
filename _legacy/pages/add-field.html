@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Centerha — FAQ</title>
+  <title>Centerha — Field Manager</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../assets/css/main.css" />
   <link rel="stylesheet" href="../assets/css/layout.css" />
   <link rel="stylesheet" href="../assets/css/components.css" />
@@ -25,7 +25,7 @@
       <a href="../index.html"><span data-en>Home</span><span data-ar>الرئيسية</span></a>
       <a href="form.html"><span data-en>Form</span><span data-ar>النموذج</span></a>
       <a href="comments.html"><span data-en>Reviews</span><span data-ar>التعليقات</span></a>
-      <a href="questions.html" class="active"><span data-en>FAQ</span><span data-ar>الأسئلة</span></a>
+      <a href="questions.html"><span data-en>FAQ</span><span data-ar>الأسئلة</span></a>
     </nav>
     <div class="nav-cta">
       <div class="lang-pill" id="langPill" role="tablist" aria-label="Language">
@@ -59,7 +59,7 @@
     <a href="../index.html"><span data-en>Home</span><span data-ar>الرئيسية</span></a>
     <a href="form.html"><span data-en>Form</span><span data-ar>النموذج</span></a>
     <a href="comments.html"><span data-en>Reviews</span><span data-ar>التعليقات</span></a>
-    <a href="questions.html" class="active"><span data-en>FAQ</span><span data-ar>الأسئلة</span></a>
+    <a href="questions.html"><span data-en>FAQ</span><span data-ar>الأسئلة</span></a>
   </nav>
   <div class="mm-foot">
     <div class="lang-pill mm-lang" role="tablist" aria-label="Language">
@@ -74,49 +74,51 @@
   </div>
 </div>
 
-<!-- ===================== FLOATING WHATSAPP (mobile) ===================== -->
-<a href="https://wa.me/963110000000" class="wa-fab" aria-label="WhatsApp" target="_blank" rel="noopener">
-  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.5A10 10 0 1 0 12 2Zm5.8 14.2c-.25.7-1.45 1.34-2 1.4-.53.05-1.2.08-1.95-.12a8 8 0 0 1-1.77-.66 9.7 9.7 0 0 1-3.7-3.27c-.27-.36-.97-1.3-.97-2.48 0-1.17.62-1.75.83-1.99.22-.24.48-.3.64-.3l.46.01c.15.01.35-.06.54.42l.66 1.6c.05.12.09.26 0 .42l-.25.4c-.12.15-.25.33-.36.44-.12.12-.24.25-.1.49.13.24.6.99 1.29 1.6.88.79 1.63 1.03 1.86 1.15.24.12.38.1.52-.06l.74-.86c.16-.2.3-.16.5-.1l1.55.74c.24.12.4.18.46.28.05.1.05.58-.2 1.27Z"/></svg>
-</a>
-
 <main>
   <!-- ===================== HERO ===================== -->
   <section class="page-hero">
     <div class="wrap page-hero-inner">
       <div class="page-title reveal">
-        <span class="kicker"><span class="kicker-pill"><span class="kicker-dot"></span><span data-en>Help &amp; FAQ</span><span data-ar>المساعدة والأسئلة الشائعة</span></span></span>
+        <span class="kicker"><span class="kicker-pill"><span class="kicker-dot"></span><span data-en>Field manager</span><span data-ar>إدارة الحقول</span></span></span>
         <h1 class="h-1">
-          <span data-en>Got questions? <span class="hl">We have answers.</span></span>
-          <span data-ar>عندك أسئلة؟ <span class="hl">عندنا إجابات.</span></span>
+          <span data-en>Manage form <span class="hl">field configuration</span>.</span>
+          <span data-ar>أدِر <span class="hl">إعدادات حقول النموذج</span>.</span>
         </h1>
         <p class="lede">
-          <span data-en>Everything you need to know about booking pitches on Centerha. Still curious? Reach our team on WhatsApp any time.</span>
-          <span data-ar>كل ما تحتاج معرفته عن حجز الملاعب على سنطرها. لا زال لديك سؤال؟ تواصل مع فريقنا على واتساب في أي وقت.</span>
+          <span data-en>The table below shows the current field configuration used by the booking form. Add or remove fields without editing markup.</span>
+          <span data-ar>يعرض الجدول أدناه إعدادات الحقول الحالية المستخدمة في نموذج الحجز. أضف أو أزل حقولاً بدون تعديل القالب.</span>
         </p>
       </div>
       <aside class="page-panel reveal">
-        <div style="display:flex;flex-direction:column;gap:16px">
-          <p style="margin:0;font-size:15px;color:rgba(245,255,254,.7)">
-            <span data-en>Can't find your answer here?</span>
-            <span data-ar>لم تجد إجابتك هنا؟</span>
-          </p>
-          <a href="https://wa.me/963110000000" class="btn btn-lime" target="_blank" rel="noopener" style="align-self:flex-start">
-            <svg viewBox="0 0 24 24" fill="currentColor" style="width:18px;height:18px"><path d="M12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.5A10 10 0 1 0 12 2Zm5.8 14.2c-.25.7-1.45 1.34-2 1.4-.53.05-1.2.08-1.95-.12a8 8 0 0 1-1.77-.66 9.7 9.7 0 0 1-3.7-3.27c-.27-.36-.97-1.3-.97-2.48 0-1.17.62-1.75.83-1.99.22-.24.48-.3.64-.3l.46.01c.15.01.35-.06.54.42l.66 1.6c.05.12.09.26 0 .42l-.25.4c-.12.15-.25.33-.36.44-.12.12-.24.25-.1.49.13.24.6.99 1.29 1.6.88.79 1.63 1.03 1.86 1.15.24.12.38.1.52-.06l.74-.86c.16-.2.3-.16.5-.1l1.55.74c.24.12.4.18.46.28.05.1.05.58-.2 1.27Z"/></svg>
-            <span data-en>Chat with us</span><span data-ar>تحدث معنا</span>
-          </a>
-          <p style="margin:0;font-size:13px;color:rgba(245,255,254,.45);font-family:var(--font-mono)">
-            <span data-en>Typically replies within an hour</span>
-            <span data-ar>نرد عادةً خلال ساعة</span>
-          </p>
+        <div class="form-actions">
+          <button class="btn btn-lime" type="button" id="addDemoField" data-i18n="addFieldButton">Add field</button>
         </div>
+        <p style="margin:12px 0 0;font-size:13px;color:rgba(245,255,254,.5)">
+          <span data-en>Changes are reflected in the form page immediately.</span>
+          <span data-ar>التغييرات تظهر في صفحة النموذج فورًا.</span>
+        </p>
       </aside>
     </div>
   </section>
 
-  <!-- ===================== FAQ SECTION ===================== -->
+  <!-- ===================== FIELD TABLE ===================== -->
   <section class="app-section">
     <div class="wrap page-grid">
-      <div class="question-list reveal" id="questionsList"></div>
+      <article class="data-card reveal">
+        <div class="table-wrap">
+          <table class="config-table">
+            <thead>
+              <tr>
+                <th data-i18n="fieldKey">Key</th>
+                <th data-i18n="fieldLabel">Label</th>
+                <th data-i18n="fieldType">Type</th>
+                <th data-i18n="fieldRequired">Required</th>
+              </tr>
+            </thead>
+            <tbody id="fieldsTable"></tbody>
+          </table>
+        </div>
+      </article>
     </div>
   </section>
 </main>
@@ -168,6 +170,6 @@
 <!-- ===================== SCRIPTS ===================== -->
 <script src="../assets/js/language.js"></script>
 <script src="../assets/js/main.js"></script>
-<script src="../assets/js/questions.js"></script>
+<script src="../assets/js/forms.js"></script>
 </body>
 </html>

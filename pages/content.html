@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Centerha — Info</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/main.css" />
+  <link rel="stylesheet" href="../assets/css/layout.css" />
+  <link rel="stylesheet" href="../assets/css/components.css" />
+  <link rel="stylesheet" href="../assets/css/responsive.css" />
+  <link rel="stylesheet" href="../assets/css/live.css" />
+</head>
+<body class="app-page">
+
+<!-- ===================== NAVBAR ===================== -->
+<header class="nav" id="nav">
+  <div class="wrap nav-inner">
+    <a href="../index.html" class="brand" aria-label="Centerha">
+      <img class="brand-mark" src="../assets/images/logo-mark.png" alt="Centerha" />
+      <span class="brand-word"><span data-en>Centerha</span><span data-ar>سنطرها</span></span>
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="../index.html"><span data-en>Home</span><span data-ar>الرئيسية</span></a>
+      <a href="../search/"><span data-en>Search</span><span data-ar>البحث</span></a>
+      <a href="../index.html#owners"><span data-en>For owners</span><span data-ar>للملاعب</span></a>
+      <a href="../index.html#faq"><span data-en>FAQ</span><span data-ar>الأسئلة</span></a>
+    </nav>
+    <div class="nav-cta">
+      <div class="lang-pill" id="langPill" role="tablist" aria-label="Language">
+        <span class="knob" aria-hidden="true"></span>
+        <button type="button" data-lang="en">EN</button>
+        <button type="button" data-lang="ar" class="on">عربي</button>
+      </div>
+      <a href="../search/" class="btn btn-lime">
+        <span data-en>Find a pitch</span><span data-ar>ابحث عن ملعب</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" class="arrow-rtl"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <!-- ===================== CONTENT PAGE (loaded from the API by slug) ===================== -->
+  <section class="page-hero">
+    <div class="wrap">
+      <div class="page-title reveal in">
+        <span class="kicker"><span class="kicker-pill"><span class="kicker-dot"></span><span data-en>Centerha</span><span data-ar>سنطرها</span></span></span>
+        <h1 class="h-1" id="contentTitle"><span data-en>Loading…</span><span data-ar>عم نحمّل الصفحة…</span></h1>
+      </div>
+    </div>
+  </section>
+
+  <section class="app-section">
+    <div class="wrap">
+      <div id="contentError" class="live-note" hidden>
+        <span><span data-en>We couldn't load this page right now. Please try again.</span><span data-ar>صار في مشكلة بتحميل الصفحة. تأكد من الاتصال وجرب مرة تانية.</span></span>
+        <button type="button" class="btn btn-lime" id="contentRetry"><span data-en>Retry</span><span data-ar>جرب مرة تانية</span></button>
+      </div>
+      <div class="data-card">
+        <!-- One body per language; CSS toggles them via html[lang]. -->
+        <div class="content-body" id="contentBodyEn" data-en></div>
+        <div class="content-body" id="contentBodyAr" data-ar></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ===================== SCRIPTS ===================== -->
+<script src="../assets/js/language.js"></script>
+<script src="../assets/js/config.js"></script>
+<script src="../assets/js/api.js"></script>
+<script src="../assets/js/analytics.js"></script>
+<script src="../assets/js/main.js"></script>
+<script src="../assets/js/content-page.js"></script>
+</body>
+</html>
