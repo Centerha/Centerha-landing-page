@@ -1,0 +1,73 @@
+name: Landing — validate & deploy to GitHub Pages
+
+# Static marketing site (no build step). On push to main:
+#   validate -> `node --check` every JS file + a lightweight HTML sanity check
+#   deploy   -> publish the repo as-is to GitHub Pages (CNAME preserved)
+#
+# NOTE: this uses the "GitHub Actions" Pages source. If Pages is currently set to
+# "Deploy from a branch", switch it in repo Settings → Pages → Build and
+# deployment → Source: GitHub Actions (one-time). The CNAME file in the repo root
+# (web.centerha.software) is uploaded verbatim, so the custom domain is preserved.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# Allow one concurrent Pages deployment; don't cancel an in-flight publish.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    name: Validate JS & HTML
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: node --check every JS file (skip legacy)
+        run: |
+          set -euo pipefail
+          found=0
+          while IFS= read -r -d '' f; do
+            found=1
+            echo "checking $f"
+            node --check "$f"
+          done < <(find . -name '*.js' -not -path './.git/*' -not -path './_legacy/*' -print0)
+          [ "$found" -eq 1 ] || echo "no JS files found (nothing to check)"
+      - name: HTML sanity (must contain <html> and be non-empty)
+        run: |
+          set -euo pipefail
+          rc=0
+          while IFS= read -r -d '' f; do
+            if [ ! -s "$f" ]; then echo "EMPTY: $f" >&2; rc=1; continue; fi
+            if ! grep -qi '<html' "$f"; then echo "NO <html> tag: $f" >&2; rc=1; fi
+          done < <(find . -name '*.html' -not -path './.git/*' -not -path './_legacy/*' -print0)
+          exit "$rc"
+
+  deploy:
+    name: Deploy to GitHub Pages
+    needs: validate
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Disable Jekyll (serve assets/_ dirs verbatim)
+        run: touch .nojekyll
+      - uses: actions/configure-pages@v5
+      - name: Upload site artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4
