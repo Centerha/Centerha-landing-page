@@ -141,6 +141,14 @@ window.CenterhaApi = (function () {
      * @param {string}  [params.q]           Keyword (field/facility name, 1–100 chars).
      * @param {string}  [params.governorate] Governorate enum code.
      * @param {string}  [params.pitchSize]   PitchSize enum code.
+     * @param {string}  [params.sort]        "featured" | "newest" | "price_asc" | "price_desc".
+     * @param {number}  [params.priceMin]    Inclusive minimum price.
+     * @param {number}  [params.priceMax]    Inclusive maximum price.
+     * @param {string}  [params.date]        Live availability: 'YYYY-MM-DD'. Feature-gated —
+     *   send only when fetchFeatureFlags() reports liveAvailabilitySearch:true
+     *   (400 otherwise), always together with availableOnly:true.
+     * @param {string}  [params.time]        Live availability: 'HH:mm' (requires date).
+     * @param {boolean} [params.availableOnly] Must be true whenever date is sent.
      * @param {number}  [params.page]        1-indexed page (default 1).
      * @param {number}  [params.limit]       Page size (max 50, default 12).
      * @param {string}  [params.view]        "FIELDS" (default) or "FACILITIES".

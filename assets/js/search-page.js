@@ -51,6 +51,34 @@
   ];
   var VALID_SORTS = SORT_OPTIONS.map(function (o) { return o.code; });
 
+  /* ---------- live availability (feature-gated) ---------- */
+
+  // Availability params are usable only while the backend feature flag is on
+  // (GET /api/meta/features -> liveAvailabilitySearch:true). While it is off,
+  // the date/time controls stay hidden behind the "قريباً" note and no
+  // availability param is ever sent (the API would reject them with 400).
+  var availabilityEnabled = false;
+  var DATE_RE = /^\d{4}-\d{2}-\d{2}$/;
+  var TIME_RE = /^([01]\d|2[0-3]):[0-5]\d$/;
+  // Same horizon the backend enforces: [today, today+29].
+  var AVAILABILITY_HORIZON_DAYS = 30;
+
+  function localIsoDate(daysAhead) {
+    var d = new Date();
+    d.setDate(d.getDate() + daysAhead);
+    var m = String(d.getMonth() + 1);
+    var day = String(d.getDate());
+    return d.getFullYear() + "-" + (m.length < 2 ? "0" + m : m) + "-" + (day.length < 2 ? "0" + day : day);
+  }
+
+  function parseDateParam(raw) {
+    return raw && DATE_RE.test(raw) ? raw : "";
+  }
+
+  function parseTimeParam(raw) {
+    return raw && TIME_RE.test(raw) ? raw : "";
+  }
+
   function parsePrice(raw) {
     if (raw === null || raw === undefined || raw === "") return "";
     var num = Number(raw);
@@ -173,6 +201,7 @@
   function readStateFromUrl() {
     var params = new URLSearchParams(window.location.search);
     var page = parseInt(params.get("page") || "1", 10);
+    var date = parseDateParam(params.get("date"));
     return {
       q: (params.get("q") || "").slice(0, 100),
       governorate: GOVERNORATE_LABELS[params.get("governorate")] ? params.get("governorate") : "",
@@ -180,6 +209,8 @@
       sort: VALID_SORTS.indexOf(params.get("sort")) >= 0 ? params.get("sort") : "featured",
       priceMin: parsePrice(params.get("priceMin")),
       priceMax: parsePrice(params.get("priceMax")),
+      date: date,
+      time: date ? parseTimeParam(params.get("time")) : "",
       page: isFinite(page) && page > 0 ? page : 1
     };
   }
@@ -192,6 +223,8 @@
     if (state.sort && state.sort !== "featured") params.set("sort", state.sort);
     if (state.priceMin) params.set("priceMin", state.priceMin);
     if (state.priceMax) params.set("priceMax", state.priceMax);
+    if (state.date) params.set("date", state.date);
+    if (state.date && state.time) params.set("time", state.time);
     if (state.page > 1) params.set("page", String(state.page));
     var query = params.toString();
     var url = window.location.pathname + (query ? "?" + query : "");
@@ -202,6 +235,7 @@
   /* ---------- form ---------- */
 
   var citySelect, sizeSelect, qInput, sortSelect, priceMinInput, priceMaxInput;
+  var dateInput, timeInput;
 
   function currentLang() {
     return window.CenterhaLanguage ? window.CenterhaLanguage.get() : "ar";
@@ -253,6 +287,8 @@
     if (sortSelect) sortSelect.value = state.sort || "featured";
     if (priceMinInput) priceMinInput.value = state.priceMin || "";
     if (priceMaxInput) priceMaxInput.value = state.priceMax || "";
+    if (dateInput) dateInput.value = state.date || "";
+    if (timeInput) timeInput.value = state.time || "";
   }
 
   /* ---------- rendering ---------- */
@@ -261,9 +297,11 @@
     hide(document.getElementById("resultsLoading"));
     hide(document.getElementById("resultsError"));
     hide(document.getElementById("resultsEmpty"));
+    hide(document.getElementById("resultsEmptyAvail"));
     if (state === "loading") show(document.getElementById("resultsLoading"));
     if (state === "error") show(document.getElementById("resultsError"));
     if (state === "empty") show(document.getElementById("resultsEmpty"));
+    if (state === "emptyAvail") show(document.getElementById("resultsEmptyAvail"));
   }
 
   function renderInfo(total, page, totalPages) {
@@ -298,7 +336,7 @@
 
   /* ---------- orchestration ---------- */
 
-  var state = { q: "", governorate: "", pitchSize: "", sort: "featured", priceMin: "", priceMax: "", page: 1 };
+  var state = { q: "", governorate: "", pitchSize: "", sort: "featured", priceMin: "", priceMax: "", date: "", time: "", page: 1 };
   var requestSeq = 0;
 
   function load() {
@@ -309,6 +347,7 @@
     hide(document.getElementById("pager"));
     setResultsState("loading");
 
+    var availabilityActive = Boolean(availabilityEnabled && state.date);
     window.CenterhaApi.searchCatalog({
       q: state.q || undefined,
       governorate: state.governorate || undefined,
@@ -316,6 +355,9 @@
       sort: state.sort !== "featured" ? state.sort : undefined,
       priceMin: state.priceMin || undefined,
       priceMax: state.priceMax || undefined,
+      date: availabilityActive ? state.date : undefined,
+      time: availabilityActive && state.time ? state.time : undefined,
+      availableOnly: availabilityActive ? true : undefined,
       page: state.page,
       limit: PAGE_SIZE,
       view: "FIELDS"
@@ -332,7 +374,7 @@
           return;
         }
         if (items.length === 0) {
-          setResultsState("empty");
+          setResultsState(availabilityActive ? "emptyAvail" : "empty");
           renderInfo(0, 1, 1);
           return;
         }
@@ -348,6 +390,7 @@
   }
 
   function submit(page, push) {
+    var date = availabilityEnabled && dateInput ? parseDateParam(dateInput.value) : "";
     state = {
       q: qInput.value.trim().slice(0, 100),
       governorate: citySelect.value,
@@ -355,6 +398,8 @@
       sort: sortSelect ? sortSelect.value : "featured",
       priceMin: priceMinInput ? parsePrice(priceMinInput.value) : "",
       priceMax: priceMaxInput ? parsePrice(priceMaxInput.value) : "",
+      date: date,
+      time: date && timeInput ? parseTimeParam(timeInput.value) : "",
       page: page
     };
     writeStateToUrl(state, push);
@@ -365,9 +410,36 @@
       sort: state.sort,
       hasKeyword: Boolean(state.q),
       hasPriceFilter: Boolean(state.priceMin || state.priceMax),
+      hasAvailabilityFilter: Boolean(state.date),
       page: state.page
     });
     load();
+  }
+
+  /**
+   * Flips the availability controls on ONLY after the backend confirms the
+   * feature. Fail-safe: any fetch error or a false flag keeps the "قريباً"
+   * note and never sends date/time params.
+   */
+  function initAvailabilityGate() {
+    if (!window.CenterhaApi || typeof window.CenterhaApi.fetchFeatureFlags !== "function") return;
+    window.CenterhaApi.fetchFeatureFlags()
+      .then(function (flags) {
+        if (!flags || flags.liveAvailabilitySearch !== true) return;
+        availabilityEnabled = true;
+        if (dateInput) {
+          dateInput.min = localIsoDate(0);
+          dateInput.max = localIsoDate(AVAILABILITY_HORIZON_DAYS - 1);
+        }
+        hide(document.getElementById("searchAvailabilitySoon"));
+        show(document.getElementById("searchDateField"));
+        show(document.getElementById("searchTimeField"));
+        syncFormFromState(state);
+        // A shared/bookmarked URL may already carry date/time — now that the
+        // gate is confirmed, re-run the search with the filter applied.
+        if (state.date) load();
+      })
+      .catch(function () { /* stays hidden — fail closed */ });
   }
 
   function init() {
@@ -377,6 +449,8 @@
     sortSelect = document.getElementById("searchSort");
     priceMinInput = document.getElementById("searchPriceMin");
     priceMaxInput = document.getElementById("searchPriceMax");
+    dateInput = document.getElementById("searchDate");
+    timeInput = document.getElementById("searchTime");
     fillSelects();
 
     if (sortSelect) {
@@ -398,8 +472,21 @@
       if (sortSelect) sortSelect.value = "featured";
       if (priceMinInput) priceMinInput.value = "";
       if (priceMaxInput) priceMaxInput.value = "";
+      if (dateInput) dateInput.value = "";
+      if (timeInput) timeInput.value = "";
       submit(1, true);
     });
+    if (dateInput) {
+      dateInput.addEventListener("change", function () {
+        if (!dateInput.value && timeInput) timeInput.value = "";
+        submit(1, true);
+      });
+    }
+    if (timeInput) {
+      timeInput.addEventListener("change", function () {
+        if (dateInput && dateInput.value) submit(1, true);
+      });
+    }
     document.getElementById("resultsRetry").addEventListener("click", load);
     document.getElementById("pagerPrev").addEventListener("click", function () {
       if (state.page > 1) { submit(state.page - 1, true); window.scrollTo({ top: 0, behavior: "smooth" }); }
@@ -415,6 +502,7 @@
     });
     document.addEventListener("centerha:languagechange", fillSelects);
 
+    initAvailabilityGate();
     load();
   }
 

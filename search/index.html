@@ -88,13 +88,23 @@
             <input class="select" type="number" id="searchPriceMax" name="priceMax" min="0" step="1000" inputmode="numeric" placeholder="إلى" />
           </div>
         </div>
-        <!-- Availability search (date/time) is NOT live yet — explicitly a roadmap
-             item; see index.html#roadmap. Do not enable without backend support. -->
-        <div class="hs-field hs-soon" aria-hidden="false">
+        <!-- Live availability (date/time) filters. Hidden until search-page.js
+             confirms GET /api/meta/features reports liveAvailabilitySearch:true;
+             while the feature is dark the "قريباً" note below stays visible and
+             no availability param is ever sent. -->
+        <div class="hs-field hs-soon" id="searchAvailabilitySoon" aria-hidden="false">
           <label><span data-en>Date & time</span><span data-ar>التاريخ والوقت</span></label>
           <div class="select hs-soon-box" role="note">
             <span data-en>Availability search — coming soon</span><span data-ar>البحث حسب التوفر — قريباً</span>
           </div>
+        </div>
+        <div class="hs-field" id="searchDateField" hidden>
+          <label for="searchDate"><span data-en>Date</span><span data-ar>التاريخ</span></label>
+          <input class="select" type="date" id="searchDate" name="date" dir="ltr" />
+        </div>
+        <div class="hs-field" id="searchTimeField" hidden>
+          <label for="searchTime"><span data-en>Time</span><span data-ar>الوقت</span></label>
+          <input class="select" type="time" id="searchTime" name="time" dir="ltr" step="300" />
         </div>
         <button type="submit" class="btn btn-lime hs-submit">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
@@ -128,6 +138,10 @@
 
       <div id="resultsEmpty" class="live-note" hidden>
         <span><span data-en>No pitches match this search yet. Try different filters.</span><span data-ar>ما لقينا ملاعب مطابقة لهالبحث حالياً. جرّب تغيّر المحافظة أو نوع الملعب.</span></span>
+      </div>
+
+      <div id="resultsEmptyAvail" class="live-note" hidden>
+        <span><span data-en>No pitches are available at this date and time. Try another time or clear the availability filter.</span><span data-ar>لا توجد ملاعب متاحة بهذا الوقت. جرّب وقت تاني أو امسح فلتر التوفر.</span></span>
       </div>
 
       <div class="cards-grid" id="resultsGrid"></div>
