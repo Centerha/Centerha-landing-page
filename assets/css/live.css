@@ -528,3 +528,32 @@ a.lc-link:focus-visible{ outline:2px solid var(--lime); outline-offset:2px; }
 
 /* honest fallback when the API has no price for a field */
 .lc-price-na{ font-size:12.5px; font-weight:600; color:rgba(245,255,254,.55); white-space:nowrap; }
+
+/* ---------- verified reviews (feature-gated section) ---------- */
+.fd-reviews-summary{
+  display:flex; align-items:center; gap:8px;
+  font-size:14px; color:rgba(245,255,254,.75);
+  margin-block-end:14px;
+}
+.fd-reviews-summary strong{ color:var(--lime); font-size:16px; }
+.fd-review-stars{ color:var(--lime); letter-spacing:2px; font-size:13px; }
+.fd-reviews-list{ display:grid; gap:10px; }
+.fd-review-card{
+  background:var(--surface-2); border:1px solid rgba(245,255,254,.08);
+  border-radius:12px; padding:12px 14px;
+}
+.fd-review-head{
+  display:flex; align-items:center; justify-content:space-between; gap:10px;
+  font-size:13.5px; color:rgba(245,255,254,.9);
+}
+.fd-review-comment{ margin:6px 0 0; font-size:13.5px; color:rgba(245,255,254,.7); }
+.fd-review-reply{
+  margin-block-start:8px; padding:8px 10px; border-radius:8px;
+  background:rgba(189,253,8,.07); font-size:12.5px; color:rgba(245,255,254,.7);
+}
+.fd-review-reply-label{ display:block; color:var(--lime); font-size:11.5px; margin-block-end:2px; }
+.fd-review-reply p{ margin:0; }
+.fd-reviews-empty{ font-size:13.5px; color:rgba(245,255,254,.6); }
+
+/* roadmap badge when a feature has gone live (flipped by landing.js) */
+.soon-badge-live{ background:rgba(189,253,8,.15); color:var(--lime); }

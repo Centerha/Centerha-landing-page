@@ -560,7 +560,10 @@
     </div>
 
     <div class="roadmap-grid">
-      <article class="roadmap-card reveal">
+      <!-- data-feature: landing.js checks GET /api/meta/features and flips the
+           badge to "متوفر الآن" only when the flag is actually live in
+           production. Default (and on any fetch failure) stays "قريباً". -->
+      <article class="roadmap-card reveal" data-feature="reviews">
         <span class="soon-badge"><span data-en>Coming soon</span><span data-ar>قريباً</span></span>
         <div class="f-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2 3 6.5 7 .9-5 4.8 1.3 7-6.3-3.4-6.3 3.4 1.3-7-5-4.8 7-.9L12 2Z"/></svg></div>
         <h3><span data-en>Ratings & reviews</span><span data-ar>التقييمات والمراجعات</span></h3>

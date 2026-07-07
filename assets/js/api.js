@@ -183,6 +183,38 @@ window.CenterhaApi = (function () {
     fetchContentPage: function (slug) {
       return getJson("/content/" + encodeURIComponent(slug));
     },
+    /**
+     * Public feature-flag snapshot (GET /api/meta/features — no auth). The
+     * backend hides disabled feature endpoints behind 404, so this gates UI
+     * only; never call a feature endpoint while its flag is false.
+     * @returns {Promise<{reviews:boolean, liveAvailabilitySearch:boolean,
+     *   teams:boolean, splitPayment:boolean, qrCheckin:boolean,
+     *   ownerAnalytics:boolean, tournaments:boolean}>}
+     */
+    fetchFeatureFlags: function () {
+      return getJson("/meta/features");
+    },
+    /**
+     * Public approved reviews + rating aggregate for a field
+     * (GET /api/reviews/fields/:fieldId — no auth; 404 while FEATURE_REVIEWS
+     * is off, so gate on fetchFeatureFlags first). averageRating is null while
+     * the field is below the public display threshold.
+     * @param {string} fieldId
+     * @param {Object} [params]
+     * @param {number} [params.page]  1-indexed page (default 1).
+     * @param {number} [params.limit] Page size (max 50, default 10).
+     * @param {string} [params.sort]  "newest" (default) | "highest" | "lowest".
+     * @returns {Promise<{aggregate:{averageRating:number|null, reviewCount:number,
+     *   ratingBreakdown:Object|null}, items:Array<{id:string, rating:number,
+     *   comment:string|null, createdAt:string, authorLabel:string,
+     *   authorImageUrl:string|null, ownerReply:{text:string,createdAt:string|null}|null}>,
+     *   meta:{page:number, limit:number, total:number, totalPages:number}}>}
+     */
+    fetchFieldReviews: function (fieldId, params) {
+      return getJson(
+        "/reviews/fields/" + encodeURIComponent(fieldId) + toQueryString(params)
+      );
+    },
     resolveMediaUrl: resolveMediaUrl
   };
 })();

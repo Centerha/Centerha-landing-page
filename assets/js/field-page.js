@@ -388,6 +388,124 @@
       .catch(function () { /* optional section */ });
   }
 
+  /* ---------- reviews (feature-gated) ---------- */
+
+  // Renders the verified-reviews section ONLY when GET /api/meta/features
+  // reports reviews:true. While the flag is off the section stays hidden and
+  // no review endpoint is called — no fake ratings, ever. All content is
+  // rendered via textContent (el/bi helpers), never innerHTML.
+  function renderReviews(field) {
+    var section = document.getElementById("fdReviewsSec");
+    if (!section) return;
+
+    window.CenterhaApi.fetchFeatureFlags()
+      .then(function (flags) {
+        if (!flags || flags.reviews !== true) return;
+
+        return window.CenterhaApi
+          .fetchFieldReviews(field.id, { page: 1, limit: 5, sort: "newest" })
+          .then(function (payload) {
+            renderReviewsContent(field, payload);
+          });
+      })
+      .catch(function (error) {
+        // Flags or reviews unavailable — keep the section hidden; a missing
+        // secondary section must never degrade the field page.
+        if (window.console && console.warn) console.warn("Reviews unavailable:", error);
+      });
+  }
+
+  function starsLabel(rating) {
+    var full = Math.max(0, Math.min(5, Math.round(rating)));
+    return "★★★★★".slice(0, full) + "☆☆☆☆☆".slice(0, 5 - full);
+  }
+
+  function renderReviewsContent(field, payload) {
+    var section = document.getElementById("fdReviewsSec");
+    var summary = document.getElementById("fdReviewsSummary");
+    var list = document.getElementById("fdReviewsList");
+    var empty = document.getElementById("fdReviewsEmpty");
+    if (!section || !summary || !list || !empty) return;
+
+    var aggregate = (payload && payload.aggregate) || {};
+    var items = (payload && payload.items) || [];
+
+    // Aggregate line: averageRating is null below the public threshold — in
+    // that case show only the review count, never an invented average.
+    summary.textContent = "";
+    if (typeof aggregate.averageRating === "number") {
+      var stars = el("span", "fd-review-stars", [starsLabel(aggregate.averageRating)]);
+      stars.setAttribute("dir", "ltr");
+      stars.setAttribute("aria-hidden", "true");
+      summary.appendChild(stars);
+      summary.appendChild(
+        el("strong", null, [aggregate.averageRating.toFixed(1)])
+      );
+      summary.appendChild(document.createTextNode(" · "));
+    }
+    if (aggregate.reviewCount > 0) {
+      summary.appendChild(
+        bi(aggregate.reviewCount + " reviews", aggregate.reviewCount + " تقييم")
+      );
+      show(summary);
+    } else {
+      hide(summary);
+    }
+
+    list.textContent = "";
+    if (!items.length) {
+      show(empty);
+    } else {
+      hide(empty);
+      items.forEach(function (item) {
+        var head = el("div", "fd-review-head", [
+          el("strong", null, [item.authorLabel || ""]),
+        ]);
+        var itemStars = el("span", "fd-review-stars", [starsLabel(item.rating)]);
+        itemStars.setAttribute("dir", "ltr");
+        itemStars.setAttribute("aria-label", item.rating + "/5");
+        head.appendChild(itemStars);
+
+        var card = el("article", "fd-review-card", [head]);
+        if (item.comment) {
+          card.appendChild(el("p", "fd-review-comment", [item.comment]));
+        }
+        if (item.ownerReply && item.ownerReply.text) {
+          var reply = el("div", "fd-review-reply", []);
+          reply.appendChild(el("span", "fd-review-reply-label", [bi("Owner reply", "ردّ المالك")]));
+          reply.appendChild(el("p", null, [item.ownerReply.text]));
+          card.appendChild(reply);
+        }
+        list.appendChild(card);
+      });
+    }
+
+    show(section);
+
+    // SEO: aggregateRating only when a REAL public average exists (threshold
+    // already enforced server-side via a null averageRating).
+    if (typeof aggregate.averageRating === "number" && aggregate.reviewCount > 0) {
+      var canonicalUrl =
+        "https://centerha.software/field/?id=" + encodeURIComponent(field.id);
+      var ratingLd = {
+        "@context": "https://schema.org",
+        "@type": "SportsActivityLocation",
+        "@id": canonicalUrl,
+        aggregateRating: {
+          "@type": "AggregateRating",
+          ratingValue: aggregate.averageRating,
+          reviewCount: aggregate.reviewCount,
+          bestRating: 5,
+          worstRating: 1
+        }
+      };
+      var script = document.createElement("script");
+      script.type = "application/ld+json";
+      script.textContent = JSON.stringify(ratingLd);
+      document.head.appendChild(script);
+    }
+  }
+
   /* ---------- orchestration ---------- */
 
   function fieldIdFromUrl() {
@@ -415,6 +533,7 @@
           pitchSize: field.pitchSize
         });
         renderAvailability(field);
+        renderReviews(field);
         renderSimilar(field);
 
         var cta = document.getElementById("fdBookCta");

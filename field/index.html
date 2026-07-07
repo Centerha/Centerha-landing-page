@@ -142,6 +142,19 @@
       </div>
     </section>
 
+    <!-- reviews — rendered by field-page.js ONLY when GET /api/meta/features
+         reports reviews:true. While the feature is dark this section stays
+         hidden and no review endpoint is ever called. No fake ratings. -->
+    <section class="app-section" id="fdReviewsSec" hidden>
+      <div class="wrap">
+        <h2 class="live-h"><span data-en>Verified reviews</span><span data-ar>تقييمات موثّقة</span></h2>
+        <p class="fd-avail-note"><span data-en>Only players who actually booked and played can review.</span><span data-ar>بس اللاعبين يلي حجزوا ولعبوا فعلاً فيهن يقيّموا.</span></p>
+        <div class="fd-reviews-summary" id="fdReviewsSummary" hidden></div>
+        <div class="fd-reviews-list" id="fdReviewsList"></div>
+        <p class="fd-reviews-empty" id="fdReviewsEmpty" hidden><span data-en>No reviews yet — be the first after your booking.</span><span data-ar>ما في تقييمات بعد — كن أول من يقيّم بعد حجزه.</span></p>
+      </div>
+    </section>
+
     <!-- similar fields -->
     <section class="app-section" id="fdSimilarSec" hidden>
       <div class="wrap">

@@ -627,8 +627,42 @@
       });
   }
 
+  // Roadmap feature-flag sync: cards carry data-feature="<clientKey>"; when
+  // GET /api/meta/features reports a flag as live, its badge flips from
+  // "قريباً" to "متوفر الآن". Default (and on any fetch failure) stays
+  // "قريباً" — the page never claims a feature that isn't live.
+  function syncRoadmapWithFeatureFlags() {
+    var cards = document.querySelectorAll(".roadmap-card[data-feature]");
+    if (!cards.length || typeof window.CenterhaApi.fetchFeatureFlags !== "function") return;
+
+    window.CenterhaApi.fetchFeatureFlags()
+      .then(function (flags) {
+        if (!flags) return;
+        cards.forEach(function (card) {
+          var key = card.getAttribute("data-feature");
+          if (flags[key] !== true) return;
+          var badge = card.querySelector(".soon-badge");
+          if (!badge) return;
+          badge.textContent = "";
+          var enSpan = document.createElement("span");
+          enSpan.setAttribute("data-en", "");
+          enSpan.textContent = "Now live";
+          var arSpan = document.createElement("span");
+          arSpan.setAttribute("data-ar", "");
+          arSpan.textContent = "متوفر الآن";
+          badge.appendChild(enSpan);
+          badge.appendChild(arSpan);
+          badge.classList.add("soon-badge-live");
+        });
+      })
+      .catch(function () {
+        /* flags unavailable — roadmap stays "قريباً" */
+      });
+  }
+
   function init() {
     window.centerhaTrack("landing_view", { path: window.location.pathname });
+    syncRoadmapWithFeatureFlags();
 
     // Owner CTA tracking (anonymous — element context only).
     document.querySelectorAll('a[href*="app.centerha.software"]').forEach(function (ownerLink) {
