@@ -548,15 +548,17 @@
   </div>
 </section>
 
-<!-- ===================== ROADMAP (honest future features) =====================
-     Everything in this section is NOT live yet. Each card is explicitly
-     labelled "قريباً / Coming soon" — never presented as available. -->
+<!-- ===================== ROADMAP (shipped + upcoming) =====================
+     Mixed section: some cards are already live, the rest are upcoming.
+     Each card defaults to "قريباً / Coming soon"; landing.js flips a card's
+     badge to "متوفر الآن / Now live" only when GET /api/meta/features says
+     the flag is actually live in production. -->
 <section class="sec sec-flush-top" id="roadmap">
   <div class="wrap">
     <div class="sec-head reveal">
       <span class="kicker"><span class="kicker-num">05</span><span class="kicker-pill"><span class="kicker-dot"></span><span data-en>Roadmap</span><span data-ar>قيد التطوير</span></span></span>
-      <h2 class="h-1"><span data-en>Features we're <span class="hl">building</span> next.</span><span data-ar>ميزات <span class="hl">نعمل على تطويرها</span>.</span></h2>
-      <p class="lede"><span data-en>We'd rather promise less and ship more. These aren't live yet — they're what's coming.</span><span data-ar>منوعد بالقليل ومننجّز أكتر. هي الميزات مو جاهزة بعد — بس جاية عالطريق.</span></p>
+      <h2 class="h-1"><span data-en>What we've <span class="hl">shipped</span> — and what's next.</span><span data-ar>ميزات <span class="hl">صارت جاهزة</span> — وميزات عالطريق.</span></h2>
+      <p class="lede"><span data-en>Cards marked "Now live" are available today; the rest is what we're building next — we'd rather promise less and ship more.</span><span data-ar>البطاقات المعلّمة «متوفر الآن» صارت جاهزة اليوم؛ والباقي عم نشتغل عليه هلّق — منوعد بالقليل ومننجّز أكتر.</span></p>
     </div>
 
     <div class="roadmap-grid">
@@ -581,7 +583,7 @@
         <span class="soon-badge"><span data-en>Coming soon</span><span data-ar>قريباً</span></span>
         <div class="f-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
         <h3><span data-en>Team management</span><span data-ar>إدارة الفرق</span></h3>
-        <p><span data-en>Build your squad, invite teammates, and book in your team's name.</span><span data-ar>كوّن فريقك، اعزم رفقاتك، واحجز باسم الفريق.</span></p>
+        <p><span data-en>Build your squad, invite teammates by phone, and manage your roster as captain.</span><span data-ar>كوّن فريقك، اعزم رفقاتك برقم التلفون، وكابتن الفريق بيدير التشكيلة.</span></p>
       </article>
 
       <article class="roadmap-card reveal" data-feature="splitPayment">

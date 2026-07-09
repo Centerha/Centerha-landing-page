@@ -197,7 +197,8 @@ window.CenterhaApi = (function () {
      * only; never call a feature endpoint while its flag is false.
      * @returns {Promise<{reviews:boolean, liveAvailabilitySearch:boolean,
      *   teams:boolean, splitPayment:boolean, qrCheckin:boolean,
-     *   ownerAnalytics:boolean, tournaments:boolean}>}
+     *   ownerAnalytics:boolean, tournaments:boolean, coupons:boolean,
+     *   campaigns:boolean}>}
      */
     fetchFeatureFlags: function () {
       return getJson("/meta/features");

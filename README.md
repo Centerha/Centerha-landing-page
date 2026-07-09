@@ -136,7 +136,7 @@ Booking is app-only, so pitch cards are informational; the section CTA points to
 
 - `search/` + `assets/js/search-page.js` - dedicated search page calling the public catalog endpoint `GET {API_BASE_URL}/catalog/public` (keyword, governorate, pitch size, pagination). State lives in the URL, so the homepage hero form works even without JavaScript.
 
-Domain note: `CNAME` is `centerha.software` (GitHub Pages custom domain). Keep it in sync with the DNS + backend CORS configuration.
+Domain note: `CNAME` is `web.centerha.software` (GitHub Pages custom domain). Keep it in sync with the DNS + backend CORS configuration.
 
 Production note: the backend's `CORS_ORIGIN` must include the landing page origin (e.g. `https://centerha.software,https://www.centerha.software`) or the browser will block the API call.
 
