@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex">
+  <title>دعوة فريق — سنطرها | Centerha</title>
+  <style>
+    :root {
+      --teal: #014A41;
+      --teal-deep: #011a18;
+      --lime: #bdfd08;
+      --mint: #c7f2df;
+      --bg: #f5fffe;
+      --ink: #011a18;
+      --grey: #5b6b68;
+      --danger: #b3261e;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+      background: linear-gradient(180deg, var(--teal) 0%, var(--teal-deep) 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px 16px;
+      color: var(--ink);
+    }
+    .card {
+      background: var(--bg);
+      border-radius: 24px;
+      max-width: 420px;
+      width: 100%;
+      padding: 32px 24px;
+      text-align: center;
+      box-shadow: 0 18px 60px rgba(0, 0, 0, 0.35);
+    }
+    .badge {
+      width: 72px; height: 72px;
+      border-radius: 50%;
+      background: var(--mint);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 16px;
+      font-size: 34px;
+    }
+    .brand { color: var(--teal); font-weight: 700; letter-spacing: 0.5px; font-size: 14px; margin-bottom: 18px; }
+    h1 { font-size: 22px; color: var(--teal-deep); margin-bottom: 8px; }
+    .team-name { font-size: 26px; font-weight: 800; color: var(--teal); margin: 10px 0 2px; overflow-wrap: anywhere; }
+    .inviter, .meta { color: var(--grey); font-size: 14px; margin-top: 6px; }
+    .expiry { color: var(--grey); font-size: 12.5px; margin-top: 10px; direction: ltr; }
+    .state-error { color: var(--danger); font-size: 15px; margin: 14px 0 4px; }
+    .cta {
+      display: block;
+      margin: 24px auto 10px;
+      background: var(--lime);
+      color: var(--teal-deep);
+      font-weight: 800;
+      font-size: 17px;
+      text-decoration: none;
+      border-radius: 999px;
+      padding: 15px 20px;
+      max-width: 320px;
+    }
+    .hint { color: var(--grey); font-size: 13px; line-height: 1.7; margin-top: 14px; }
+    .en { direction: ltr; color: var(--grey); font-size: 12px; margin-top: 18px; border-top: 1px solid #dce9e6; padding-top: 14px; line-height: 1.6; }
+    .skeleton { color: var(--grey); font-size: 15px; margin: 16px 0; }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <div class="badge">⚽</div>
+    <div class="brand">CENTERHA — سنطرها</div>
+    <h1>دعوة للانضمام إلى فريق</h1>
+    <div id="state" class="skeleton">جارٍ تحميل تفاصيل الدعوة…</div>
+    <a id="open-app" class="cta" href="#" hidden>افتح الدعوة في التطبيق</a>
+    <p class="hint">
+      إذا كان تطبيق سنطرها مثبّتًا لديك، افتح هذا الرابط من هاتفك وسيُفتح التطبيق مباشرة.
+      إن لم يكن مثبّتًا، حمّل التطبيق ثم افتح رابط الدعوة مرة أخرى.
+    </p>
+    <p class="en">
+      You've been invited to join a team on Centerha. Open this link on a phone
+      with the Centerha app installed to accept the invitation.
+    </p>
+  </main>
+  <script>
+    (function () {
+      // Token from /invite/team/<token> (server-routed hosting) or ?t=<token>
+      // (static hosting via the 404 shim). Never logged, never sent anywhere
+      // except the official resolve endpoint.
+      var path = window.location.pathname.replace(/\/+$/, '');
+      var segments = path.split('/');
+      var last = segments[segments.length - 1];
+      var token = (last && last !== 'team') ? last : new URLSearchParams(window.location.search).get('t');
+      var state = document.getElementById('state');
+      var cta = document.getElementById('open-app');
+
+      if (!token) {
+        state.className = 'state-error';
+        state.textContent = 'رابط الدعوة غير مكتمل. اطلب الرابط مرة أخرى من قائد الفريق.';
+        return;
+      }
+
+      // The app-link URL itself (canonical path form) — tapping it on Android
+      // with the app installed opens the app via App Links.
+      cta.href = 'https://web.centerha.software/invite/team/' + encodeURIComponent(token);
+      cta.hidden = false;
+
+      fetch('https://api.centerha.software/api/teams/invites/link/resolve?token=' + encodeURIComponent(token), {
+        headers: { 'Accept': 'application/json', 'lang': 'ar' }
+      })
+        .then(function (response) {
+          return response.json().then(function (body) {
+            return { ok: response.ok, body: body };
+          });
+        })
+        .then(function (result) {
+          if (result.ok && result.body && result.body.data) {
+            var data = result.body.data;
+            var expiry = data.expiresAt ? new Date(data.expiresAt) : null;
+            state.className = '';
+            state.innerHTML = '';
+            var name = document.createElement('div');
+            name.className = 'team-name';
+            name.textContent = data.teamName || '';
+            state.appendChild(name);
+            if (data.invitedByName) {
+              var inviter = document.createElement('div');
+              inviter.className = 'inviter';
+              inviter.textContent = 'دعوة من ' + data.invitedByName;
+              state.appendChild(inviter);
+            }
+            if (typeof data.activeMembersCount === 'number') {
+              var meta = document.createElement('div');
+              meta.className = 'meta';
+              meta.textContent = 'عدد الأعضاء الحاليين: ' + data.activeMembersCount;
+              state.appendChild(meta);
+            }
+            if (expiry && !isNaN(expiry.getTime())) {
+              var exp = document.createElement('div');
+              exp.className = 'expiry';
+              exp.textContent = 'Valid until: ' + expiry.toISOString().slice(0, 10);
+              state.appendChild(exp);
+            }
+          } else {
+            var message = (result.body && (result.body.message || (result.body.error && result.body.error.message))) ||
+              'رابط الدعوة غير صالح أو انتهت صلاحيته.';
+            state.className = 'state-error';
+            state.textContent = message;
+          }
+        })
+        .catch(function () {
+          // Network failure: keep the page useful — the app can still resolve.
+          state.className = 'meta';
+          state.textContent = 'تعذّر تحميل المعاينة — افتح الرابط من التطبيق.';
+        });
+    })();
+  </script>
+</body>
+</html>

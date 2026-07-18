@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex">
+  <title>سنطرها | Centerha</title>
+  <script>
+    // Static-hosting shim: /invite/team/<token> has no physical file, so the
+    // host serves this 404 page. Re-route to the invite page with the token
+    // as a query param (the page accepts both forms). Everything else gets a
+    // plain link home.
+    (function () {
+      var match = window.location.pathname.match(/^\/invite\/team\/([^\/]+)\/?$/);
+      if (match && match[1]) {
+        window.location.replace('/invite/team/?t=' + encodeURIComponent(match[1]));
+      }
+    })();
+  </script>
+  <style>
+    body { font-family: 'Segoe UI', Tahoma, Arial, sans-serif; background: #f5fffe; color: #011a18;
+           min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; }
+    a { color: #014A41; font-weight: 700; }
+  </style>
+</head>
+<body>
+  <div>
+    <h1>الصفحة غير موجودة</h1>
+    <p><a href="/">العودة إلى الصفحة الرئيسية</a></p>
+  </div>
+</body>
+</html>
