@@ -46,8 +46,8 @@
   var SORT_OPTIONS = [
     { code: "featured", en: "Featured first", ar: "المميزة أولاً" },
     { code: "newest", en: "Newest", ar: "الأحدث" },
-    { code: "price_asc", en: "Price: low to high", ar: "السعر: من الأقل" },
-    { code: "price_desc", en: "Price: high to low", ar: "السعر: من الأعلى" }
+    { code: "price_asc", en: "Lowest price", ar: "السعر الأقل" },
+    { code: "price_desc", en: "Highest price", ar: "السعر الأعلى" }
   ];
   var VALID_SORTS = SORT_OPTIONS.map(function (o) { return o.code; });
 

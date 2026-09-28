@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex">
-  <title>دعوة فريق — سنطرها | Centerha</title>
+  <title>دعوة فريق — سنطرها</title>
   <style>
     :root {
       --teal: #014A41;
@@ -63,51 +63,106 @@
       max-width: 320px;
     }
     .hint { color: var(--grey); font-size: 13px; line-height: 1.7; margin-top: 14px; }
-    .en { direction: ltr; color: var(--grey); font-size: 12px; margin-top: 18px; border-top: 1px solid #dce9e6; padding-top: 14px; line-height: 1.6; }
     .skeleton { color: var(--grey); font-size: 15px; margin: 16px 0; }
+    .language-switch { display:flex; justify-content:center; gap:8px; margin:0 auto 20px; }
+    .language-switch button { min-width:72px; min-height:44px; padding:8px 14px; border:1px solid #b6c9c5; border-radius:999px; background:transparent; color:var(--teal-deep); font:inherit; font-weight:700; cursor:pointer; }
+    .language-switch button[aria-pressed="true"] { background:var(--teal); border-color:var(--teal); color:#fff; }
+    .language-switch button:focus-visible { outline:3px solid var(--lime); outline-offset:3px; }
+    html[lang="en"] [data-ar], html[lang="ar"] [data-en] { display:none; }
+    html[lang="en"] body { font-family:Inter, 'Segoe UI', Tahoma, Arial, sans-serif; }
   </style>
 </head>
 <body>
   <main class="card">
-    <div class="badge">⚽</div>
-    <div class="brand">CENTERHA — سنطرها</div>
-    <h1>دعوة للانضمام إلى فريق</h1>
-    <div id="state" class="skeleton">جارٍ تحميل تفاصيل الدعوة…</div>
-    <a id="open-app" class="cta" href="#" hidden>افتح الدعوة في التطبيق</a>
+    <div class="badge" aria-hidden="true">⚽</div>
+    <div class="brand"><span data-en>CENTERHA</span><span data-ar>سنطرها</span></div>
+    <div class="language-switch" role="group" aria-label="Language" data-i18n-aria-label="languageSelector">
+      <button type="button" data-lang="en" aria-label="English" data-i18n-aria-label="languageEnglish" aria-pressed="false">EN</button>
+      <button type="button" data-lang="ar" aria-label="Arabic" data-i18n-aria-label="languageArabic" aria-pressed="true">عربي</button>
+    </div>
+    <h1><span data-en>Team invitation</span><span data-ar>دعوة للانضمام إلى فريق</span></h1>
+    <div id="state" class="skeleton"><span data-en>Loading invitation details…</span><span data-ar>جارٍ تحميل تفاصيل الدعوة…</span></div>
+    <a id="open-app" class="cta" href="#" hidden><span data-en>Open invitation in the app</span><span data-ar>افتح الدعوة في التطبيق</span></a>
     <p class="hint">
-      إذا كان تطبيق سنطرها مثبّتًا لديك، افتح هذا الرابط من هاتفك وسيُفتح التطبيق مباشرة.
-      إن لم يكن مثبّتًا، حمّل التطبيق ثم افتح رابط الدعوة مرة أخرى.
-    </p>
-    <p class="en">
-      You've been invited to join a team on Centerha. Open this link on a phone
-      with the Centerha app installed to accept the invitation.
+      <span data-en>If Centerha is installed, open this link on your phone to accept the invitation. Otherwise, install the app and open the link again.</span>
+      <span data-ar>إذا كان تطبيق سنطرها مثبّتًا لديك، افتح هذا الرابط من هاتفك لقبول الدعوة. وإلا، حمّل التطبيق ثم افتح الرابط مرة أخرى.</span>
     </p>
   </main>
+  <script src="../../assets/js/language.js"></script>
   <script>
     (function () {
       // Token from /invite/team/<token> (server-routed hosting) or ?t=<token>
-      // (static hosting via the 404 shim). Never logged, never sent anywhere
-      // except the official resolve endpoint.
+      // (static hosting via the 404 shim). It is never logged.
       var path = window.location.pathname.replace(/\/+$/, '');
       var segments = path.split('/');
       var last = segments[segments.length - 1];
-      var token = (last && last !== 'team') ? last : new URLSearchParams(window.location.search).get('t');
+      var token = (last && last !== 'team' && last !== 'index.html') ? last : new URLSearchParams(window.location.search).get('t');
       var state = document.getElementById('state');
       var cta = document.getElementById('open-app');
+      var inviteData = null;
+      var inviteState = token ? 'loading' : 'missing';
+
+      function currentLang() {
+        return window.CenterhaLanguage ? window.CenterhaLanguage.get() : 'ar';
+      }
+      function t(key) {
+        return window.CenterhaLanguage ? window.CenterhaLanguage.t(key, currentLang()) : key;
+      }
+      function renderState() {
+        var lang = currentLang();
+        document.title = t('inviteDocumentTitle');
+        if (inviteState === 'missing' || inviteState === 'invalid' || inviteState === 'network') {
+          state.className = 'state-error';
+          state.textContent = t(inviteState === 'missing' ? 'inviteMissing' : inviteState === 'network' ? 'inviteNetwork' : 'inviteInvalid');
+          return;
+        }
+        if (inviteState === 'loading') {
+          state.className = 'skeleton';
+          state.textContent = t('inviteLoading');
+          return;
+        }
+        state.className = '';
+        state.textContent = '';
+        var name = document.createElement('div');
+        name.className = 'team-name';
+        name.textContent = inviteData.teamName || '';
+        state.appendChild(name);
+        if (inviteData.invitedByName) {
+          var inviter = document.createElement('div');
+          inviter.className = 'inviter';
+          inviter.textContent = t('inviteFrom') + inviteData.invitedByName;
+          state.appendChild(inviter);
+        }
+        if (typeof inviteData.activeMembersCount === 'number') {
+          var meta = document.createElement('div');
+          meta.className = 'meta';
+          meta.textContent = t('inviteMemberCount') + inviteData.activeMembersCount.toLocaleString(lang === 'ar' ? 'ar' : 'en-US');
+          state.appendChild(meta);
+        }
+        if (inviteData.expiresAt) {
+          var expiry = new Date(inviteData.expiresAt);
+          if (!isNaN(expiry.getTime())) {
+            var exp = document.createElement('div');
+            exp.className = 'expiry';
+            exp.textContent = t('inviteValidUntil') + expiry.toISOString().slice(0, 10);
+            state.appendChild(exp);
+          }
+        }
+      }
+
+      document.addEventListener('centerha:languagechange', renderState);
 
       if (!token) {
-        state.className = 'state-error';
-        state.textContent = 'رابط الدعوة غير مكتمل. اطلب الرابط مرة أخرى من قائد الفريق.';
+        renderState();
         return;
       }
 
-      // The app-link URL itself (canonical path form) — tapping it on Android
-      // with the app installed opens the app via App Links.
       cta.href = 'https://web.centerha.software/invite/team/' + encodeURIComponent(token);
       cta.hidden = false;
+      renderState();
 
       fetch('https://api.centerha.software/api/teams/invites/link/resolve?token=' + encodeURIComponent(token), {
-        headers: { 'Accept': 'application/json', 'lang': 'ar' }
+        headers: { 'Accept': 'application/json', 'lang': currentLang() }
       })
         .then(function (response) {
           return response.json().then(function (body) {
@@ -116,44 +171,21 @@
         })
         .then(function (result) {
           if (result.ok && result.body && result.body.data) {
-            var data = result.body.data;
-            var expiry = data.expiresAt ? new Date(data.expiresAt) : null;
-            state.className = '';
-            state.innerHTML = '';
-            var name = document.createElement('div');
-            name.className = 'team-name';
-            name.textContent = data.teamName || '';
-            state.appendChild(name);
-            if (data.invitedByName) {
-              var inviter = document.createElement('div');
-              inviter.className = 'inviter';
-              inviter.textContent = 'دعوة من ' + data.invitedByName;
-              state.appendChild(inviter);
-            }
-            if (typeof data.activeMembersCount === 'number') {
-              var meta = document.createElement('div');
-              meta.className = 'meta';
-              meta.textContent = 'عدد الأعضاء الحاليين: ' + data.activeMembersCount;
-              state.appendChild(meta);
-            }
-            if (expiry && !isNaN(expiry.getTime())) {
-              var exp = document.createElement('div');
-              exp.className = 'expiry';
-              exp.textContent = 'Valid until: ' + expiry.toISOString().slice(0, 10);
-              state.appendChild(exp);
-            }
+            inviteData = result.body.data;
+            inviteState = 'loaded';
           } else {
-            var message = (result.body && (result.body.message || (result.body.error && result.body.error.message))) ||
-              'رابط الدعوة غير صالح أو انتهت صلاحيته.';
-            state.className = 'state-error';
-            state.textContent = message;
+            // Keep server-side error wording out of the shared page; the
+            // invite can still be opened in the app for authoritative handling.
+            inviteState = 'invalid';
           }
+          renderState();
         })
         .catch(function () {
-          // Network failure: keep the page useful — the app can still resolve.
-          state.className = 'meta';
-          state.textContent = 'تعذّر تحميل المعاينة — افتح الرابط من التطبيق.';
+          // Network failure: the app can still resolve the invitation.
+          inviteState = 'network';
+          renderState();
         });
+
     })();
   </script>
 </body>
