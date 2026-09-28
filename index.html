@@ -3,14 +3,14 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>سنطرها — احجز ملعبك بسهولة | Centerha</title>
+  <title data-i18n="homeDocumentTitle">سنطرها — احجز ملعبك بسهولة | Centerha</title>
   <meta name="description" content="سنطرها — منصة حجز ملاعب كرة القدم في سوريا. ابحث حسب المحافظة ونوع الملعب، قارن الأسعار، واحجز ملعبك." />
   <meta property="og:site_name" content="Centerha — سنطرها" />
   <meta property="og:type" content="website" />
   <meta property="og:title" content="سنطرها — احجز ملعبك بسهولة" />
   <meta property="og:description" content="منصة حجز ملاعب كرة القدم في سوريا: ابحث حسب المحافظة ونوع الملعب وقارن الأسعار." />
-  <meta property="og:url" content="https://centerha.software/" />
-  <link rel="canonical" href="https://centerha.software/" />
+  <meta property="og:url" content="https://web.centerha.software/" />
+  <link rel="canonical" href="https://web.centerha.software/" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -32,7 +32,7 @@
       <span class="brand-word"><span data-en>Centerha</span><span data-ar>سنطرها</span></span>
     </a>
 
-    <nav class="nav-links" aria-label="Primary">
+    <nav class="nav-links" aria-label="Primary navigation" data-i18n-aria-label="primaryNavigation">
       <a href="index.html" class="active"><span data-en>Home</span><span data-ar>الرئيسية</span></a>
       <a href="#explore"><span data-en>Pitches</span><span data-ar>الملاعب</span></a>
       <a href="#owners"><span data-en>For owners</span><span data-ar>للملاعب</span></a>
@@ -41,16 +41,16 @@
 
     <div class="nav-cta">
       <!-- pill language toggle -->
-      <div class="lang-pill" id="langPill" role="tablist" aria-label="Language">
+      <div class="lang-pill" id="langPill" role="group" aria-label="Language" data-i18n-aria-label="languageSelector">
         <span class="knob" aria-hidden="true"></span>
-        <button type="button" data-lang="en">EN</button>
-        <button type="button" data-lang="ar" class="on">عربي</button>
+        <button type="button" data-lang="en" aria-label="English" data-i18n-aria-label="languageEnglish" aria-pressed="false">EN</button>
+        <button type="button" data-lang="ar" class="on" aria-label="Arabic" data-i18n-aria-label="languageArabic" aria-pressed="true">عربي</button>
       </div>
       <a href="search/" class="btn btn-lime">
         <span data-en>Find a pitch</span><span data-ar>ابحث عن ملعب</span>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" class="arrow-rtl"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </a>
-      <button class="nav-mobile-toggle" id="navToggle" aria-label="Menu" aria-expanded="false">
+      <button class="nav-mobile-toggle" id="navToggle" aria-label="Open menu" data-i18n-aria-label="openMenu" aria-expanded="false" aria-controls="mobileMenu">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
       </button>
     </div>
@@ -58,27 +58,27 @@
 </header>
 
 <!-- ===================== MOBILE FULL-SCREEN MENU ===================== -->
-<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+<div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Site menu" data-i18n-aria-label="siteMenu" aria-hidden="true">
   <div class="mm-top">
     <a href="index.html" class="brand" aria-label="Centerha">
       <img class="brand-mark" src="assets/images/logo-mark.png" alt="Centerha" />
       <span class="brand-word"><span data-en>Centerha</span><span data-ar>سنطرها</span></span>
     </a>
-    <button class="mm-close" id="mmClose" aria-label="Close menu">
+    <button class="mm-close" id="mmClose" aria-label="Close menu" data-i18n-aria-label="closeMenu">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
     </button>
   </div>
-  <nav class="mm-links" aria-label="Mobile">
+  <nav class="mm-links" aria-label="Mobile navigation" data-i18n-aria-label="mobileNavigation">
     <a href="index.html" class="active"><span data-en>Home</span><span data-ar>الرئيسية</span></a>
     <a href="#explore"><span data-en>Pitches</span><span data-ar>الملاعب</span></a>
     <a href="#owners"><span data-en>For owners</span><span data-ar>للملاعب</span></a>
     <a href="#faq"><span data-en>FAQ</span><span data-ar>الأسئلة</span></a>
   </nav>
   <div class="mm-foot">
-    <div class="lang-pill mm-lang" role="tablist" aria-label="Language">
+    <div class="lang-pill mm-lang" role="group" aria-label="Language" data-i18n-aria-label="languageSelector">
       <span class="knob" aria-hidden="true"></span>
-      <button type="button" data-lang="en">EN</button>
-      <button type="button" data-lang="ar" class="on">عربي</button>
+      <button type="button" data-lang="en" aria-label="English" data-i18n-aria-label="languageEnglish" aria-pressed="false">EN</button>
+      <button type="button" data-lang="ar" class="on" aria-label="Arabic" data-i18n-aria-label="languageArabic" aria-pressed="true">عربي</button>
     </div>
     <a href="search/" class="btn btn-lime mm-download">
       <span data-en>Find a pitch</span><span data-ar>ابحث عن ملعب</span>
@@ -112,13 +112,13 @@
         <div class="hs-field">
           <label for="heroCity"><span data-en>Governorate</span><span data-ar>المحافظة</span></label>
           <select class="select" id="heroCity" name="governorate">
-            <option value="">كل المحافظات</option>
+            <option value="" data-i18n="allGovernorates">كل المحافظات</option>
           </select>
         </div>
         <div class="hs-field">
           <label for="heroSize"><span data-en>Pitch size</span><span data-ar>نوع الملعب</span></label>
           <select class="select" id="heroSize" name="pitchSize">
-            <option value="">كل الأنواع</option>
+            <option value="" data-i18n="allPitchSizes">كل الأنواع</option>
           </select>
         </div>
         <div class="hs-field hs-grow">
@@ -657,24 +657,24 @@
 
       <div class="faq-list reveal">
         <div class="faq-item open">
-          <button class="faq-q" type="button"><span><span data-en>How do I book a pitch?</span><span data-ar>كيف بحجز ملعب؟</span></span><span class="pm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg></span></button>
-          <div class="faq-a"><div><p><span data-en>Browse and search all pitches right here on the website — real prices and photos included. Booking itself happens in the Centerha app, which is on its way to the stores.</span><span data-ar>تصفّح ودوّر على كل الملاعب من الموقع مباشرة — بالأسعار والصور الحقيقية. أما الحجز نفسه فبيتم عبر تطبيق سنطرها، وهو بطريقه عالمتاجر.</span></p></div></div>
+          <button class="faq-q" type="button" aria-expanded="true" aria-controls="faqAnswer1"><span><span data-en>How do I book a pitch?</span><span data-ar>كيف بحجز ملعب؟</span></span><span class="pm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg></span></button>
+          <div class="faq-a" id="faqAnswer1" aria-hidden="false"><div><p><span data-en>Browse and search all pitches right here on the website — real prices and photos included. Booking itself happens in the Centerha app, which is on its way to the stores.</span><span data-ar>تصفّح ودوّر على كل الملاعب من الموقع مباشرة — بالأسعار والصور الحقيقية. أما الحجز نفسه فبيتم عبر تطبيق سنطرها، وهو بطريقه عالمتاجر.</span></p></div></div>
         </div>
         <div class="faq-item">
-          <button class="faq-q" type="button"><span><span data-en>How does payment work?</span><span data-ar>كيف بيشتغل الدفع؟</span></span><span class="pm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg></span></button>
-          <div class="faq-a"><div><p><span data-en>Some pitches require a booking deposit. You can pay it securely in the app through Syriatel Cash and the payment providers supported on the platform.</span><span data-ar>في ملاعب بتطلب عربون حجز، وفيك تدفعه بأمان من التطبيق عبر سيريتيل كاش ومزوّدي الدفع المعتمدين عالمنصة.</span></p></div></div>
+          <button class="faq-q" type="button" aria-expanded="false" aria-controls="faqAnswer2"><span><span data-en>How does payment work?</span><span data-ar>كيف بيشتغل الدفع؟</span></span><span class="pm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg></span></button>
+          <div class="faq-a" id="faqAnswer2" aria-hidden="true"><div><p><span data-en>Some pitches require a booking deposit. You can pay it securely in the app through Syriatel Cash and the payment providers supported on the platform.</span><span data-ar>في ملاعب بتطلب عربون حجز، وفيك تدفعه بأمان من التطبيق عبر سيريتيل كاش ومزوّدي الدفع المعتمدين عالمنصة.</span></p></div></div>
         </div>
         <div class="faq-item">
-          <button class="faq-q" type="button"><span><span data-en>Can I follow my booking status?</span><span data-ar>فيني تابع حالة حجزي؟</span></span><span class="pm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg></span></button>
-          <div class="faq-a"><div><p><span data-en>Yes. Every booking has a clear status from request to confirmation, and you'll get notifications as it changes.</span><span data-ar>أكيد. لكل حجز حالة واضحة من الطلب للتأكيد، وبتوصلك إشعارات أول ما تتغير.</span></p></div></div>
+          <button class="faq-q" type="button" aria-expanded="false" aria-controls="faqAnswer3"><span><span data-en>Can I follow my booking status?</span><span data-ar>فيني تابع حالة حجزي؟</span></span><span class="pm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg></span></button>
+          <div class="faq-a" id="faqAnswer3" aria-hidden="true"><div><p><span data-en>Yes. Every booking has a clear status from request to confirmation, and you'll get notifications as it changes.</span><span data-ar>أكيد. لكل حجز حالة واضحة من الطلب للتأكيد، وبتوصلك إشعارات أول ما تتغير.</span></p></div></div>
         </div>
         <div class="faq-item">
-          <button class="faq-q" type="button"><span><span data-en>What happens to my deposit if a booking is cancelled?</span><span data-ar>ماذا يحدث للعربون عند إلغاء الحجز؟</span></span><span class="pm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg></span></button>
-          <div class="faq-a"><div><p><span data-en>If you cancel within the allowed window, a refund request for 50% of the deposit is recorded for review by the Centerha team. If the venue owner cancels your booking, a refund request for the full deposit is recorded for review. Refunds are processed manually — they are not automatic.</span><span data-ar>عند إلغاء الحجز ضمن المهلة المسموحة، يتم تسجيل طلب استرداد بنسبة 50% من العربون للمراجعة من الإدارة. وإذا تم إلغاء الحجز من قبل صاحب الملعب، يتم تسجيل طلب استرداد كامل العربون للمراجعة من الإدارة. تتم معالجة طلبات الاسترداد يدويًا — وليست تلقائية.</span></p></div></div>
+          <button class="faq-q" type="button" aria-expanded="false" aria-controls="faqAnswer4"><span><span data-en>What happens to my deposit if a booking is cancelled?</span><span data-ar>ماذا يحدث للعربون عند إلغاء الحجز؟</span></span><span class="pm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg></span></button>
+          <div class="faq-a" id="faqAnswer4" aria-hidden="true"><div><p><span data-en>If you cancel within the allowed window, a refund request for 50% of the deposit is recorded for review by the Centerha team. If the venue owner cancels your booking, a refund request for the full deposit is recorded for review. Refunds are processed manually — they are not automatic.</span><span data-ar>عند إلغاء الحجز ضمن المهلة المسموحة، يتم تسجيل طلب استرداد بنسبة 50% من العربون للمراجعة من الإدارة. وإذا تم إلغاء الحجز من قبل صاحب الملعب، يتم تسجيل طلب استرداد كامل العربون للمراجعة من الإدارة. تتم معالجة طلبات الاسترداد يدويًا — وليست تلقائية.</span></p></div></div>
         </div>
         <div class="faq-item">
-          <button class="faq-q" type="button"><span><span data-en>How do I list my pitch on Centerha?</span><span data-ar>كيف بضيف ملعبي على سنطرها؟</span></span><span class="pm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg></span></button>
-          <div class="faq-a"><div><p><span data-en>New venues join in coordination with the Centerha team. Once onboarded, you get an owner dashboard to manage your pitches, weekly schedules, prices, and bookings.</span><span data-ar>انضمام المنشآت الجديدة بيتم بالتنسيق مع فريق سنطرها. بعد الانضمام تحصل على لوحة مالك لإدارة ملاعبك وجداولك الأسبوعية وأسعارك وحجوزاتك.</span></p></div></div>
+          <button class="faq-q" type="button" aria-expanded="false" aria-controls="faqAnswer5"><span><span data-en>How do I list my pitch on Centerha?</span><span data-ar>كيف بضيف ملعبي على سنطرها؟</span></span><span class="pm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg></span></button>
+          <div class="faq-a" id="faqAnswer5" aria-hidden="true"><div><p><span data-en>New venues join in coordination with the Centerha team. Once onboarded, you get an owner dashboard to manage your pitches, weekly schedules, prices, and bookings.</span><span data-ar>انضمام المنشآت الجديدة بيتم بالتنسيق مع فريق سنطرها. بعد الانضمام تحصل على لوحة مالك لإدارة ملاعبك وجداولك الأسبوعية وأسعارك وحجوزاتك.</span></p></div></div>
         </div>
       </div>
     </div>
@@ -694,7 +694,7 @@
           <a href="https://app.centerha.software/login" class="btn btn-ghost" target="_blank" rel="noopener"><span data-en>Owner login</span><span data-ar>دخول أصحاب الملاعب</span></a>
         </div>
         <!-- No store URLs exist yet — badges are explicitly "coming soon", not links. -->
-        <div class="final-stores stores-soon" aria-label="Mobile apps coming soon">
+        <div class="final-stores stores-soon" aria-label="Mobile apps coming soon" data-i18n-aria-label="appsComingSoon">
           <span class="store store-disabled">
             <svg class="ic" viewBox="0 0 24 24" fill="currentColor"><path d="M17.05 12.04a4.85 4.85 0 0 1 2.31-4.07A5 5 0 0 0 15.4 6c-1.65-.17-3.23.97-4.07.97-.85 0-2.14-.95-3.52-.92a5.25 5.25 0 0 0-4.43 2.7c-1.9 3.3-.48 8.16 1.36 10.83.91 1.3 1.99 2.76 3.4 2.71 1.36-.05 1.88-.88 3.53-.88 1.64 0 2.12.88 3.55.85 1.47-.03 2.4-1.32 3.3-2.63a11.6 11.6 0 0 0 1.5-3.1 4.7 4.7 0 0 1-2.97-4.39ZM14.4 4.27a4.6 4.6 0 0 0 1.05-3.3 4.7 4.7 0 0 0-3.04 1.57 4.4 4.4 0 0 0-1.08 3.18 3.88 3.88 0 0 0 3.07-1.45Z"/></svg>
             <div><small data-en>App Store</small><small data-ar>آب ستور</small><strong data-en>Coming soon</strong><strong data-ar>قريباً</strong></div>
@@ -721,23 +721,23 @@
   <div class="wrap">
     <div class="f-grid">
       <div class="f-about">
-        <a href="index.html" class="brand footer-brand" aria-label="Centerha home">
+        <a href="index.html" class="brand footer-brand" aria-label="Centerha home" data-i18n-aria-label="brandHome">
           <img class="brand-mark footer-brand-mark" src="assets/images/logo-mark.png" alt="Centerha" />
           <span class="brand-word footer-brand-word"><span data-en>Centerha</span><span data-ar>سنطرها</span></span>
         </a>
         <p><span data-en>Find, book, and play. The fastest way to get on a football pitch — anywhere in Syria.</span><span data-ar>لاقِ، احجز، والعب. أسرع طريقة توصلك عالملعب — أينما كنت بسوريا.</span></p>
       </div>
-      <div class="f-col"><button class="f-col-h" type="button"><h5><span data-en>Product</span><span data-ar>المنتج</span></h5><span class="f-chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg></span></button><ul>
+      <div class="f-col"><button class="f-col-h" type="button" aria-expanded="false" aria-controls="footerProductLinks"><h5><span data-en>Product</span><span data-ar>المنتج</span></h5><span class="f-chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg></span></button><ul id="footerProductLinks">
         <li><a href="search/"><span data-en>Find a pitch</span><span data-ar>ابحث عن ملعب</span></a></li>
         <li><a href="#features"><span data-en>Features</span><span data-ar>المزايا</span></a></li>
         <li><a href="#how"><span data-en>How it works</span><span data-ar>كيف يعمل</span></a></li>
         <li><a href="#roadmap"><span data-en>Roadmap</span><span data-ar>قيد التطوير</span></a></li>
       </ul></div>
-      <div class="f-col"><button class="f-col-h" type="button"><h5><span data-en>For business</span><span data-ar>للأعمال</span></h5><span class="f-chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg></span></button><ul>
+      <div class="f-col"><button class="f-col-h" type="button" aria-expanded="false" aria-controls="footerBusinessLinks"><h5><span data-en>For business</span><span data-ar>للأعمال</span></h5><span class="f-chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg></span></button><ul id="footerBusinessLinks">
         <li><a href="#owners"><span data-en>For pitch owners</span><span data-ar>لأصحاب الملاعب</span></a></li>
         <li><a href="https://app.centerha.software/login" target="_blank" rel="noopener"><span data-en>Owner dashboard</span><span data-ar>لوحة المالك</span></a></li>
       </ul></div>
-      <div class="f-col"><button class="f-col-h" type="button"><h5><span data-en>Company</span><span data-ar>الشركة</span></h5><span class="f-chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg></span></button>
+      <div class="f-col"><button class="f-col-h" type="button" aria-expanded="false" aria-controls="footerCompanyLinks"><h5><span data-en>Company</span><span data-ar>الشركة</span></h5><span class="f-chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg></span></button>
       <!-- Real content pages (privacy, terms, about…) are appended here from the API. -->
       <ul id="footerCompanyLinks">
         <li><a href="#why"><span data-en>About</span><span data-ar>عن سنطرها</span></a></li>
@@ -746,11 +746,11 @@
     </div>
     <div class="f-base">
       <div>© 2026 Centerha. <span data-en>All rights reserved.</span><span data-ar>جميع الحقوق محفوظة.</span></div>
-      <div class="f-made"><svg class="f-made-flag" width="20" height="14" viewBox="0 0 30 20" xmlns="http://www.w3.org/2000/svg" aria-label="Syria" role="img"><rect width="30" height="6.67" y="0" fill="#007A3D"/><rect width="30" height="6.66" y="6.67" fill="#FFFFFF"/><rect width="30" height="6.67" y="13.33" fill="#000000"/><g fill="#CE1126"><polygon points="10,8 10.6,9.8 12.5,9.8 11,10.9 11.6,12.7 10,11.6 8.4,12.7 9,10.9 7.5,9.8 9.4,9.8"/><polygon points="15,8 15.6,9.8 17.5,9.8 16,10.9 16.6,12.7 15,11.6 13.4,12.7 14,10.9 12.5,9.8 14.4,9.8"/><polygon points="20,8 20.6,9.8 22.5,9.8 21,10.9 21.6,12.7 20,11.6 18.4,12.7 19,10.9 17.5,9.8 19.4,9.8"/></g></svg><span data-en>Made in Syria</span><span data-ar>صُنع في سوريا</span></div>
-      <div class="lang-pill" id="langPillFooter" role="tablist" aria-label="Language">
+      <div class="f-made"><svg class="f-made-flag" width="20" height="14" viewBox="0 0 30 20" xmlns="http://www.w3.org/2000/svg" aria-label="Syria" data-i18n-aria-label="countrySyria" role="img"><rect width="30" height="6.67" y="0" fill="#007A3D"/><rect width="30" height="6.66" y="6.67" fill="#FFFFFF"/><rect width="30" height="6.67" y="13.33" fill="#000000"/><g fill="#CE1126"><polygon points="10,8 10.6,9.8 12.5,9.8 11,10.9 11.6,12.7 10,11.6 8.4,12.7 9,10.9 7.5,9.8 9.4,9.8"/><polygon points="15,8 15.6,9.8 17.5,9.8 16,10.9 16.6,12.7 15,11.6 13.4,12.7 14,10.9 12.5,9.8 14.4,9.8"/><polygon points="20,8 20.6,9.8 22.5,9.8 21,10.9 21.6,12.7 20,11.6 18.4,12.7 19,10.9 17.5,9.8 19.4,9.8"/></g></svg><span data-en>Made in Syria</span><span data-ar>صُنع في سوريا</span></div>
+      <div class="lang-pill" id="langPillFooter" role="group" aria-label="Language" data-i18n-aria-label="languageSelector">
         <span class="knob" aria-hidden="true"></span>
-        <button type="button" data-lang="en" class="on">EN</button>
-        <button type="button" data-lang="ar">عربي</button>
+        <button type="button" data-lang="en" class="on" aria-label="English" data-i18n-aria-label="languageEnglish" aria-pressed="false">EN</button>
+        <button type="button" data-lang="ar" aria-label="Arabic" data-i18n-aria-label="languageArabic" aria-pressed="true">عربي</button>
       </div>
     </div>
   </div>

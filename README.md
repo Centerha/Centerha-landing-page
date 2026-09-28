@@ -138,7 +138,7 @@ Booking is app-only, so pitch cards are informational; the section CTA points to
 
 Domain note: `CNAME` is `web.centerha.software` (GitHub Pages custom domain). Keep it in sync with the DNS + backend CORS configuration.
 
-Production note: the backend's `CORS_ORIGIN` must include the landing page origin (e.g. `https://centerha.software,https://www.centerha.software`) or the browser will block the API call.
+Production note: the backend's `CORS_ORIGIN` must include `https://web.centerha.software`, the origin configured in `CNAME`, or the browser will block landing-page API calls. Add any separately served aliases to that allowlist as needed.
 
 ## Run Locally
 
@@ -161,6 +161,7 @@ http://localhost:8000
 Run these before publishing:
 
 ```bash
+node --test tests/site-integrity.test.mjs
 node --check assets/js/language.js
 node --check assets/js/main.js
 node --check assets/js/forms.js

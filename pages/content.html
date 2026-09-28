@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Centerha — Info</title>
+  <title data-i18n="contentDocumentTitle">Centerha — Info</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
@@ -22,17 +22,20 @@
       <img class="brand-mark" src="../assets/images/logo-mark.png" alt="Centerha" />
       <span class="brand-word"><span data-en>Centerha</span><span data-ar>سنطرها</span></span>
     </a>
-    <nav class="nav-links" aria-label="Primary">
+    <button type="button" class="page-menu-toggle" aria-label="Open menu" data-i18n-aria-label="openMenu" aria-expanded="false" aria-controls="pageNavLinks">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16" /></svg>
+    </button>
+    <nav class="nav-links" id="pageNavLinks" aria-label="Primary navigation" data-i18n-aria-label="primaryNavigation">
       <a href="../index.html"><span data-en>Home</span><span data-ar>الرئيسية</span></a>
       <a href="../search/"><span data-en>Search</span><span data-ar>البحث</span></a>
       <a href="../index.html#owners"><span data-en>For owners</span><span data-ar>للملاعب</span></a>
       <a href="../index.html#faq"><span data-en>FAQ</span><span data-ar>الأسئلة</span></a>
     </nav>
     <div class="nav-cta">
-      <div class="lang-pill" id="langPill" role="tablist" aria-label="Language">
+      <div class="lang-pill" id="langPill" role="group" aria-label="Language" data-i18n-aria-label="languageSelector">
         <span class="knob" aria-hidden="true"></span>
-        <button type="button" data-lang="en">EN</button>
-        <button type="button" data-lang="ar" class="on">عربي</button>
+        <button type="button" data-lang="en" aria-label="English" data-i18n-aria-label="languageEnglish" aria-pressed="false">EN</button>
+        <button type="button" data-lang="ar" class="on" aria-label="Arabic" data-i18n-aria-label="languageArabic" aria-pressed="true">عربي</button>
       </div>
       <a href="../search/" class="btn btn-lime">
         <span data-en>Find a pitch</span><span data-ar>ابحث عن ملعب</span>

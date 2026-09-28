@@ -13,6 +13,7 @@
   "use strict";
 
   var BLOCKED_TAGS = ["SCRIPT", "IFRAME", "OBJECT", "EMBED", "FORM", "STYLE", "LINK", "META", "BASE"];
+  var currentTitle = null;
 
   /** Sanitize an HTML string into a safe DocumentFragment. */
   function sanitizeHtml(html) {
@@ -46,6 +47,7 @@
   }
 
   function setTitle(titleEn, titleAr) {
+    currentTitle = { en: titleEn, ar: titleAr };
     var heading = document.getElementById("contentTitle");
     heading.textContent = "";
     var enSpan = document.createElement("span");
@@ -56,7 +58,8 @@
     arSpan.textContent = titleAr;
     heading.appendChild(enSpan);
     heading.appendChild(arSpan);
-    document.title = "Centerha — " + titleEn;
+    var lang = window.CenterhaLanguage ? window.CenterhaLanguage.get() : "en";
+    document.title = lang === "ar" ? "سنطرها — " + titleAr : "Centerha — " + titleEn;
   }
 
   function load() {
@@ -91,6 +94,11 @@
 
   function init() {
     document.getElementById("contentRetry").addEventListener("click", load);
+    document.addEventListener("centerha:languagechange", function () {
+      if (!currentTitle) return;
+      var lang = window.CenterhaLanguage ? window.CenterhaLanguage.get() : "en";
+      document.title = lang === "ar" ? "سنطرها — " + currentTitle.ar : "Centerha — " + currentTitle.en;
+    });
     load();
   }
 

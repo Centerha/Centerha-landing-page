@@ -41,6 +41,7 @@
   };
 
   var CURRENCY_LABELS = { SYP: { en: "SYP", ar: "ل.س" } };
+  var currentField = null;
 
   var DAY_LABELS = {
     0: { en: "Sun", ar: "الأحد" },
@@ -118,12 +119,15 @@
   /* ---------- SEO ---------- */
 
   function applySeo(field) {
+    var isAr = !window.CenterhaLanguage || window.CenterhaLanguage.get() === "ar";
     var gov = labelFor(GOVERNORATE_LABELS, field.governorate);
     var size = labelFor(PITCH_SIZE_LABELS, field.pitchSize);
-    var title = field.name + " — " + gov.ar + " | سنطرها Centerha";
-    var description =
-      "احجز " + field.name + " (" + size.ar + ") في " + gov.ar +
-      " عبر سنطرها — السعر والمواعيد المتاحة مباشرة من المنصة.";
+    var title = isAr
+      ? field.name + " — " + gov.ar + " | سنطرها Centerha"
+      : field.name + " — " + gov.en + " | Centerha";
+    var description = isAr
+      ? "احجز " + field.name + " (" + size.ar + ") في " + gov.ar + " عبر سنطرها — السعر والمواعيد المتاحة مباشرة من المنصة."
+      : "Browse " + field.name + " (" + size.en + ") in " + gov.en + " on Centerha — live price and availability from the platform.";
 
     document.title = title;
 
@@ -134,7 +138,7 @@
     var ogDesc = document.querySelector('meta[property="og:description"]');
     if (ogDesc) ogDesc.setAttribute("content", description);
 
-    var canonicalUrl = "https://centerha.software/field/?id=" + encodeURIComponent(field.id);
+    var canonicalUrl = "https://web.centerha.software/field/?id=" + encodeURIComponent(field.id);
     var canonical = document.getElementById("canonicalLink");
     if (canonical) canonical.setAttribute("href", canonicalUrl);
 
@@ -142,10 +146,13 @@
       (field.images && field.images[0] && field.images[0].url) || field.facilityImageUrl
     );
     if (mainImage) {
-      var ogImage = document.createElement("meta");
-      ogImage.setAttribute("property", "og:image");
+      var ogImage = document.querySelector('meta[property="og:image"]');
+      if (!ogImage) {
+        ogImage = document.createElement("meta");
+        ogImage.setAttribute("property", "og:image");
+        document.head.appendChild(ogImage);
+      }
       ogImage.setAttribute("content", mainImage);
-      document.head.appendChild(ogImage);
     }
 
     // JSON-LD (SportsActivityLocation) — injected via textContent, so field
@@ -171,10 +178,12 @@
         availability: "https://schema.org/InStock"
       };
     }
-    var script = document.createElement("script");
+    var script = document.getElementById("fieldJsonLd");
+    if (!script) script = document.createElement("script");
+    script.id = "fieldJsonLd";
     script.type = "application/ld+json";
     script.textContent = JSON.stringify(jsonLd);
-    document.head.appendChild(script);
+    if (!script.parentNode) document.head.appendChild(script);
   }
 
   /* ---------- gallery ---------- */
@@ -486,7 +495,7 @@
     // already enforced server-side via a null averageRating).
     if (typeof aggregate.averageRating === "number" && aggregate.reviewCount > 0) {
       var canonicalUrl =
-        "https://centerha.software/field/?id=" + encodeURIComponent(field.id);
+        "https://web.centerha.software/field/?id=" + encodeURIComponent(field.id);
       var ratingLd = {
         "@context": "https://schema.org",
         "@type": "SportsActivityLocation",
@@ -523,6 +532,7 @@
     setState("loading");
     window.CenterhaApi.fetchFieldDetail(fieldId)
       .then(function (field) {
+        currentField = field;
         applySeo(field);
         renderGallery(field);
         renderSummary(field);
@@ -552,6 +562,9 @@
   function init() {
     var retry = document.getElementById("fieldRetry");
     if (retry) retry.addEventListener("click", load);
+    document.addEventListener("centerha:languagechange", function () {
+      if (currentField) applySeo(currentField);
+    });
     load();
   }
 

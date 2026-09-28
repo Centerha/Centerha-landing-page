@@ -64,6 +64,7 @@ html[lang="ar"] body{ font-size:18px; line-height:1.75; }
 img{max-width:100%;display:block}
 a{color:inherit;text-decoration:none}
 button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
+a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--lime);outline-offset:3px}
 ::selection{ background:var(--lime); color:#011a18 }
 
 .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
@@ -679,6 +680,7 @@ html[lang="ar"] .q-role{ font-family:var(--font-ar); font-size:13px }
 .faq-item{ border:1px solid var(--line); border-radius:var(--r); background:var(--surface); overflow:hidden; transition:border-color .25s, background .25s; }
 .faq-item.open{ border-color:rgba(189,253,8,.4); background:var(--surface-2) }
 .faq-q{ width:100%; display:flex; align-items:center; justify-content:space-between; gap:16px; padding:22px 24px; text-align:start; font-size:17px; font-weight:600; letter-spacing:-0.01em; }
+.faq-q:focus-visible{ outline:2px solid var(--lime); outline-offset:-3px; }
 .faq-q .pm{ flex:none; width:28px;height:28px;border-radius:50%; border:1px solid var(--line-strong); display:grid; place-items:center; transition:background .25s, transform .25s, color .25s; }
 .faq-item.open .faq-q .pm{ background:var(--lime); color:#011a18; border-color:var(--lime); transform:rotate(180deg) }
 .faq-q .pm svg{ width:14px;height:14px }
@@ -710,7 +712,7 @@ html[lang="ar"] .faq-a p{ line-height:1.8 }
 
 /* huge wordmark */
 .mega{ text-align:center; padding-top:64px }
-.mega span{ display:block; font-weight:700; font-size:clamp(64px,19vw,280px); line-height:.82; letter-spacing:-0.06em;
+.mega span{ display:block; font-weight:700; font-size:clamp(64px,16vw,280px); line-height:.82; letter-spacing:-0.06em;
   background:linear-gradient(180deg, rgba(189,253,8,.5), rgba(189,253,8,.03)); -webkit-background-clip:text; background-clip:text; color:transparent; user-select:none }
 html[lang="ar"] .mega span{ letter-spacing:0; line-height:1 }
 
@@ -755,10 +757,11 @@ html[lang="ar"] .f-contact{ font-family:var(--font-ar); }
   background:linear-gradient(180deg,#01312d,#001f24);
   display:flex; flex-direction:column; padding:20px 22px 28px;
   transform:translateY(-101%); opacity:0; visibility:hidden;
-  transition:transform .42s cubic-bezier(.6,.05,.2,1), opacity .3s ease, visibility .42s;
+  transition:transform .42s cubic-bezier(.6,.05,.2,1), opacity .3s ease, visibility 0s linear .42s;
 }
+.mobile-menu[aria-hidden="true"]{ pointer-events:none; }
 body.menu-open{ overflow:hidden }
-body.menu-open .mobile-menu{ transform:none; opacity:1; visibility:visible }
+body.menu-open .mobile-menu{ transform:none; opacity:1; visibility:visible; transition-delay:0s }
 .mm-top{ display:flex; align-items:center; justify-content:space-between }
 .mm-close{ width:46px; height:46px; border-radius:13px; border:1px solid var(--line-strong); display:grid; place-items:center }
 .mm-close svg{ width:22px; height:22px }
@@ -789,10 +792,22 @@ html[lang="ar"] .mm-links a{ font-size:25px; letter-spacing:0 }
    ============================================================ */
 /* touch target floor */
 .nav-mobile-toggle{ min-width:44px; min-height:44px; align-items:center; justify-content:center }
+.page-menu-toggle{ display:none; min-width:44px; min-height:44px; align-items:center; justify-content:center; padding:10px; border:1px solid var(--line-strong); border-radius:12px; }
+
+@media (max-width:980px){
+  .app-page .nav-inner{ position:relative; }
+  .app-page .page-menu-toggle{ display:inline-flex; }
+  .app-page .nav-links.is-open{
+    position:absolute; top:calc(100% + 8px); inset-inline:16px; z-index:120;
+    display:flex; flex-direction:column; align-items:stretch; gap:2px; margin:0; padding:8px;
+    border:1px solid var(--line-strong); border-radius:var(--r); background:var(--bg-deeper); box-shadow:var(--shadow-float);
+  }
+  .app-page .nav-links.is-open a{ display:flex; align-items:center; min-height:48px; padding:12px 16px; border-radius:10px; }
+}
 
 @media (max-width:760px){
   .wa-fab{ display:flex }
-  .lang-pill button{ padding:9px 16px; min-height:40px }
+  .lang-pill button{ padding:9px 16px; min-height:44px }
 
   /* testimonials -> horizontal snap carousel */
   .testimonials{ display:flex; gap:14px; max-width:none; margin:0 -20px; padding:4px 20px 16px;

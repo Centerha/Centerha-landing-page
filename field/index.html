@@ -7,13 +7,13 @@
        assets/js/field-page.js once the field loads. The static site has no
        server rendering, so crawlers that skip JS see these generic values —
        documented SEO limitation. -->
-  <title>سنطرها — تفاصيل الملعب | Centerha</title>
+  <title data-i18n="fieldDocumentTitle">سنطرها — تفاصيل الملعب | Centerha</title>
   <meta name="description" content="تفاصيل ملعب على منصة سنطرها: الصور، الموقع، السعر، والمواعيد المتاحة — بيانات حقيقية مباشرة من المنصة." />
   <meta property="og:site_name" content="Centerha — سنطرها" />
   <meta property="og:type" content="website" />
   <meta property="og:title" content="سنطرها — تفاصيل الملعب" />
   <meta property="og:description" content="الصور والموقع والسعر والمواعيد المتاحة — مباشرة من منصة سنطرها." />
-  <link rel="canonical" href="https://centerha.software/field/" id="canonicalLink" />
+  <link rel="canonical" href="https://web.centerha.software/field/" id="canonicalLink" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
@@ -32,17 +32,20 @@
       <img class="brand-mark" src="../assets/images/logo-mark.png" alt="Centerha" />
       <span class="brand-word"><span data-en>Centerha</span><span data-ar>سنطرها</span></span>
     </a>
-    <nav class="nav-links" aria-label="Primary">
+    <button type="button" class="page-menu-toggle" aria-label="Open menu" data-i18n-aria-label="openMenu" aria-expanded="false" aria-controls="pageNavLinks">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16" /></svg>
+    </button>
+    <nav class="nav-links" id="pageNavLinks" aria-label="Primary navigation" data-i18n-aria-label="primaryNavigation">
       <a href="../index.html"><span data-en>Home</span><span data-ar>الرئيسية</span></a>
       <a href="../search/"><span data-en>Search</span><span data-ar>البحث</span></a>
       <a href="../index.html#owners"><span data-en>For owners</span><span data-ar>للملاعب</span></a>
       <a href="../index.html#faq"><span data-en>FAQ</span><span data-ar>الأسئلة</span></a>
     </nav>
     <div class="nav-cta">
-      <div class="lang-pill" id="langPill" role="tablist" aria-label="Language">
+      <div class="lang-pill" id="langPill" role="group" aria-label="Language" data-i18n-aria-label="languageSelector">
         <span class="knob" aria-hidden="true"></span>
-        <button type="button" data-lang="en">EN</button>
-        <button type="button" data-lang="ar" class="on">عربي</button>
+        <button type="button" data-lang="en" aria-label="English" data-i18n-aria-label="languageEnglish" aria-pressed="false">EN</button>
+        <button type="button" data-lang="ar" class="on" aria-label="Arabic" data-i18n-aria-label="languageArabic" aria-pressed="true">عربي</button>
       </div>
       <a href="../search/" class="btn btn-lime">
         <span data-en>Find a pitch</span><span data-ar>ابحث عن ملعب</span>
@@ -88,12 +91,12 @@
 
         <!-- summary -->
         <div class="fd-summary">
-          <nav class="fd-crumbs" aria-label="Breadcrumb">
+          <nav class="fd-crumbs" aria-label="Breadcrumb" data-i18n-aria-label="breadcrumb">
             <a href="../index.html"><span data-en>Home</span><span data-ar>الرئيسية</span></a>
             <span aria-hidden="true">/</span>
             <a href="../search/"><span data-en>Search</span><span data-ar>البحث</span></a>
             <span aria-hidden="true">/</span>
-            <span id="fdCrumbName"></span>
+            <span id="fdCrumbName" aria-current="page"></span>
           </nav>
 
           <h1 class="fd-title" id="fdName"></h1>
@@ -171,10 +174,10 @@
     <div class="f-base">
       <div>© 2026 Centerha. <span data-en>All rights reserved.</span><span data-ar>جميع الحقوق محفوظة.</span></div>
       <a href="../index.html"><span data-en>Back to home</span><span data-ar>العودة للرئيسية</span></a>
-      <div class="lang-pill" id="langPillFooter" role="tablist" aria-label="Language">
+      <div class="lang-pill" id="langPillFooter" role="group" aria-label="Language" data-i18n-aria-label="languageSelector">
         <span class="knob" aria-hidden="true"></span>
-        <button type="button" data-lang="en">EN</button>
-        <button type="button" data-lang="ar" class="on">عربي</button>
+        <button type="button" data-lang="en" aria-label="English" data-i18n-aria-label="languageEnglish" aria-pressed="false">EN</button>
+        <button type="button" data-lang="ar" class="on" aria-label="Arabic" data-i18n-aria-label="languageArabic" aria-pressed="true">عربي</button>
       </div>
     </div>
   </div>

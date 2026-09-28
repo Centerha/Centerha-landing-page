@@ -53,7 +53,10 @@
 /* ---- Small phones ---- */
 @media (max-width: 480px) {
   .wrap { padding-inline: 16px; }
-  .h-display { font-size: clamp(40px, 14vw, 58px); }
+  .hero-glow { width: min(620px, 100vw); inset-inline-end: 0; }
+  .mega span { font-size: clamp(36px, 14vw, 64px); }
+  .hero .h-display { font-size: clamp(40px, 11vw, 48px); line-height: 1.08; }
+  html[lang="ar"] .hero .h-display { font-size: clamp(34px, 8vw, 38px); line-height: 1.22; }
   .h-1 { font-size: clamp(2rem, 11vw, 2.75rem); }
   .h-2 { font-size: clamp(1.5rem, 8vw, 2rem); }
   .lede { font-size: 16px; }
@@ -65,7 +68,7 @@
 
   /* hide Download App button in nav on tiny screens */
   .app-page .nav-cta .btn-lime { display: none; }
-  .lang-pill button { min-width: 38px; padding-inline: 10px; }
+  .lang-pill button { min-width: 38px; padding-inline: 8px; }
 
   /* footer accordion on phones */
   .f-grid { gap: 0; }
