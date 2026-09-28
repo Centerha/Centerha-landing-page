@@ -134,7 +134,7 @@
     var ogDesc = document.querySelector('meta[property="og:description"]');
     if (ogDesc) ogDesc.setAttribute("content", description);
 
-    var canonicalUrl = "https://centerha.software/field/?id=" + encodeURIComponent(field.id);
+    var canonicalUrl = "https://web.centerha.software/field/?id=" + encodeURIComponent(field.id);
     var canonical = document.getElementById("canonicalLink");
     if (canonical) canonical.setAttribute("href", canonicalUrl);
 
@@ -486,7 +486,7 @@
     // already enforced server-side via a null averageRating).
     if (typeof aggregate.averageRating === "number" && aggregate.reviewCount > 0) {
       var canonicalUrl =
-        "https://centerha.software/field/?id=" + encodeURIComponent(field.id);
+        "https://web.centerha.software/field/?id=" + encodeURIComponent(field.id);
       var ratingLd = {
         "@context": "https://schema.org",
         "@type": "SportsActivityLocation",

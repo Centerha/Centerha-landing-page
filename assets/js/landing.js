@@ -147,6 +147,10 @@
 
   function animateCount(numEl) {
     var target = parseFloat(numEl.dataset.count) || 0;
+    if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      numEl.childNodes[0].nodeValue = target.toLocaleString("en-US");
+      return;
+    }
     var duration = 1400;
     var start = null;
     function frame(ts) {

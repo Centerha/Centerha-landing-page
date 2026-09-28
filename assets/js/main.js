@@ -24,44 +24,6 @@
     document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('in'); });
   }
 
-  /* ---------- animated count-up stats ---------- */
-  function animateCount(el){
-    var target = parseFloat(el.dataset.count);
-    var decimals = parseInt(el.dataset.decimals || '0', 10);
-    var asK = el.dataset.format === 'k';
-    var suffix = el.dataset.suffix || '';
-    var dur = 1500, start = null;
-    function frame(ts){
-      if (!start) start = ts;
-      var p = Math.min((ts - start)/dur, 1);
-      var eased = 1 - Math.pow(1 - p, 3);            // easeOutCubic
-      var val = target * eased;
-      var out;
-      if (asK){ out = (val/1000).toFixed(val >= 9999 ? 0 : 1) + 'k'; }
-      else { out = val.toFixed(decimals); }
-      el.firstChild ? (el.childNodes[0].nodeValue = out) : (el.textContent = out);
-      // keep the suffix <span>
-      if (p < 1) requestAnimationFrame(frame);
-      else { el.childNodes[0].nodeValue = asK ? (target/1000)+'k' : target.toFixed(decimals); }
-    }
-    // ensure a text node exists before the suffix span
-    if (el.childNodes[0].nodeType !== 3){ el.insertBefore(document.createTextNode('0'), el.firstChild); }
-    requestAnimationFrame(frame);
-  }
-  if ('IntersectionObserver' in window){
-    var sio = new IntersectionObserver(function(entries){
-      entries.forEach(function(e){
-        if (e.isIntersecting){ animateCount(e.target); sio.unobserve(e.target); }
-      });
-    }, { threshold:0.5 });
-    document.querySelectorAll('.stat .num').forEach(function(n){ sio.observe(n); });
-  } else {
-    document.querySelectorAll('.stat .num').forEach(function(n){
-      var asK = n.dataset.format === 'k';
-      n.insertBefore(document.createTextNode(asK ? (n.dataset.count/1000)+'k' : n.dataset.count), n.firstChild);
-    });
-  }
-
   /* ---------- FAQ accordion ---------- */
   document.querySelectorAll('.faq-item .faq-q').forEach(function(btn){
     btn.addEventListener('click', function(){

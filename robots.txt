@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /_legacy/
 
-Sitemap: https://centerha.software/sitemap.xml
+Sitemap: https://web.centerha.software/sitemap.xml
