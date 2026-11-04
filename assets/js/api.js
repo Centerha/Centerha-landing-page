@@ -82,6 +82,7 @@ window.CenterhaApi = (function () {
 
     return fetch(window.CenterhaConfig.API_BASE_URL + path, {
       method: "GET",
+      cache: path === "/meta/features" ? "no-store" : "default",
       headers: { Accept: "application/json" },
       signal: controller ? controller.signal : undefined
     })
@@ -226,4 +227,26 @@ window.CenterhaApi = (function () {
     },
     resolveMediaUrl: resolveMediaUrl
   };
+})();
+
+// Price visibility is a presentation hint; booking authorization stays on the server.
+(function () {
+  if (typeof document === "undefined" || !document.documentElement) return;
+  var root = document.documentElement;
+  root.setAttribute("data-customer-prices", "hidden");
+  var style = document.createElement("style");
+  style.textContent = 'html:not([data-customer-prices="visible"]) .lc-price,html:not([data-customer-prices="visible"]) #phonePrice,html:not([data-customer-prices="visible"]) #mapCardMeta,html:not([data-customer-prices="visible"]) #fdPrice,html:not([data-customer-prices="visible"]) #fdDeposit,html:not([data-customer-prices="visible"]) .hs-price,html:not([data-customer-prices="visible"]) #searchSort option[value^="price_"]{display:none!important}';
+  document.head.appendChild(style);
+  var generation = 0;
+  function refresh() {
+    var request = ++generation;
+    window.CenterhaApi.fetchFeatureFlags().then(function (flags) {
+      if (request !== generation) return;
+      root.setAttribute("data-customer-prices", flags.paymentBypassForTesting === false ? "visible" : "hidden");
+      window.dispatchEvent(new CustomEvent("centerha:price-policy", {detail: flags}));
+    }).catch(function () { if (request !== generation) return; root.setAttribute("data-customer-prices", "hidden"); });
+  }
+  refresh();
+  window.addEventListener("focus", refresh);
+  window.setInterval(function () { if (document.visibilityState === "visible") refresh(); }, 15000);
 })();
