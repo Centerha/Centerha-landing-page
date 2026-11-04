@@ -170,7 +170,7 @@
     };
     if (mainImage) jsonLd.image = mainImage;
     var priceNum = Number(field.price);
-    if (isFinite(priceNum) && priceNum > 0) {
+    if (document.documentElement.getAttribute("data-customer-prices") === "visible" && isFinite(priceNum) && priceNum > 0) {
       jsonLd.offers = {
         "@type": "Offer",
         price: priceNum,
@@ -558,6 +558,8 @@
         setState("error");
       });
   }
+
+  window.addEventListener("centerha:price-policy", function () { if (currentField) applySeo(currentField); });
 
   function init() {
     var retry = document.getElementById("fieldRetry");

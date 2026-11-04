@@ -336,6 +336,17 @@
 
   /* ---------- orchestration ---------- */
 
+  window.addEventListener("centerha:price-policy", function (event) {
+    if (event.detail.paymentBypassForTesting !== false && state.sort.indexOf("price_") === 0) {
+      state.sort = "featured";
+      state.priceMin = "";
+      state.priceMax = "";
+      if (sortSelect) sortSelect.value = "featured";
+      if (priceMinInput) priceMinInput.value = "";
+      if (priceMaxInput) priceMaxInput.value = "";
+    }
+  });
+
   var state = { q: "", governorate: "", pitchSize: "", sort: "featured", priceMin: "", priceMax: "", date: "", time: "", page: 1 };
   var requestSeq = 0;
 
@@ -352,9 +363,9 @@
       q: state.q || undefined,
       governorate: state.governorate || undefined,
       pitchSize: state.pitchSize || undefined,
-      sort: state.sort !== "featured" ? state.sort : undefined,
-      priceMin: state.priceMin || undefined,
-      priceMax: state.priceMax || undefined,
+      sort: document.documentElement.getAttribute("data-customer-prices") !== "visible" && state.sort.indexOf("price_") === 0 ? undefined : state.sort !== "featured" ? state.sort : undefined,
+      priceMin: document.documentElement.getAttribute("data-customer-prices") === "visible" ? state.priceMin || undefined : undefined,
+      priceMax: document.documentElement.getAttribute("data-customer-prices") === "visible" ? state.priceMax || undefined : undefined,
       date: availabilityActive ? state.date : undefined,
       time: availabilityActive && state.time ? state.time : undefined,
       availableOnly: availabilityActive ? true : undefined,
@@ -407,7 +418,7 @@
     window.centerhaTrack("search_submitted", {
       governorate: state.governorate || null,
       pitchSize: state.pitchSize || null,
-      sort: state.sort,
+      sort: document.documentElement.getAttribute("data-customer-prices") !== "visible" && state.sort.indexOf("price_") === 0 ? "featured" : state.sort,
       hasKeyword: Boolean(state.q),
       hasPriceFilter: Boolean(state.priceMin || state.priceMax),
       hasAvailabilityFilter: Boolean(state.date),
