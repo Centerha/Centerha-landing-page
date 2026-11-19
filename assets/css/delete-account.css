@@ -1,0 +1,22 @@
+* { box-sizing: border-box; }
+body { margin: 0; background: #f4f7f5; color: #17251d; font: 1rem/1.6 system-ui, sans-serif; }
+main { max-width: 42rem; margin: 0 auto; padding: 1.4rem 1.2rem 3rem; }
+header { display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
+header a { color: #17251d; display: flex; align-items: center; gap: .55rem; font-weight: 750; text-decoration: none; }
+header img { width: 2rem; height: 2rem; object-fit: contain; }
+h1 { line-height: 1.18; margin-block: 2rem .75rem; font-size: clamp(1.9rem, 5vw, 2.6rem); }
+h2 { font-size: 1.22rem; }
+form, section { margin-block: 1.4rem; border: 1px solid #c4d4c9; border-radius: .8rem; background: white; padding: clamp(1rem, 4vw, 1.6rem); }
+form { display: grid; gap: .65rem; }
+[hidden] { display: none !important; }
+input, select, button { font: inherit; }
+input:not([type=checkbox]), select { width: 100%; padding: .55rem; border: 1px solid #64796b; border-radius: .4rem; background: white; color: inherit; }
+label { font-weight: 650; }
+label.confirm { display: flex; gap: .55rem; align-items: start; margin-block: .6rem; }
+label.confirm input { margin-block-start: .45rem; }
+button { cursor: pointer; border: 1px solid #174b32; border-radius: .4rem; padding: .55rem .8rem; background: #174b32; color: white; }
+header button, #dismiss { background: white; color: #174b32; }
+button:disabled { opacity: .55; cursor: wait; }
+a { color: #0d5330; }
+:focus-visible { outline: 3px solid #195ebd; outline-offset: 3px; }
+#status { font-weight: 650; }
