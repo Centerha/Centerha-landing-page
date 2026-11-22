@@ -14,6 +14,15 @@ let locale = window.CenterhaLanguage.get();
 let busy = false;
 let lastStatus;
 
+const resolutionLinks = {
+  ACTIVE_BOOKINGS: { href: 'https://app.centerha.software/my-bookings', en: 'My bookings', ar: 'حجوزاتي' },
+  UNRESOLVED_PAYMENTS: { href: '/support', en: 'Contact support', ar: 'تواصل مع الدعم' },
+  BUSINESS_OWNERSHIP: { href: 'https://app.centerha.software/owner', en: 'Owner dashboard', ar: 'لوحة المالك' },
+  OWNER_VENUES: { href: '/support', en: 'Contact support', ar: 'تواصل مع الدعم' },
+  OWNER_WALLET: { href: 'https://app.centerha.software/owner/wallet', en: 'Owner wallet', ar: 'محفظة المالك' },
+  OWNER_ONBOARDING: { href: '/support', en: 'Contact support', ar: 'تواصل مع الدعم' },
+};
+
 const copy = {
   en: {
     title: 'Delete your Centerha account',
@@ -46,8 +55,8 @@ const copy = {
     locked: 'This browser has a receipt for another account. Check its status before starting a new request.',
   },
   ar: {
-    title: 'حذف حسابك في سنترها',
-    intro: 'يمكن للاعبين وأصحاب الملاعب طلب الحذف هنا باستخدام بيانات تسجيل الدخول إلى سنترها.',
+    title: 'حذف حسابك في سنطرها',
+    intro: 'يمكن للاعبين وأصحاب الملاعب طلب الحذف هنا باستخدام بيانات تسجيل الدخول إلى سنطرها.',
     role: 'نوع الحساب', player: 'لاعب', owner: 'مالك ملعب', identifier: 'رقم الهاتف أو اسم المستخدم',
     password: 'كلمة المرور الحالية', recovery: 'استعادة كلمة المرور',
     confirm: 'أطلب حذف هذا الحساب نهائيًا بعد حل الالتزامات المرتبطة به.',
@@ -56,18 +65,18 @@ const copy = {
     dismiss: 'إزالة إيصال الطلب المكتمل', dataTitle: 'ما الذي يحدث لبياناتك؟',
     erased: 'يُحذف ملفك وصورتك وبيانات تسجيل الدخول ورموز الأجهزة والإشعارات والمفضلة والتقييمات. قد تبقى إحالة الفرق والمباريات والبطولات المكتملة إلى معرّف داخلي لحساب محذوف.',
     retained: 'قد تحتوي سجلات الحجوزات والمدفوعات والمبالغ المستردة والدفعات والتدقيق المطلوبة على بيانات تعريفية، مع تقييد الوصول إليها. تنتهي صلاحية النسخ الاحتياطية وسجلات التشغيل وفق سياسات الاحتفاظ.',
-    staff: 'يمكن للموظفين ذوي الصلاحيات الإدارية تقديم طلب حذف موثّق عبر جهة التواصل الخاصة بإنهاء عملهم في سنترها.',
+    staff: 'يمكن للموظفين ذوي الصلاحيات الإدارية تقديم طلب حذف موثّق عبر جهة التواصل الخاصة بإنهاء عملهم في سنطرها.',
     QUEUED: 'تم حفظ الطلب. سنتحقق من الالتزامات المتبقية على حسابك.',
     AWAITING_RESOLUTION: 'تم حفظ الطلب. أكمل الإجراءات أدناه وسيُستأنف الحذف تلقائيًا بعد حلّ الالتزامات.',
     PROCESSING: 'تم حذف حسابك. جارٍ إزالة البيانات المتبقية.',
     CLEANUP_FAILED: 'تم حذف الحساب ولا تزال بعض البيانات قيد الإزالة. تحقّق من الإيصال مجددًا لمعرفة المستجدات.',
     COMPLETED: 'اكتمل حذف الحساب وإزالة البيانات.',
-    ACTIVE_BOOKINGS: 'افتح حجوزاتي من موقع سنترها. حرّر الحجوزات المؤقتة أو اطلب الإلغاء عند توفره أو انتظر انتهاء الحجز وطلبات الإلغاء.',
-    UNRESOLVED_PAYMENTS: 'افتح الحجز وتحقّق من الدفع أو الاسترداد. تواصل مع دعم سنترها بمرجع الحجز إذا بقي معلّقًا.',
-    BUSINESS_OWNERSHIP: 'سوِّ أرصدة المحفظة والدفعات من لوحة المالك. تواصل مع دعم سنترها لإغلاق أو نقل المنشآت أو مسؤوليات التسجيل المتبقية.',
-    OWNER_VENUES: 'تواصل مع دعم سنترها لإغلاق أو نقل كل منشأة وملعب متبقٍ عبر إجراءات المالك.',
+    ACTIVE_BOOKINGS: 'افتح حجوزاتي من موقع سنطرها. حرّر الحجوزات المؤقتة أو اطلب الإلغاء عند توفره أو انتظر انتهاء الحجز وطلبات الإلغاء.',
+    UNRESOLVED_PAYMENTS: 'افتح الحجز وتحقّق من الدفع أو الاسترداد. تواصل مع دعم سنطرها بمرجع الحجز إذا بقي معلّقًا.',
+    BUSINESS_OWNERSHIP: 'سوِّ أرصدة المحفظة والدفعات من لوحة المالك. تواصل مع دعم سنطرها لإغلاق أو نقل المنشآت أو مسؤوليات التسجيل المتبقية.',
+    OWNER_VENUES: 'تواصل مع دعم سنطرها لإغلاق أو نقل كل منشأة وملعب متبقٍ عبر إجراءات المالك.',
     OWNER_WALLET: 'افتح المحفظة في لوحة المالك وسوِّ الأرصدة المتاحة والمعلّقة وأي دفعة مفتوحة لاستئناف الحذف.',
-    OWNER_ONBOARDING: 'تواصل مع دعم سنترها لإغلاق أو نقل طلب تسجيل المالك المفتوح.',
+    OWNER_ONBOARDING: 'تواصل مع دعم سنطرها لإغلاق أو نقل طلب تسجيل المالك المفتوح.',
     TEAM_RESPONSIBILITY: 'افتح الفريق وانقل القيادة إلى عضو نشط أو أغلق الفريق من إعداداته.',
     TOURNAMENT_RESPONSIBILITY: 'عالج البطولة أو تسجيل الفريق من قسم البطولات. تواصل مع الدعم بمرجع البطولة إن احتاجت إلى مراجعة.',
     failed: 'تعذّر تأكيد الطلب. تحقّق من الحالة أو أعد المحاولة بالحساب نفسه.',
@@ -104,6 +113,13 @@ function render() {
   blockers.replaceChildren(...(lastStatus?.blockers || []).map((code) => {
     const row = document.createElement('li');
     row.textContent = text[code] || text.failed;
+    const action = resolutionLinks[code];
+    if (action) {
+      const link = document.createElement('a');
+      link.href = action.href;
+      link.textContent = action[locale];
+      row.append(' ', link);
+    }
     return row;
   }));
   blockers.hidden = !blockers.childElementCount;

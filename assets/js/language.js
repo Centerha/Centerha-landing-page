@@ -221,7 +221,10 @@ window.CenterhaTranslations = {
     document.querySelectorAll('.lang-pill button, .language-switch button').forEach(function(button){
       button.addEventListener('click', function(){ applyLanguage(button.dataset.lang); });
     });
-    applyLanguage(getSavedLanguage());
+    var requested = document.body.dataset.contentSlug === 'support'
+      ? new URLSearchParams(window.location.search).get('lang')
+      : null;
+    applyLanguage(requested === 'ar' || requested === 'en' ? requested : getSavedLanguage());
   }
 
   window.CenterhaLanguage = {
