@@ -10,6 +10,8 @@ const refresh = document.querySelector('#refresh');
 const dismiss = document.querySelector('#dismiss');
 const submit = document.querySelector('#submit');
 const language = document.querySelector('#language');
+const role = document.querySelector('#role');
+const recovery = document.querySelector('#recovery');
 let locale = window.CenterhaLanguage.get();
 let busy = false;
 let lastStatus;
@@ -28,7 +30,7 @@ const copy = {
     title: 'Delete your Centerha account',
     intro: 'Players and venue owners can request deletion here with their Centerha sign-in details.',
     role: 'Account type', player: 'Player', owner: 'Venue owner', identifier: 'Phone number or username',
-    password: 'Current password', recovery: 'Recover your password',
+    password: 'Current password', recovery: 'Recover your password', ownerRecovery: 'Get help signing into an owner account',
     confirm: 'I request permanent deletion of this account once its dependencies are resolved.',
     submit: 'Request account deletion', tracking: 'Track your request', refresh: 'Check status',
     keep: 'Return to this page in this browser to check progress after signing out.',
@@ -58,7 +60,7 @@ const copy = {
     title: 'حذف حسابك في سنطرها',
     intro: 'يمكن للاعبين وأصحاب الملاعب طلب الحذف هنا باستخدام بيانات تسجيل الدخول إلى سنطرها.',
     role: 'نوع الحساب', player: 'لاعب', owner: 'مالك ملعب', identifier: 'رقم الهاتف أو اسم المستخدم',
-    password: 'كلمة المرور الحالية', recovery: 'استعادة كلمة المرور',
+    password: 'كلمة المرور الحالية', recovery: 'استعادة كلمة المرور', ownerRecovery: 'المساعدة في الدخول إلى حساب المالك',
     confirm: 'أطلب حذف هذا الحساب نهائيًا بعد حل الالتزامات المرتبطة به.',
     submit: 'طلب حذف الحساب', tracking: 'متابعة طلبك', refresh: 'التحقق من الحالة',
     keep: 'ارجع إلى هذه الصفحة في المتصفح نفسه لمتابعة الطلب بعد تسجيل الخروج.',
@@ -109,6 +111,9 @@ function render() {
   });
   language.textContent = locale === 'en' ? 'العربية' : 'English';
   language.lang = locale === 'en' ? 'ar' : 'en';
+  const owner = role.value === 'owner';
+  recovery.href = owner ? '/support' : 'https://app.centerha.software/account/forgot-password';
+  recovery.textContent = owner ? text.ownerRecovery : text.recovery;
   statusText.textContent = text[lastStatus?.status] || lastStatus?.message || '';
   blockers.replaceChildren(...(lastStatus?.blockers || []).map((code) => {
     const row = document.createElement('li');
@@ -169,7 +174,7 @@ form.addEventListener('submit', async (event) => {
   passwordField.value = '';
   setBusy(true);
   try {
-    const owner = document.querySelector('#role').value === 'owner';
+    const owner = role.value === 'owner';
     const identifier = document.querySelector('#identifier').value.trim();
     let authenticated;
     try {
@@ -238,6 +243,7 @@ dismiss.addEventListener('click', () => {
   render();
 });
 
+role.addEventListener('change', render);
 language.addEventListener('click', () => {
   window.CenterhaLanguage.set(locale === 'en' ? 'ar' : 'en');
 });
