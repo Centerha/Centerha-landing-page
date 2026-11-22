@@ -47,18 +47,29 @@
       return;
     }
     var updated = document.getElementById("contentUpdated");
+    var pending = document.getElementById("contentPending");
     var errorBox = document.getElementById("contentError");
     var bodyEn = document.getElementById("contentBodyEn");
     var bodyAr = document.getElementById("contentBodyAr");
     errorBox.hidden = true;
+    if (pending) pending.hidden = true;
 
     if (!slug) {
       setTitle("Page not found", "الصفحة غير موجودة");
       return;
     }
 
-    window.CenterhaApi.fetchContentPage(slug)
-      .then(function (page) {
+    var loadPage = pending
+      ? window.CenterhaApi.fetchContentList().then(function (pages) {
+          return pages.some(function (page) { return page.slug === slug; })
+            ? window.CenterhaApi.fetchContentPage(slug) : null;
+        })
+      : window.CenterhaApi.fetchContentPage(slug);
+    loadPage.then(function (page) {
+        if (page === null && pending) {
+          pending.hidden = false;
+          return;
+        }
         if (typeof window.centerhaTrack === "function") {
           window.centerhaTrack("content_page_opened", { slug: page.slug || slug });
         }
@@ -87,6 +98,10 @@
   }
 
   function init() {
+    if (document.body.dataset.contentSlug) {
+      var heading = document.getElementById("contentTitle");
+      setTitle(heading.querySelector("[data-en]").textContent, heading.querySelector("[data-ar]").textContent);
+    }
     document.getElementById("contentRetry").addEventListener("click", load);
     document.addEventListener("centerha:languagechange", function () {
       if (!currentTitle) return;

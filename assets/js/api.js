@@ -189,6 +189,9 @@ window.CenterhaApi = (function () {
      * @param {string} slug Content page slug (e.g. "privacy-policy").
      * @returns {Promise<{slug:string,type:string,titleAr:string,titleEn:string,contentAr:string,contentEn:string}>}
      */
+    fetchContentList: function () {
+      return getJson("/content", "no-store").then(function (response) { return response.data; });
+    },
     fetchContentPage: function (slug) {
       return getJson("/content/" + encodeURIComponent(slug), "no-store");
     },
