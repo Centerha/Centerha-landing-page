@@ -74,7 +74,7 @@ window.CenterhaApi = (function () {
    * @param {string} path Path under the API base URL, e.g. "/home/landing".
    * @returns {Promise<any>} Parsed JSON body; rejects on network/HTTP errors.
    */
-  function getJson(path) {
+  function getJson(path, cache) {
     var controller = typeof AbortController !== "undefined" ? new AbortController() : null;
     var timer = controller
       ? setTimeout(function () { controller.abort(); }, DEFAULT_TIMEOUT_MS)
@@ -82,6 +82,7 @@ window.CenterhaApi = (function () {
 
     return fetch(window.CenterhaConfig.API_BASE_URL + path, {
       method: "GET",
+      cache: cache,
       headers: { Accept: "application/json" },
       signal: controller ? controller.signal : undefined
     })
@@ -189,7 +190,7 @@ window.CenterhaApi = (function () {
      * @returns {Promise<{slug:string,type:string,titleAr:string,titleEn:string,contentAr:string,contentEn:string}>}
      */
     fetchContentPage: function (slug) {
-      return getJson("/content/" + encodeURIComponent(slug));
+      return getJson("/content/" + encodeURIComponent(slug), "no-store");
     },
     /**
      * Public feature-flag snapshot (GET /api/meta/features — no auth). The

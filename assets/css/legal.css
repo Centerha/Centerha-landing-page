@@ -20,3 +20,11 @@ button:disabled { opacity: .55; cursor: wait; }
 a { color: #0d5330; }
 :focus-visible { outline: 3px solid #195ebd; outline-offset: 3px; }
 #status { font-weight: 650; }
+
+html[lang="en"] [data-ar], html[lang="ar"] [data-en] { display: none; }
+article p { overflow-wrap: anywhere; }
+nav { display: flex; gap: .8rem 1.2rem; flex-wrap: wrap; margin-block-start: 1.5rem; }
+.languages { display: flex; gap: .4rem; }
+.languages [aria-pressed="true"] { background: #174b32; color: white; }
+textarea { font: inherit; width: 100%; padding: .55rem; color: inherit; border: 1px solid #64796b; border-radius: .4rem; resize: vertical; }
+#support-result { overflow-wrap: anywhere; }

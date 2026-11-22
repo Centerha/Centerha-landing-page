@@ -21,4 +21,8 @@
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
   </url>
+  <url><loc>https://web.centerha.software/privacy-policy</loc></url>
+  <url><loc>https://web.centerha.software/terms</loc></url>
+  <url><loc>https://web.centerha.software/support</loc></url>
+  <url><loc>https://web.centerha.software/delete-account</loc></url>
 </urlset>

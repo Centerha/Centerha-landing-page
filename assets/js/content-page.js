@@ -1,49 +1,25 @@
-/**
- * Content page viewer (pages/content.html?slug=...).
- *
- * Fetches GET /api/content/:slug (bilingual admin-authored pages such as
- * privacy policy / terms) and renders both languages; the site's html[lang]
- * CSS decides which one is visible.
- *
- * The backend content is admin-authored HTML. It is still sanitized here
- * before insertion: scripts, embeds, event handlers, and non-http(s) URLs
- * are stripped.
- */
+/** Shared API-backed viewer for Centerha content pages. */
 (function () {
   "use strict";
 
-  var BLOCKED_TAGS = ["SCRIPT", "IFRAME", "OBJECT", "EMBED", "FORM", "STYLE", "LINK", "META", "BASE"];
+  var FORMATTING_TAGS = new Set(["P", "H2", "H3", "UL", "OL", "LI", "STRONG", "EM", "BR"]);
   var currentTitle = null;
 
-  /** Sanitize an HTML string into a safe DocumentFragment. */
+  /** Copy only plain text and formatting in the HTML namespace. */
   function sanitizeHtml(html) {
-    var doc = new DOMParser().parseFromString(String(html || ""), "text/html");
-
-    BLOCKED_TAGS.forEach(function (tag) {
-      Array.prototype.slice.call(doc.getElementsByTagName(tag)).forEach(function (node) {
-        node.parentNode.removeChild(node);
-      });
-    });
-
-    Array.prototype.slice.call(doc.body.querySelectorAll("*")).forEach(function (node) {
-      Array.prototype.slice.call(node.attributes).forEach(function (attr) {
-        var name = attr.name.toLowerCase();
-        var value = String(attr.value || "");
-        if (name.indexOf("on") === 0) {
-          node.removeAttribute(attr.name);
-        } else if ((name === "href" || name === "src") && /^\s*(javascript|data|vbscript):/i.test(value)) {
-          node.removeAttribute(attr.name);
-        }
-      });
-      if (node.tagName === "A") {
-        node.setAttribute("rel", "noopener noreferrer");
-        node.setAttribute("target", "_blank");
+    var parsed = new DOMParser().parseFromString(String(html || ""), "text/html");
+    function copy(node, parent) {
+      if (node.nodeType === Node.TEXT_NODE) {
+        parent.appendChild(document.createTextNode(node.textContent));
+      } else if (node.namespaceURI === "http://www.w3.org/1999/xhtml" && FORMATTING_TAGS.has(node.tagName)) {
+        var element = document.createElement(node.tagName);
+        node.childNodes.forEach(function (child) { copy(child, element); });
+        parent.appendChild(element);
       }
-    });
-
-    var frag = document.createDocumentFragment();
-    while (doc.body.firstChild) frag.appendChild(doc.body.firstChild);
-    return frag;
+    }
+    var fragment = document.createDocumentFragment();
+    parsed.body.childNodes.forEach(function (node) { copy(node, fragment); });
+    return fragment;
   }
 
   function setTitle(titleEn, titleAr) {
@@ -63,7 +39,14 @@
   }
 
   function load() {
-    var slug = new URLSearchParams(window.location.search).get("slug");
+    var fixedSlug = document.body.dataset.contentSlug;
+    var slug = fixedSlug || new URLSearchParams(window.location.search).get("slug");
+    var canonical = { "terms-of-use": "/terms", "privacy-policy": "/privacy-policy", support: "/support" };
+    if (!fixedSlug && Object.hasOwn(canonical, slug)) {
+      window.location.replace(canonical[slug]);
+      return;
+    }
+    var updated = document.getElementById("contentUpdated");
     var errorBox = document.getElementById("contentError");
     var bodyEn = document.getElementById("contentBodyEn");
     var bodyAr = document.getElementById("contentBodyAr");
@@ -84,10 +67,21 @@
         bodyAr.textContent = "";
         bodyEn.appendChild(sanitizeHtml(page.contentEn));
         bodyAr.appendChild(sanitizeHtml(page.contentAr));
+        if (updated && page.updatedAt) {
+          var timestamp = new Date(page.updatedAt);
+          if (!Number.isNaN(timestamp.getTime())) {
+            updated.querySelectorAll("time").forEach(function (time) {
+              time.dateTime = timestamp.toISOString();
+              time.textContent = new Intl.DateTimeFormat(time.lang, {
+                dateStyle: "long", timeZone: "Asia/Damascus"
+              }).format(timestamp);
+            });
+            updated.hidden = false;
+          }
+        }
       })
-      .catch(function (error) {
-        if (window.console && console.warn) console.warn("Content page unavailable:", error);
-        setTitle("Something went wrong", "صار في خطأ");
+      .catch(function () {
+        if (!document.body.dataset.contentSlug) setTitle("Page unavailable", "الصفحة غير متاحة");
         errorBox.hidden = false;
       });
   }

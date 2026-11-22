@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="referrer" content="no-referrer">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self'; connect-src https://api.centerha.software; form-action 'none'; base-uri 'none'">
+  <title>Centerha — Support</title>
+  <link rel="canonical" href="https://web.centerha.software/support">
+  <link rel="stylesheet" href="/assets/css/legal.css">
+  <script src="/assets/js/language.js" defer></script>
+  <script src="/assets/js/config.js" defer></script>
+  <script src="/assets/js/api.js" defer></script>
+  <script src="/assets/js/content-page.js" defer></script>
+  <script src="/assets/js/support-request.js" defer></script>
+</head>
+<body data-content-slug="support">
+  <main>
+    <header>
+      <a href="/"><img src="/assets/images/logo-mark.png" alt=""> Centerha</a>
+      <div class="languages language-switch" role="group" aria-label="Language" data-i18n-aria-label="languageSelector">
+        <button type="button" data-lang="en" lang="en" aria-pressed="true">English</button>
+        <button type="button" data-lang="ar" lang="ar" aria-pressed="false">العربية</button>
+      </div>
+    </header>
+    <h1 id="contentTitle"><span data-en>Support</span><span data-ar>الدعم</span></h1>
+    <div id="contentError" role="status" hidden>
+      <p><span data-en>The latest content could not be loaded.</span><span data-ar>تعذّر تحميل أحدث محتوى.</span></p>
+      <button id="contentRetry" type="button"><span data-en>Retry</span><span data-ar>إعادة المحاولة</span></button>
+    </div>
+    <article>
+      <div id="contentBodyEn" lang="en" dir="ltr" data-en></div>
+      <div id="contentBodyAr" lang="ar" dir="rtl" data-ar></div>
+    </article>
+
+    <form id="support-request">
+      <h2><span data-en>Contact Centerha</span><span data-ar>تواصل مع سنطرها</span></h2>
+      <p><span data-en>Tell us how we can help. Include your app version or booking reference if relevant. Keep passwords and verification codes private.</span><span data-ar>أخبرنا كيف يمكننا مساعدتك. أضف إصدار التطبيق أو مرجع الحجز عند الحاجة. حافظ على سرية كلمات المرور ورموز التحقق.</span></p>
+      <label for="email"><span data-en>Reply email</span><span data-ar>البريد الإلكتروني للرد</span></label>
+      <input id="email" name="email" type="email" autocomplete="email" maxlength="254" required>
+      <label for="topic"><span data-en>Topic</span><span data-ar>موضوع الطلب</span></label>
+      <select id="topic" name="topic" required>
+        <option value="APP" data-i18n="supportApp">App issue</option>
+        <option value="ACCOUNT" data-i18n="supportAccount">Account access</option>
+        <option value="BOOKING" data-i18n="supportBooking">Booking</option>
+        <option value="PRIVACY" data-i18n="supportPrivacy">Privacy and deletion</option>
+      </select>
+      <label for="message"><span data-en>Message</span><span data-ar>الرسالة</span></label>
+      <textarea id="message" name="message" rows="6" maxlength="3000" required></textarea>
+      <button type="submit"><span data-en>Send support request</span><span data-ar>إرسال طلب الدعم</span></button>
+      <div id="support-result" role="status" tabindex="-1"></div>
+    </form>
+    <nav aria-label="Centerha" data-i18n-aria-label="primaryNavigation">
+      <a href="/privacy-policy"><span data-en>Privacy Policy</span><span data-ar>سياسة الخصوصية</span></a>
+      <a href="/terms"><span data-en>Terms of Use</span><span data-ar>شروط الاستخدام</span></a>
+      <a href="/delete-account"><span data-en>Delete account</span><span data-ar>حذف الحساب</span></a>
+    </nav>
+  </main>
+</body>
+</html>

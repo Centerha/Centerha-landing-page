@@ -548,7 +548,7 @@
     var list = document.getElementById("footerCompanyLinks");
     if (!list || !contentPages) return;
     contentPages.forEach(function (page) {
-      if (!page || !page.slug) return;
+      if (!page || !page.slug || ["terms-of-use", "privacy-policy", "support"].includes(page.slug)) return;
       var link = el("a", null, [bi(page.titleEn, page.titleAr)]);
       link.href = "pages/content.html?slug=" + encodeURIComponent(page.slug);
       list.appendChild(el("li", null, [link]));

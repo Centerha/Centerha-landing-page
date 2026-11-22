@@ -10,7 +10,7 @@ const refresh = document.querySelector('#refresh');
 const dismiss = document.querySelector('#dismiss');
 const submit = document.querySelector('#submit');
 const language = document.querySelector('#language');
-let locale = 'en';
+let locale = window.CenterhaLanguage.get();
 let busy = false;
 let lastStatus;
 
@@ -112,16 +112,19 @@ function render() {
   dismiss.hidden = lastStatus?.status !== 'COMPLETED';
 }
 
-async function post(path, body, accessToken) {
+async function request(path, body, accessToken, method = 'POST') {
   const headers = { 'Content-Type': 'application/json', 'Accept-Language': locale };
   if (accessToken) headers.Authorization = 'Bearer ' + accessToken;
   const reply = await fetch(base + path, {
-    method: 'POST', headers, body: JSON.stringify(body), credentials: 'omit',
+    method, headers, body: JSON.stringify(body), credentials: 'omit',
     cache: 'no-store', redirect: 'error', signal: AbortSignal.timeout(15000),
   });
   const data = await reply.json();
   if (!reply.ok) {
-    throw new Error(typeof data.message === 'string' ? data.message : copy[locale].failed);
+    const error = new Error(typeof data.message === 'string' ? data.message : copy[locale].failed);
+    error.status = reply.status;
+    error.code = data.errorCode;
+    throw error;
   }
   return data;
 }
@@ -130,9 +133,13 @@ async function recover() {
   const receipt = savedReceipt();
   if (!receipt) return;
   try {
-    lastStatus = await post('/auth/account-deletion/requests/status', {
-      operationId: receipt.operationId, receiptSecret: receipt.receiptSecret,
-    });
+    const fields = { operationId: receipt.operationId, receiptSecret: receipt.receiptSecret };
+    try {
+      lastStatus = await request('/auth/account-deletion/requests/status', fields);
+    } catch (error) {
+      if (error.status !== 404 || error.code === 'ACCOUNT_DELETION_RECEIPT_NOT_FOUND') throw error;
+      lastStatus = await request('/auth/account-deletion/status', fields);
+    }
   } catch {
     if (!lastStatus?.operationId) lastStatus = { status: 'failed' };
   }
@@ -150,7 +157,7 @@ form.addEventListener('submit', async (event) => {
     const identifier = document.querySelector('#identifier').value.trim();
     let authenticated;
     try {
-      authenticated = await post(owner ? '/auth/owner/login' : '/auth/login', { identifier, password });
+      authenticated = await request(owner ? '/auth/owner/login' : '/auth/login', { identifier, password });
     } catch {
       lastStatus = { status: 'signIn' };
       return;
@@ -177,11 +184,16 @@ form.addEventListener('submit', async (event) => {
       return;
     }
     try {
-      lastStatus = await post('/auth/me/deletion-requests', {
-        operationId: receipt.operationId, receiptSecret: receipt.receiptSecret, currentPassword: password,
-      }, authenticated.accessToken);
+      const deletion = { operationId: receipt.operationId, receiptSecret: receipt.receiptSecret, currentPassword: password };
+      try {
+        lastStatus = await request('/auth/me/deletion-requests', deletion, authenticated.accessToken);
+      } catch (error) {
+        if (error.status !== 404) throw error;
+        lastStatus = await request('/auth/me', deletion, authenticated.accessToken, 'DELETE');
+      }
     } catch (error) {
-      lastStatus = { message: error.message };
+      const blocker = error.code?.replace(/^ACCOUNT_DELETION_/, '');
+      lastStatus = { message: error.message, blockers: blocker && copy[locale][blocker] ? [blocker] : [] };
       const previous = lastStatus;
       await recover();
       if (!lastStatus?.operationId) lastStatus = previous;
@@ -211,11 +223,10 @@ dismiss.addEventListener('click', () => {
 });
 
 language.addEventListener('click', () => {
-  locale = locale === 'en' ? 'ar' : 'en';
-  render();
+  window.CenterhaLanguage.set(locale === 'en' ? 'ar' : 'en');
 });
 
-if (navigator.language.toLowerCase().startsWith('ar')) locale = 'ar';
+document.addEventListener('centerha:languagechange', ({ detail }) => { locale = detail.lang; render(); });
 render();
 if (savedReceipt()) {
   setBusy(true);

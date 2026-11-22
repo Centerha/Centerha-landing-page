@@ -1,5 +1,9 @@
 window.CenterhaTranslations = {
   en: {
+    supportApp: "App issue",
+    supportAccount: "Account access",
+    supportBooking: "Booking",
+    supportPrivacy: "Privacy and deletion",
     brand: "Centerha",
     brandHome: "Centerha home",
     homeDocumentTitle: "Centerha — football pitches in Syria",
@@ -78,6 +82,10 @@ window.CenterhaTranslations = {
     madeInSyria: "Made in Syria"
   },
   ar: {
+    supportApp: "مشكلة في التطبيق",
+    supportAccount: "الدخول إلى الحساب",
+    supportBooking: "الحجوزات",
+    supportPrivacy: "الخصوصية والحذف",
     brand: "سنطرها",
     brandHome: "سنطرها الرئيسية",
     homeDocumentTitle: "سنطرها — احجز ملعبك بسهولة",

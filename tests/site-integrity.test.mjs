@@ -46,7 +46,7 @@ function attributes(tag) {
 }
 
 test('canonical metadata and sitemap use the configured Pages domain', () => {
-  for (const relativePath of ['index.html', 'search/index.html', 'field/index.html']) {
+  for (const relativePath of ['index.html', 'search/index.html', 'field/index.html', 'privacy-policy.html', 'terms.html', 'support.html', 'delete-account.html']) {
     const html = read(relativePath)
     const canonical = getAttribute(html, /<link\s+rel="canonical"[^>]*href="([^"]+)"/i)
     assert.ok(canonical, `${relativePath} has a canonical URL`)
@@ -97,6 +97,7 @@ test('static HTML links resolve to existing pages and fragment targets', () => {
       let targetPath = decodeURIComponent(target.pathname.slice(1))
       if (!targetPath) targetPath = 'index.html'
       if (targetPath.endsWith('/')) targetPath += 'index.html'
+  if (!path.extname(targetPath) && existsSync(path.resolve(root, targetPath + '.html'))) targetPath += '.html'
       const targetAbsolutePath = path.resolve(root, targetPath)
       if (!targetAbsolutePath.startsWith(`${root}${path.sep}`) || !existsSync(targetAbsolutePath)) {
         failures.push(`${relativePath}: ${href} -> ${targetPath} does not exist`)
@@ -119,7 +120,7 @@ test('static HTML links resolve to existing pages and fragment targets', () => {
 test('public pages keep bilingual markup and localization keys in parity', () => {
   const english = translations('en')
   const arabic = translations('ar')
-  const pages = ['index.html', 'search/index.html', 'field/index.html', 'invite/team/index.html', 'pages/content.html']
+  const pages = ['index.html', 'search/index.html', 'field/index.html', 'invite/team/index.html', 'pages/content.html', 'privacy-policy.html', 'terms.html', 'support.html', 'delete-account.html']
 
   for (const relativePath of pages) {
     const tags = openingTags(read(relativePath)).map(attributes)
