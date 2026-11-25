@@ -10,6 +10,8 @@ name: Landing — validate & deploy to GitHub Pages
 # (web.centerha.software) is uploaded verbatim, so the custom domain is preserved.
 
 on:
+  pull_request:
+    branches: [main]
   push:
     branches: [main]
   workflow_dispatch:
@@ -47,10 +49,13 @@ jobs:
             if ! grep -qi '<html' "$f"; then echo "NO <html> tag: $f" >&2; rc=1; fi
           done < <(find . -name '*.html' -not -path './.git/*' -not -path './_legacy/*' -print0)
           exit "$rc"
+      - name: Site integrity and navigation regressions
+        run: node --test tests/site-integrity.test.mjs
 
   deploy:
     name: Deploy to GitHub Pages
     needs: validate
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
     runs-on: ubuntu-latest
     permissions:
       contents: read
